@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="promotionCell" rowHeight="155" id="KGk-i7-Jjw" customClass="GYPromotionCell">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="155"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="154.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9uD-NF-wii">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="154.5"/>
+                    </scrollView>
+                    <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="2" translatesAutoresizingMaskIntoConstraints="NO" id="KEg-3k-Luq">
+                        <rect key="frame" x="348" y="83" width="46" height="37"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="46" id="ffo-I1-mSx"/>
+                        </constraints>
+                    </pageControl>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="9uD-NF-wii" secondAttribute="bottom" id="FAy-y2-nRE"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="KEg-3k-Luq" secondAttribute="bottom" constant="-10" id="NGr-s9-7jp"/>
+                    <constraint firstItem="9uD-NF-wii" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="P35-0i-Iyu"/>
+                    <constraint firstItem="9uD-NF-wii" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="PdF-71-CdU"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="KEg-3k-Luq" secondAttribute="trailing" id="hHA-IE-jCL"/>
+                    <constraint firstAttribute="trailing" secondItem="9uD-NF-wii" secondAttribute="trailing" id="pCD-LM-dBb"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="pageControl" destination="KEg-3k-Luq" id="wYz-Oh-KVx"/>
+                <outlet property="scrollView" destination="9uD-NF-wii" id="Cx7-h5-3NW"/>
+            </connections>
+            <point key="canvasLocation" x="155.07246376811597" y="30.46875"/>
+        </tableViewCell>
+    </objects>
+</document>
