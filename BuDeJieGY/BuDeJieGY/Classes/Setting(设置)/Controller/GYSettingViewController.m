@@ -10,13 +10,18 @@
 #import "../Model/GYSettingItem.h"
 #import "../View/GYSettingCell.h"
 
+#import "../../Utils(业务类)/File/GYFileManager.h"
+
 #import <MJExtension/MJExtension.h>
 #import <SDImageCache.h>
+#import <SVProgressHUD.h>
 
 static NSString * const settingCellID = @"settingCell";
 
 @interface GYSettingViewController ()
 @property (strong, nonatomic) NSMutableArray *items;
+@property (strong, nonatomic) NSString *cachePath;
+@property (strong, nonatomic) NSString *cacheSize;
 @end
 
 @implementation GYSettingViewController
@@ -25,6 +30,15 @@ static NSString * const settingCellID = @"settingCell";
         _items = [NSMutableArray array];
     }
     return _items;
+}
+
+- (NSString *)cachePath {
+    if(_cachePath == nil) {
+        NSString *cachePath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0];
+        NSString *defaultPath = [cachePath stringByAppendingPathComponent:@"com.hackemist.SDImageCache/default"];
+        _cachePath = defaultPath;
+    }
+    return _cachePath;
 }
 
 - (void)viewDidLoad {
@@ -45,6 +59,8 @@ static NSString * const settingCellID = @"settingCell";
                  };
     }];
     
+    [self getCacheSize];
+
     NSString *path = [[NSBundle mainBundle] pathForResource:@"setting.plist" ofType:nil];
     NSArray *array = [NSArray arrayWithContentsOfFile:path];
     
@@ -82,9 +98,9 @@ static NSString * const settingCellID = @"settingCell";
     
     //[self.tableView registerClass:[GYSettingCell class] forCellReuseIdentifier:settingCellID];
     
-    [self getFileSize];
-    NSUInteger size = [SDImageCache sharedImageCache].totalDiskSize;
-    GYLog(@"size -- %ld", size);
+//    [self getFileSize];
+//    NSUInteger size = [SDImageCache sharedImageCache].totalDiskSize;
+//    GYLog(@"size -- %ld", size);
 }
 
 -(void)loginOut {
@@ -96,40 +112,24 @@ static NSString * const settingCellID = @"settingCell";
     [self presentViewController:alert animated:YES completion:nil];
 }
 
-// 计算SDWebImage的缓存大小
-- (void)getFileSize {
-    //NSFileManager
-    // attributesOfItemAtPath:指定文件路径,就能获取文件属性
-    // 把所有文件尺寸加起来
-    
-    // 获取cache文件夹路径
-    NSString *cachePath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0];
-    // 获取default文件路径
-    NSString *defaultPath = [cachePath stringByAppendingPathComponent:@"com.hackemist.SDImageCache"];
-    
-    // 获取文件管理者
-    NSFileManager *manager = [NSFileManager defaultManager];
-    
-    // 获取文件夹所有子路径数组：获取多级路径下文件路经
-    NSArray *subPathes = [manager subpathsAtPath:defaultPath];
-    
-    NSInteger size = 0;
-    for (NSString *subPath in subPathes) {
-        NSString *filePath = [defaultPath stringByAppendingPathComponent:subPath];
-        NSDictionary *dict = [manager attributesOfItemAtPath:filePath error:nil];
-        // 判断是否是隐藏文件
-        if([filePath containsString:@".DS"])    continue;
-        // 判断是否是文件夹
-        BOOL isDirectory;
-        BOOL isExists = [manager fileExistsAtPath:filePath isDirectory:&isDirectory];
-        if(!isExists || isDirectory)           continue;
-        
-        size += [dict fileSize];
-    }
-
-    GYLog(@"file size: %ld", size);
+#pragma mark - 计算缓存
+- (void)getCacheSize {
+    [GYFileManager getDirectorySizeStr:self.cachePath completion:^(NSString * _Nonnull str) {
+        self.cacheSize = str;
+        [self.tableView reloadData];
+    }];
 }
+#pragma mark - 清除缓存
+- (void)cleanCache {
+    [GYFileManager removeDirectory:self.cachePath];
+    self.cacheSize = nil;
+    [self getCacheSize];
 
+    [SVProgressHUD showSuccessWithStatus:@"清除数据成功!"];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [SVProgressHUD dismiss];
+    });
+}
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -141,66 +141,30 @@ static NSString * const settingCellID = @"settingCell";
     return array.count;
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     GYSettingCell *cell = [tableView dequeueReusableCellWithIdentifier:settingCellID forIndexPath:indexPath];
     NSArray *array = _items[indexPath.section];
-    cell.item = array[indexPath.row];
+    GYSettingItem *item = array[indexPath.row];
+    if(item.isCleanCache) {
+        if(_cacheSize == nil) {
+            item.cacheSize = @"正在计算...";
+        } else {
+            item.cacheSize = _cacheSize;
+        }
+        //item.cacheSize = [self getCacheSize];
+    }
+    cell.item = item;
     return cell;
 }
 
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSArray *array = _items[indexPath.section];
+    GYSettingItem *item = array[indexPath.row];
+    if(item.isCleanCache && _cacheSize) {
+        [self cleanCache];
+        [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
 }
-*/
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 @end

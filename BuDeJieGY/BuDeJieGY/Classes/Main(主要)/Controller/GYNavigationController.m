@@ -23,6 +23,7 @@
     UINavigationBar *bar = [UINavigationBar appearanceWhenContainedInInstancesOfClasses:@[[self class]]];
     
     [bar setTitleTextAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:19]}];
+    [bar setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithWhite:1 alpha:1]] forBarMetrics:UIBarMetricsDefault];
     //[bar setBackgroundImage:[UIImage imageNamed:@"navigationbarBackgroundWhite"] forBarMetrics:UIBarMetricsDefault];
 }
 

@@ -29,6 +29,7 @@
 		301EF02F22871E9700F5EE2D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 301EF02E22871E9700F5EE2D /* main.m */; };
 		302E3E6A22A3C270003DA5FE /* GYWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 302E3E6822A3C270003DA5FE /* GYWebViewController.m */; };
 		302E3E6B22A3C270003DA5FE /* GYWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 302E3E6922A3C270003DA5FE /* GYWebViewController.xib */; };
+		3030CD9D22A64851006BD98A /* GYFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3030CD9C22A64851006BD98A /* GYFileManager.m */; };
 		303E609E2296DB23006D8138 /* GYRecommendFriendItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 303E609D2296DB23006D8138 /* GYRecommendFriendItem.m */; };
 		303E60A22297F21C006D8138 /* GYRecommendFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 303E60A02297F21C006D8138 /* GYRecommendFriendCell.m */; };
 		303E60A32297F21C006D8138 /* GYRecommendFriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 303E60A12297F21C006D8138 /* GYRecommendFriendCell.xib */; };
@@ -112,6 +113,8 @@
 		302E3E6722A3C270003DA5FE /* GYWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GYWebViewController.h; sourceTree = "<group>"; };
 		302E3E6822A3C270003DA5FE /* GYWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GYWebViewController.m; sourceTree = "<group>"; };
 		302E3E6922A3C270003DA5FE /* GYWebViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GYWebViewController.xib; sourceTree = "<group>"; };
+		3030CD9B22A64851006BD98A /* GYFileManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GYFileManager.h; sourceTree = "<group>"; };
+		3030CD9C22A64851006BD98A /* GYFileManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GYFileManager.m; sourceTree = "<group>"; };
 		303E609C2296DB23006D8138 /* GYRecommendFriendItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GYRecommendFriendItem.h; sourceTree = "<group>"; };
 		303E609D2296DB23006D8138 /* GYRecommendFriendItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GYRecommendFriendItem.m; sourceTree = "<group>"; };
 		303E609F2297F21C006D8138 /* GYRecommendFriendCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GYRecommendFriendCell.h; sourceTree = "<group>"; };
@@ -252,6 +255,15 @@
 			path = BuDeJieGY;
 			sourceTree = "<group>";
 		};
+		3030CD9A22A6416A006BD98A /* File */ = {
+			isa = PBXGroup;
+			children = (
+				3030CD9B22A64851006BD98A /* GYFileManager.h */,
+				3030CD9C22A64851006BD98A /* GYFileManager.m */,
+			);
+			path = File;
+			sourceTree = "<group>";
+		};
 		30785236228D3CDD00A145D7 /* AD(广告) */ = {
 			isa = PBXGroup;
 			children = (
@@ -382,16 +394,17 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		30EFCA97228FF755001082B6 /* Tool */ = {
+		30EFCA97228FF755001082B6 /* Utils(业务类) */ = {
 			isa = PBXGroup;
 			children = (
+				3030CD9A22A6416A006BD98A /* File */,
 				30FBC34822A0F54800231274 /* JTNavigationController */,
 				30FBC35A22A1826E00231274 /* GYTool.h */,
 				30FBC35922A1826E00231274 /* GYTool.m */,
 				30DD7993229C2426002D0D6E /* GYImageBtn.h */,
 				30DD7994229C2426002D0D6E /* GYImageBtn.m */,
 			);
-			path = Tool;
+			path = "Utils(业务类)";
 			sourceTree = "<group>";
 		};
 		30FBC34822A0F54800231274 /* JTNavigationController */ = {
@@ -410,6 +423,7 @@
 		30FE311022880C1B00383571 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				30EFCA97228FF755001082B6 /* Utils(业务类) */,
 				30954D63229A434100A900BE /* LoginRegister(登录&注册) */,
 				30FE31352288286000383571 /* AppDelegate */,
 				30785236228D3CDD00A145D7 /* AD(广告) */,
@@ -421,7 +435,6 @@
 				30FE311A22880C1B00383571 /* FriendTrend(关注) */,
 				30FE311E22880C1B00383571 /* Me(我) */,
 				30FE311522880C1B00383571 /* Other */,
-				30EFCA97228FF755001082B6 /* Tool */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -858,6 +871,7 @@
 				30E8E27E2289B0A400114736 /* UIBarButtonItem+Item.m in Sources */,
 				303E60A62297F881006D8138 /* GYUserBtn.m in Sources */,
 				30954D68229A434100A900BE /* GYLoginRegisterVC.m in Sources */,
+				3030CD9D22A64851006BD98A /* GYFileManager.m in Sources */,
 				30DD7990229ADECF002D0D6E /* UINavigationBar+Alpha.m in Sources */,
 				301EF02F22871E9700F5EE2D /* main.m in Sources */,
 				3019B0E822A52BF80021633F /* GYSettingCell.m in Sources */,

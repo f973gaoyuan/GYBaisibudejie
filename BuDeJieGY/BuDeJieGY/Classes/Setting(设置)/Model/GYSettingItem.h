@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) NSString* name;
 @property (assign, nonatomic) BOOL isSubtitle;
 @property (assign, nonatomic) BOOL isCleanCache;
+
+@property (strong, nonatomic) NSString *cacheSize;
 @end
 
 NS_ASSUME_NONNULL_END

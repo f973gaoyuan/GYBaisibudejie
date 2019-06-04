@@ -19,8 +19,8 @@
 #ifdef DEBUG
 #import "Category/NSDictionary+Property.h"
 #endif
-#import "../Tool/GYTool.h"
-#import "../Tool/GYImageBtn.h"
+//#import "../Tool/GYTool.h"
+#import "../Utils(业务类)/GYImageBtn.h"
 
 
 

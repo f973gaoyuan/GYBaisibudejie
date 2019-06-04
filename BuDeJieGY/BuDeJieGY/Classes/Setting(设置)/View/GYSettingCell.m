@@ -43,7 +43,7 @@
     }
     //------------------------
     if(item.isCleanCache) {
-        self.detailTextLabel.text = [self getCacheSize];
+        self.detailTextLabel.text = item.cacheSize;
     }
     //------------------------
 }
@@ -67,15 +67,15 @@
 
 #pragma mark - 计算缓存大小
 - (NSString*)getCacheSize {
-    // 获取cache文件夹路径
+    // 1. 获取cache文件夹路径
     NSString *cachePath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0];
-    // 获取default文件路径
+     // 2. 获取default文件路径
     NSString *defaultPath = [cachePath stringByAppendingPathComponent:@"com.hackemist.SDImageCache"];
     
     // 获取文件管理者
     NSFileManager *manager = [NSFileManager defaultManager];
     
-    // 获取文件夹所有子路径数组：获取多级路径下文件路经
+    // 3. 获取文件夹所有子路径数组：获取多级路径下文件路经
     NSArray *subPathes = [manager subpathsAtPath:defaultPath];
     
     NSInteger size = 0;
