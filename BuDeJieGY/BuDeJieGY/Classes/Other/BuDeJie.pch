@@ -30,6 +30,9 @@
 #define GYLog(...)
 #endif
 
+#define GYAlphaColor(a,r,g,b) [UIColor colorWithRed:(r) / 255.0 green:(g) / 255.0 blue:(b) / 255.0 alpha:a]
+#define GYColor(r,g,b) [UIColor colorWithRed:(r) / 255.0 green:(g) / 255.0 blue:(b) / 255.0 alpha:1]
+
 #define GYScreenW  [UIScreen mainScreen].bounds.size.width
 #define GYScreenH  [UIScreen mainScreen].bounds.size.height
 
