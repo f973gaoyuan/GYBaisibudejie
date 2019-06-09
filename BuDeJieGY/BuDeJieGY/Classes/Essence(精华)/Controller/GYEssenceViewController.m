@@ -22,15 +22,47 @@
 @implementation GYEssenceViewController
 
 - (void)viewDidLoad {
-    self.navigationController.navigationBarHidden = YES;
+    //self.navigationController.navigationBarHidden = YES;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.navigationController.navigationBarHidden = YES;
     self.view.backgroundColor = [UIColor whiteColor];
-    [self setupNavBar];
+    //[self setupNavBar];
     
-    [self setupAllViewController];
-}
+    // 添加所有子控制器
+    [self setUpAllViewController];
+    
+    [self setUpTitleGradient:^(YZTitleColorGradientStyle *titleColorGradientStyle, UIColor *__autoreleasing *norColor, UIColor *__autoreleasing *selColor) {
+        *norColor = [UIColor lightGrayColor];
+        *selColor = [UIColor blackColor];
+    }];
+    
+    // 设置标题高度、字体
+    [self setUpTitleEffect:^(UIColor *__autoreleasing *titleScrollViewColor, UIColor *__autoreleasing *norColor, UIColor *__autoreleasing *selColor, UIFont *__autoreleasing *titleFont, CGFloat *titleHeight, CGFloat *titleWidth) {
+        
+        CGFloat titleH = 44;
+        CGFloat fontH = 0.409 * titleH;
+        
+        *titleScrollViewColor = [UIColor colorWithWhite:1 alpha:0.9];
+        
+        *titleHeight = titleH;
+        *titleFont = [UIFont systemFontOfSize:fontH];
+    }];
+    
+    [self setUpUnderLineEffect:^(BOOL *isUnderLineDelayScroll, CGFloat *underLineH, UIColor *__autoreleasing *underLineColor, CGFloat *underLineEqualTitleWidthScale) {
+        *underLineColor = [UIColor redColor];
+        *underLineEqualTitleWidthScale = 0.4;
+    }];
+    
+    [self setUpTitleScale:^(CGFloat *titleScale) {
+        *titleScale = 1.1;
+    }];
+    
+    self.isfullScreen = YES;    // 全屏模式
+    self.dragingFollow = YES;   // 标题跟随拖动保持居中
 
+}
+/*
 - (void)setupNavBar {
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"MainTitle"]];
     
@@ -58,9 +90,9 @@
 - (void)randomClick {
     GYLog(@"randomClick");
 }
-
+*/
 #pragma mark - 设置内容视图控制器
-- (void)setupAllViewController {
+- (void)setUpAllViewController {
     GYRecommendVC *recVC = [[GYRecommendVC alloc] init];
     recVC.title = @"推荐";
     [self addChildViewController:recVC];

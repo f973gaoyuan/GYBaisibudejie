@@ -38,7 +38,7 @@
     if(_plusBtn == nil) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn setImage:[UIImage imageNamed:@"tabBar_publish_icon_49x49_"] forState:UIControlStateNormal];
-        [btn setImage:[UIImage imageNamed:@"tabBar_publish_click_icon_49x49_"] forState:UIControlStateHighlighted];
+        //[btn setImage:[UIImage imageNamed:@"tabBar_publish_click_icon_49x49_"] forState:UIControlStateHighlighted];
         [btn sizeToFit];
         [self.tabBar addSubview:btn];
         

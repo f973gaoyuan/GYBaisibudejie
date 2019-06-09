@@ -9,10 +9,9 @@
 #import "GYBaseContentVC.h"
 
 
-CGFloat const baseScale     = 0.1;
-CGFloat const colorNorValue = 160 / 255.0;
-CGFloat const colorSelValue = 0 / 255.0;
-#define kTitleColor
+static CGFloat const baseScale     = 0.1;
+static CGFloat const colorNorValue = 160 / 255.0;
+static CGFloat const colorSelValue = 0 / 255.0;
 
 @interface GYBaseContentVC () <UIScrollViewDelegate>
 @property (strong, nonatomic) NSMutableArray<UIButton*> *titleBtns;
@@ -49,6 +48,13 @@ CGFloat const colorSelValue = 0 / 255.0;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    if(!_isInitialize) {
+        CGFloat width = self.contentScrollView.width;
+        NSInteger count = self.childViewControllers.count;
+        self.contentScrollView.contentSize = CGSizeMake(width * count, 0);
+        [self setupAllTitle];
+        _isInitialize = YES;
+    }
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -57,13 +63,6 @@ CGFloat const colorSelValue = 0 / 255.0;
     [self setupTitleScrollView];
     [self setupContentScrollView];
     //[self setupAllViewController];
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        CGFloat width = self.contentScrollView.width;
-        NSInteger count = self.childViewControllers.count;
-        self.contentScrollView.contentSize = CGSizeMake(width * count, 0);
-        [self setupAllTitle];
-    });
 }
 #pragma mark - 标题居中
 - (void)setTitleCenter:(UIButton*)btn{

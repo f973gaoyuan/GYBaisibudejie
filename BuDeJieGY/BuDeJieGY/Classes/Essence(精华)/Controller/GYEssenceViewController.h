@@ -6,11 +6,14 @@
 //  Copyright © 2019 gaoyuan. All rights reserved.
 //
 
-#import "GYBaseContentVC.h"
+//#import "GYBaseContentVC.h"
+//#import "GYEssenceContentVC.h"
+#import "YZDisplayViewController.h"
+
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface GYEssenceViewController : GYBaseContentVC
+@interface GYEssenceViewController : YZDisplayViewController//GYEssenceContentVC//GYBaseContentVC
 
 @end
 
