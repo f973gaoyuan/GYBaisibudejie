@@ -7,9 +7,6 @@
 //
 
 #import "GYFriendTrendViewController.h"
-#import <AFNetworking.h>
-#import <UIImageView+WebCache.h>
-#import <MJExtension/MJExtension.h>
 
 #import "../Model/GYRecommendFriendItem.h"
 

@@ -8,6 +8,12 @@
 
 #ifndef BuDeJie_pch
 #define BuDeJie_pch
+
+#import <AFNetworking.h>
+#import <MJExtension/MJExtension.h>
+#import <UIImageView+WebCache.h>
+#import <DALabeledCircularProgressView.h>
+
 //#import "UIBarButtonItem+Item.h"
 #import "Category/UIBarButtonItem+Item.h"
 #import "Category/AFHTTPSessionManager+Manager.h"

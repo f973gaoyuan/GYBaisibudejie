@@ -113,9 +113,9 @@
     entertainmentVC.title = @"娱乐";
     [self addChildViewController:entertainmentVC];
     //--------
-    GYGameVC *gameVC = [[GYGameVC alloc] init];
-    gameVC.title = @"游戏";
-    [self addChildViewController:gameVC];
+//    GYGameVC *gameVC = [[GYGameVC alloc] init];
+//    gameVC.title = @"游戏";
+//    [self addChildViewController:gameVC];
     
     //    for(NSInteger i = 0; i < self.childViewControllers.count; i++) {
     //        [self setupViewWithIndex:i];

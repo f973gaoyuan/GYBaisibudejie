@@ -7,10 +7,7 @@
 //
 
 #import "GYADViewController.h"
-#import <AFNetworking.h>
-#import <MJExtension/MJExtension.h>
 //#import <SDWebImage/SDWebImageManager.h>
-#import <UIImageView+WebCache.h>
 #import "../../Main(主要)/Controller/GYTabBarController.h"
 
 

@@ -8,9 +8,6 @@
 
 #import "GYNewViewController.h"
 #import "GYSubTagController.h"
-#import <AFNetworking.h>
-#import <UIImageView+WebCache.h>
-#import <MJExtension/MJExtension.h>
 //#import <SVProgressHUD.h>
 
 #import "../Model/GYPromotionItem.h"

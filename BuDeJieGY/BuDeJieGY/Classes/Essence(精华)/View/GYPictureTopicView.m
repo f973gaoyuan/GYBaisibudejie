@@ -1,0 +1,150 @@
+//
+//  GYPictureTopicView.m
+//  BuDeJieGY
+//
+//  Created by 高源 on 2019/6/11.
+//  Copyright © 2019 gaoyuan. All rights reserved.
+//
+
+#import "GYPictureTopicView.h"
+#import "../Model/GYTopicItem.h"
+
+@interface GYPictureTopicView ()
+@property (weak, nonatomic) IBOutlet UIImageView *gifSignGY;
+@property (weak, nonatomic) IBOutlet UIImageView *imageViewGY;
+@property (weak, nonatomic) IBOutlet UILabel *typelabel;
+@property (weak, nonatomic) IBOutlet DALabeledCircularProgressView *progressView;
+//@property (strong, nonatomic) UIImage *imageGY;
+@property (assign, nonatomic) BOOL isLongPic;
+@end
+
+@implementation GYPictureTopicView
+- (void)setTopicItem:(GYTopicItem *)topicItem {
+    _topicItem = topicItem;
+
+    _progressView.progress = 0;
+    _progressView.progressLabel.text = @"0.0%";
+    _isLongPic = NO;
+    _typelabel.hidden = YES;
+    //_imageViewGY.backgroundColor = [UIColor lightGrayColor];
+    
+    if([topicItem.type isEqualToString:@"image"]) {
+        [self setupImageData];
+    } else if([topicItem.type isEqualToString:@"gif"]) {
+        [self setupGifData];
+    }
+    
+
+ /*
+    //NSURL *url = [NSURL URLWithString:topicItem.image.thumbnail_small[0]];
+    //[_imageViewGY sd_setImageWithURL:url completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+    _isLongPic = NO;
+    self.typelabel.hidden = YES;
+        NSURL *url = [NSURL URLWithString:topicItem.image.big[0]];
+        [self.imageViewGY sd_setImageWithURL:url completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+            // 原图片 尺寸
+            CGFloat W0 = topicItem.image.width;
+            CGFloat H0 = topicItem.image.height;
+            // 绘图尺寸
+            CGFloat DrawW = W0;
+            CGFloat DrawH = H0;
+            CGFloat WScaleH = 1;
+            if(DrawH > DrawW*WScaleH) {
+                DrawH = DrawW*WScaleH;
+                self.isLongPic = YES;
+            }
+            self.typelabel.hidden = !self.isLongPic;
+
+            UIGraphicsBeginImageContextWithOptions(CGSizeMake(DrawW, DrawH), 0, 0);
+            [image drawInRect:CGRectMake(0, 0, W0, H0)];
+            
+            UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+            
+            self.imageViewGY.image = newImage;
+
+        }];
+    //}];
+  */
+}
+
+- (void)setupImageData{
+    NSURL *url = [NSURL URLWithString:_topicItem.image.big[0]];
+    [_imageViewGY sd_setImageWithURL:url placeholderImage:nil options:SDWebImageRetryFailed progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
+        if(expectedSize > 0) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                CGFloat progress = 1.0 * receivedSize / expectedSize;
+                //self.progressView.progress = progress;
+                self.progressView.progressLabel.text = [NSString stringWithFormat:@"%.1f%%", 100.0 * progress];
+                [self.progressView setProgress:progress animated:YES];
+            });
+        }
+    } completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        // 原图片 尺寸
+        CGFloat W0 = self.topicItem.image.width;
+        CGFloat H0 = self.topicItem.image.height;
+        // 绘图尺寸
+        CGFloat DrawW = W0;
+        CGFloat DrawH = H0;
+        CGFloat WScaleH = 1;
+        if(DrawH > DrawW*WScaleH) {
+            DrawH = DrawW*WScaleH;
+            self.isLongPic = YES;
+            self.typelabel.text = @"长图";
+        }
+        self.typelabel.hidden = !self.isLongPic;
+
+        UIGraphicsBeginImageContextWithOptions(CGSizeMake(DrawW, DrawH), 0, 0);
+        [image drawInRect:CGRectMake(0, 0, W0, H0)];
+        
+        UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+        self.imageViewGY.image = newImage;
+        self.imageViewGY.layer.cornerRadius = 0;
+    }];
+}
+
+- (void)setupGifData{
+    NSURL *url = [NSURL URLWithString:_topicItem.gif.images[0]];
+    [_imageViewGY sd_setImageWithURL:url placeholderImage:nil options:SDWebImageRetryFailed progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
+        if(expectedSize > 0) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                CGFloat progress = 1.0 * receivedSize / expectedSize;
+                //self.progressView.progress = progress;
+                self.progressView.progressLabel.text = [NSString stringWithFormat:@"%.1f%%", 100.0 * progress];
+                [self.progressView setProgress:progress animated:YES];
+            });
+        }
+    } completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        //CGSize size = image.size;
+        //UIGraphicsBeginImageContextWithOptions(size, 0, 0);
+        //UIBezierPath *clipPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, size.width, size.height) cornerRadius:5];
+        //[clipPath addClip];
+        //[image drawAtPoint:CGPointZero];
+        //UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+        //self.imageViewGY.image = newImage;
+        //UIGraphicsEndImageContext();
+        self.typelabel.hidden = NO;
+        self.typelabel.text = @"gif";
+    }];
+}
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    
+    _typelabel.layer.cornerRadius = 12;
+    _typelabel.clipsToBounds = YES;
+    
+    _progressView.roundedCorners = YES;
+    _progressView.trackTintColor = [UIColor clearColor];
+    _progressView.progressLabel.textColor = [UIColor whiteColor];
+}
+/*
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+- (void)drawRect:(CGRect)rect {
+    // Drawing code
+}
+*/
+
+@end

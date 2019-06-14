@@ -27,9 +27,20 @@
 		301EF02922871E9700F5EE2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 301EF02822871E9700F5EE2D /* Assets.xcassets */; };
 		301EF02C22871E9700F5EE2D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 301EF02A22871E9700F5EE2D /* LaunchScreen.storyboard */; };
 		301EF02F22871E9700F5EE2D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 301EF02E22871E9700F5EE2D /* main.m */; };
+		30270A5E22B26AAE00AEFC72 /* GYVideoTopicView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30270A5D22B26AAE00AEFC72 /* GYVideoTopicView.m */; };
+		30270A6022B26ABB00AEFC72 /* GYVideoTopicView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30270A5F22B26ABB00AEFC72 /* GYVideoTopicView.xib */; };
+		30270A6322B26C9D00AEFC72 /* GYVideoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 30270A6222B26C9D00AEFC72 /* GYVideoItem.m */; };
 		302E3E6A22A3C270003DA5FE /* GYWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 302E3E6822A3C270003DA5FE /* GYWebViewController.m */; };
 		302E3E6B22A3C270003DA5FE /* GYWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 302E3E6922A3C270003DA5FE /* GYWebViewController.xib */; };
 		3030CD9D22A64851006BD98A /* GYFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3030CD9C22A64851006BD98A /* GYFileManager.m */; };
+		303114D522B3BC83005B10DF /* GYCommentTopicView.m in Sources */ = {isa = PBXBuildFile; fileRef = 303114D422B3BC83005B10DF /* GYCommentTopicView.m */; };
+		303114D722B3BC8E005B10DF /* GYCommentTopicView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 303114D622B3BC8E005B10DF /* GYCommentTopicView.xib */; };
+		303114DA22B3C522005B10DF /* GYCommentItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 303114D922B3C522005B10DF /* GYCommentItem.m */; };
+		303DCF8222AF7F6400D2F22B /* GYTopicCellMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 303DCF8122AF7F6400D2F22B /* GYTopicCellMode.m */; };
+		303DCF8522AFD7DE00D2F22B /* GYPictureTopicView.m in Sources */ = {isa = PBXBuildFile; fileRef = 303DCF8422AFD7DE00D2F22B /* GYPictureTopicView.m */; };
+		303DCF8722AFD7E900D2F22B /* GYPictureTopicView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 303DCF8622AFD7E900D2F22B /* GYPictureTopicView.xib */; };
+		303DCF8A22AFF7B600D2F22B /* GYBaseTopicView.m in Sources */ = {isa = PBXBuildFile; fileRef = 303DCF8922AFF7B600D2F22B /* GYBaseTopicView.m */; };
+		303DCF8D22B083F400D2F22B /* GYImageItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 303DCF8C22B083F400D2F22B /* GYImageItem.m */; };
 		303E609E2296DB23006D8138 /* GYRecommendFriendItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 303E609D2296DB23006D8138 /* GYRecommendFriendItem.m */; };
 		303E60A22297F21C006D8138 /* GYRecommendFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 303E60A02297F21C006D8138 /* GYRecommendFriendCell.m */; };
 		303E60A32297F21C006D8138 /* GYRecommendFriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 303E60A12297F21C006D8138 /* GYRecommendFriendCell.xib */; };
@@ -45,10 +56,17 @@
 		3075B410228BEDCB0080799B /* UIButton+HitRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 3075B40F228BEDCB0080799B /* UIButton+HitRect.m */; };
 		3078523D228D416400A145D7 /* GYADViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3078523B228D416400A145D7 /* GYADViewController.m */; };
 		30785240228D42F000A145D7 /* GYADViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3078523F228D42F000A145D7 /* GYADViewController.xib */; };
+		3079101822AE118C00CD5DA1 /* GYTopTopicView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3079101722AE118C00CD5DA1 /* GYTopTopicView.m */; };
+		3079101A22AE119A00CD5DA1 /* GYTopTopicView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3079101922AE119A00CD5DA1 /* GYTopTopicView.xib */; };
+		3079101D22AE269800CD5DA1 /* GYEssenceItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3079101C22AE269800CD5DA1 /* GYEssenceItem.m */; };
+		3079102022AE30C100CD5DA1 /* GYTopicItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3079101F22AE30C100CD5DA1 /* GYTopicItem.m */; };
+		3079102322AE3CCB00CD5DA1 /* GYUserItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3079102222AE3CCB00CD5DA1 /* GYUserItem.m */; };
 		3084EE6822A2CA3300CFEF72 /* GYSquareItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3084EE6722A2CA3300CFEF72 /* GYSquareItem.m */; };
 		30954D68229A434100A900BE /* GYLoginRegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 30954D66229A434100A900BE /* GYLoginRegisterVC.m */; };
 		30954D6E229A4C8400A900BE /* GYLogRegView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30954D6D229A4C8400A900BE /* GYLogRegView.m */; };
 		30954D70229A4C9300A900BE /* GYLogRegView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30954D6F229A4C9300A900BE /* GYLogRegView.xib */; };
+		30A947DD22B1EA5B004E5950 /* GYGIfItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 30A947DC22B1EA5B004E5950 /* GYGIfItem.m */; };
+		30C3586A22AD53EE0056B9F3 /* GYTopicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 30C3586922AD53EE0056B9F3 /* GYTopicCell.m */; };
 		30DD798A229AB10D002D0D6E /* GYPrivacyPolicyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DD7989229AB10D002D0D6E /* GYPrivacyPolicyVC.m */; };
 		30DD798D229AC4FD002D0D6E /* UIImage+Image.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DD798C229AC4FD002D0D6E /* UIImage+Image.m */; };
 		30DD7990229ADECF002D0D6E /* UINavigationBar+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DD798F229ADECF002D0D6E /* UINavigationBar+Alpha.m */; };
@@ -68,6 +86,7 @@
 		30EFF93122A77335005B72AF /* GYJokeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 30EFF93022A77335005B72AF /* GYJokeVC.m */; };
 		30EFF93422A777E3005B72AF /* GYEntertainmentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 30EFF93322A777E3005B72AF /* GYEntertainmentVC.m */; };
 		30EFF93722A78526005B72AF /* GYGameVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 30EFF93622A78526005B72AF /* GYGameVC.m */; };
+		30EFF93A22A7E2AA005B72AF /* GYEssenceContentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 30EFF93922A7E2AA005B72AF /* GYEssenceContentVC.m */; };
 		30F84041229D13AA0050EF1A /* GYLoginField.m in Sources */ = {isa = PBXBuildFile; fileRef = 30F84040229D13AA0050EF1A /* GYLoginField.m */; };
 		30F84044229D75330050EF1A /* UITextField+Placeholder.m in Sources */ = {isa = PBXBuildFile; fileRef = 30F84043229D75330050EF1A /* UITextField+Placeholder.m */; };
 		30FBC342229FE34400231274 /* GYUserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30FBC341229FE34400231274 /* GYUserView.m */; };
@@ -118,11 +137,30 @@
 		301EF02B22871E9700F5EE2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		301EF02D22871E9700F5EE2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		301EF02E22871E9700F5EE2D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		30270A5C22B26AAE00AEFC72 /* GYVideoTopicView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GYVideoTopicView.h; sourceTree = "<group>"; };
+		30270A5D22B26AAE00AEFC72 /* GYVideoTopicView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GYVideoTopicView.m; sourceTree = "<group>"; };
+		30270A5F22B26ABB00AEFC72 /* GYVideoTopicView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GYVideoTopicView.xib; sourceTree = "<group>"; };
+		30270A6122B26C9D00AEFC72 /* GYVideoItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GYVideoItem.h; sourceTree = "<group>"; };
+		30270A6222B26C9D00AEFC72 /* GYVideoItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GYVideoItem.m; sourceTree = "<group>"; };
 		302E3E6722A3C270003DA5FE /* GYWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GYWebViewController.h; sourceTree = "<group>"; };
 		302E3E6822A3C270003DA5FE /* GYWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GYWebViewController.m; sourceTree = "<group>"; };
 		302E3E6922A3C270003DA5FE /* GYWebViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GYWebViewController.xib; sourceTree = "<group>"; };
 		3030CD9B22A64851006BD98A /* GYFileManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GYFileManager.h; sourceTree = "<group>"; };
 		3030CD9C22A64851006BD98A /* GYFileManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GYFileManager.m; sourceTree = "<group>"; };
+		303114D322B3BC83005B10DF /* GYCommentTopicView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GYCommentTopicView.h; sourceTree = "<group>"; };
+		303114D422B3BC83005B10DF /* GYCommentTopicView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GYCommentTopicView.m; sourceTree = "<group>"; };
+		303114D622B3BC8E005B10DF /* GYCommentTopicView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GYCommentTopicView.xib; sourceTree = "<group>"; };
+		303114D822B3C522005B10DF /* GYCommentItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GYCommentItem.h; sourceTree = "<group>"; };
+		303114D922B3C522005B10DF /* GYCommentItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GYCommentItem.m; sourceTree = "<group>"; };
+		303DCF8022AF7F6400D2F22B /* GYTopicCellMode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GYTopicCellMode.h; sourceTree = "<group>"; };
+		303DCF8122AF7F6400D2F22B /* GYTopicCellMode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GYTopicCellMode.m; sourceTree = "<group>"; };
+		303DCF8322AFD7DE00D2F22B /* GYPictureTopicView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GYPictureTopicView.h; sourceTree = "<group>"; };
+		303DCF8422AFD7DE00D2F22B /* GYPictureTopicView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GYPictureTopicView.m; sourceTree = "<group>"; };
+		303DCF8622AFD7E900D2F22B /* GYPictureTopicView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GYPictureTopicView.xib; sourceTree = "<group>"; };
+		303DCF8822AFF7B600D2F22B /* GYBaseTopicView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GYBaseTopicView.h; sourceTree = "<group>"; };
+		303DCF8922AFF7B600D2F22B /* GYBaseTopicView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GYBaseTopicView.m; sourceTree = "<group>"; };
+		303DCF8B22B083F300D2F22B /* GYImageItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GYImageItem.h; sourceTree = "<group>"; };
+		303DCF8C22B083F400D2F22B /* GYImageItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GYImageItem.m; sourceTree = "<group>"; };
 		303E609C2296DB23006D8138 /* GYRecommendFriendItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GYRecommendFriendItem.h; sourceTree = "<group>"; };
 		303E609D2296DB23006D8138 /* GYRecommendFriendItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GYRecommendFriendItem.m; sourceTree = "<group>"; };
 		303E609F2297F21C006D8138 /* GYRecommendFriendCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GYRecommendFriendCell.h; sourceTree = "<group>"; };
@@ -147,6 +185,15 @@
 		3078523A228D416400A145D7 /* GYADViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GYADViewController.h; sourceTree = "<group>"; };
 		3078523B228D416400A145D7 /* GYADViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GYADViewController.m; sourceTree = "<group>"; };
 		3078523F228D42F000A145D7 /* GYADViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GYADViewController.xib; sourceTree = "<group>"; };
+		3079101622AE118C00CD5DA1 /* GYTopTopicView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GYTopTopicView.h; sourceTree = "<group>"; };
+		3079101722AE118C00CD5DA1 /* GYTopTopicView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GYTopTopicView.m; sourceTree = "<group>"; };
+		3079101922AE119A00CD5DA1 /* GYTopTopicView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GYTopTopicView.xib; sourceTree = "<group>"; };
+		3079101B22AE269800CD5DA1 /* GYEssenceItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GYEssenceItem.h; sourceTree = "<group>"; };
+		3079101C22AE269800CD5DA1 /* GYEssenceItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GYEssenceItem.m; sourceTree = "<group>"; };
+		3079101E22AE30C100CD5DA1 /* GYTopicItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GYTopicItem.h; sourceTree = "<group>"; };
+		3079101F22AE30C100CD5DA1 /* GYTopicItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GYTopicItem.m; sourceTree = "<group>"; };
+		3079102122AE3CCB00CD5DA1 /* GYUserItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GYUserItem.h; sourceTree = "<group>"; };
+		3079102222AE3CCB00CD5DA1 /* GYUserItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GYUserItem.m; sourceTree = "<group>"; };
 		3084EE6622A2CA3300CFEF72 /* GYSquareItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GYSquareItem.h; sourceTree = "<group>"; };
 		3084EE6722A2CA3300CFEF72 /* GYSquareItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GYSquareItem.m; sourceTree = "<group>"; };
 		30954D65229A434100A900BE /* GYLoginRegisterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GYLoginRegisterVC.h; sourceTree = "<group>"; };
@@ -154,6 +201,10 @@
 		30954D6C229A4C8400A900BE /* GYLogRegView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GYLogRegView.h; sourceTree = "<group>"; };
 		30954D6D229A4C8400A900BE /* GYLogRegView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GYLogRegView.m; sourceTree = "<group>"; };
 		30954D6F229A4C9300A900BE /* GYLogRegView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GYLogRegView.xib; sourceTree = "<group>"; };
+		30A947DB22B1EA5B004E5950 /* GYGIfItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GYGIfItem.h; sourceTree = "<group>"; };
+		30A947DC22B1EA5B004E5950 /* GYGIfItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GYGIfItem.m; sourceTree = "<group>"; };
+		30C3586822AD53EE0056B9F3 /* GYTopicCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GYTopicCell.h; sourceTree = "<group>"; };
+		30C3586922AD53EE0056B9F3 /* GYTopicCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GYTopicCell.m; sourceTree = "<group>"; };
 		30DD7988229AB10D002D0D6E /* GYPrivacyPolicyVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GYPrivacyPolicyVC.h; sourceTree = "<group>"; };
 		30DD7989229AB10D002D0D6E /* GYPrivacyPolicyVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GYPrivacyPolicyVC.m; sourceTree = "<group>"; };
 		30DD798B229AC4FD002D0D6E /* UIImage+Image.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Image.h"; sourceTree = "<group>"; };
@@ -192,6 +243,8 @@
 		30EFF93322A777E3005B72AF /* GYEntertainmentVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GYEntertainmentVC.m; sourceTree = "<group>"; };
 		30EFF93522A78526005B72AF /* GYGameVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GYGameVC.h; sourceTree = "<group>"; };
 		30EFF93622A78526005B72AF /* GYGameVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GYGameVC.m; sourceTree = "<group>"; };
+		30EFF93822A7E2AA005B72AF /* GYEssenceContentVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GYEssenceContentVC.h; sourceTree = "<group>"; };
+		30EFF93922A7E2AA005B72AF /* GYEssenceContentVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GYEssenceContentVC.m; sourceTree = "<group>"; };
 		30F8403F229D13AA0050EF1A /* GYLoginField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GYLoginField.h; sourceTree = "<group>"; };
 		30F84040229D13AA0050EF1A /* GYLoginField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GYLoginField.m; sourceTree = "<group>"; };
 		30F84042229D75330050EF1A /* UITextField+Placeholder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITextField+Placeholder.h"; sourceTree = "<group>"; };
@@ -286,6 +339,15 @@
 				3030CD9C22A64851006BD98A /* GYFileManager.m */,
 			);
 			path = File;
+			sourceTree = "<group>";
+		};
+		303DCF7F22AF7F1A00D2F22B /* VM */ = {
+			isa = PBXGroup;
+			children = (
+				303DCF8022AF7F6400D2F22B /* GYTopicCellMode.h */,
+				303DCF8122AF7F6400D2F22B /* GYTopicCellMode.m */,
+			);
+			path = VM;
 			sourceTree = "<group>";
 		};
 		30785236228D3CDD00A145D7 /* AD(广告) */ = {
@@ -490,6 +552,7 @@
 				30FE311222880C1B00383571 /* Controller */,
 				30FE311322880C1B00383571 /* Model */,
 				30FE311422880C1B00383571 /* View */,
+				303DCF7F22AF7F1A00D2F22B /* VM */,
 			);
 			path = "Essence(精华)";
 			sourceTree = "<group>";
@@ -500,6 +563,8 @@
 				30EFF91C22A76A0C005B72AF /* ChildVC */,
 				30EFF91622A759B9005B72AF /* GYBaseContentVC.h */,
 				30EFF91722A759B9005B72AF /* GYBaseContentVC.m */,
+				30EFF93822A7E2AA005B72AF /* GYEssenceContentVC.h */,
+				30EFF93922A7E2AA005B72AF /* GYEssenceContentVC.m */,
 				30EFF91922A75A1B005B72AF /* GYEssenceViewController.h */,
 				30EFF91A22A75A1B005B72AF /* GYEssenceViewController.m */,
 			);
@@ -509,6 +574,20 @@
 		30FE311322880C1B00383571 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				3079101B22AE269800CD5DA1 /* GYEssenceItem.h */,
+				3079101C22AE269800CD5DA1 /* GYEssenceItem.m */,
+				3079101E22AE30C100CD5DA1 /* GYTopicItem.h */,
+				3079101F22AE30C100CD5DA1 /* GYTopicItem.m */,
+				3079102122AE3CCB00CD5DA1 /* GYUserItem.h */,
+				3079102222AE3CCB00CD5DA1 /* GYUserItem.m */,
+				303DCF8B22B083F300D2F22B /* GYImageItem.h */,
+				303DCF8C22B083F400D2F22B /* GYImageItem.m */,
+				30A947DB22B1EA5B004E5950 /* GYGIfItem.h */,
+				30A947DC22B1EA5B004E5950 /* GYGIfItem.m */,
+				30270A6122B26C9D00AEFC72 /* GYVideoItem.h */,
+				30270A6222B26C9D00AEFC72 /* GYVideoItem.m */,
+				303114D822B3C522005B10DF /* GYCommentItem.h */,
+				303114D922B3C522005B10DF /* GYCommentItem.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -516,6 +595,22 @@
 		30FE311422880C1B00383571 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				30C3586822AD53EE0056B9F3 /* GYTopicCell.h */,
+				30C3586922AD53EE0056B9F3 /* GYTopicCell.m */,
+				303DCF8822AFF7B600D2F22B /* GYBaseTopicView.h */,
+				303DCF8922AFF7B600D2F22B /* GYBaseTopicView.m */,
+				3079101622AE118C00CD5DA1 /* GYTopTopicView.h */,
+				3079101722AE118C00CD5DA1 /* GYTopTopicView.m */,
+				3079101922AE119A00CD5DA1 /* GYTopTopicView.xib */,
+				303DCF8322AFD7DE00D2F22B /* GYPictureTopicView.h */,
+				303DCF8422AFD7DE00D2F22B /* GYPictureTopicView.m */,
+				303DCF8622AFD7E900D2F22B /* GYPictureTopicView.xib */,
+				30270A5C22B26AAE00AEFC72 /* GYVideoTopicView.h */,
+				30270A5D22B26AAE00AEFC72 /* GYVideoTopicView.m */,
+				30270A5F22B26ABB00AEFC72 /* GYVideoTopicView.xib */,
+				303114D322B3BC83005B10DF /* GYCommentTopicView.h */,
+				303114D422B3BC83005B10DF /* GYCommentTopicView.m */,
+				303114D622B3BC8E005B10DF /* GYCommentTopicView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -838,6 +933,7 @@
 			files = (
 				304ECB9322950FBC001D7E69 /* GYSubscribeCell.xib in Resources */,
 				301047072292E05600C3CD34 /* Retina HD 4.7 -D.png in Resources */,
+				303114D722B3BC8E005B10DF /* GYCommentTopicView.xib in Resources */,
 				301EF02C22871E9700F5EE2D /* LaunchScreen.storyboard in Resources */,
 				3019B0D422A506790021633F /* setting.plist in Resources */,
 				3066E0F0229ECC800012339E /* GYBlockCell.xib in Resources */,
@@ -850,12 +946,15 @@
 				30785240228D42F000A145D7 /* GYADViewController.xib in Resources */,
 				30DD7992229BF8C7002D0D6E /* GYLoginRegisterVC.storyboard in Resources */,
 				30FBC344229FE35300231274 /* GYUserView.xib in Resources */,
+				30270A6022B26ABB00AEFC72 /* GYVideoTopicView.xib in Resources */,
 				301047082292E05600C3CD34 /* iPhone Xs Max -D.png in Resources */,
 				3066E0EB229E59A90012339E /* GYMeViewController.storyboard in Resources */,
+				303DCF8722AFD7E900D2F22B /* GYPictureTopicView.xib in Resources */,
 				301047092292E05600C3CD34 /* Retina HD 5.5 -D.png in Resources */,
 				30FBC35022A0F54800231274 /* backImage@3x.png in Resources */,
 				3010470B2292E05600C3CD34 /* iPhone X -D.png in Resources */,
 				3010470A2292E05600C3CD34 /* iPhone XR -D.png in Resources */,
+				3079101A22AE119A00CD5DA1 /* GYTopTopicView.xib in Resources */,
 				30954D70229A4C9300A900BE /* GYLogRegView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -918,24 +1017,33 @@
 				30E8E27E2289B0A400114736 /* UIBarButtonItem+Item.m in Sources */,
 				303E60A62297F881006D8138 /* GYUserBtn.m in Sources */,
 				30954D68229A434100A900BE /* GYLoginRegisterVC.m in Sources */,
+				303DCF8A22AFF7B600D2F22B /* GYBaseTopicView.m in Sources */,
 				3030CD9D22A64851006BD98A /* GYFileManager.m in Sources */,
+				303DCF8522AFD7DE00D2F22B /* GYPictureTopicView.m in Sources */,
 				30DD7990229ADECF002D0D6E /* UINavigationBar+Alpha.m in Sources */,
 				30EFF92522A77251005B72AF /* GYTopicVC.m in Sources */,
+				303DCF8222AF7F6400D2F22B /* GYTopicCellMode.m in Sources */,
 				301EF02F22871E9700F5EE2D /* main.m in Sources */,
 				30EFF93722A78526005B72AF /* GYGameVC.m in Sources */,
 				3019B0E822A52BF80021633F /* GYSettingCell.m in Sources */,
 				3078523D228D416400A145D7 /* GYADViewController.m in Sources */,
+				30C3586A22AD53EE0056B9F3 /* GYTopicCell.m in Sources */,
+				30EFF93A22A7E2AA005B72AF /* GYEssenceContentVC.m in Sources */,
 				30EFF92B22A772E1005B72AF /* GYVideoVC.m in Sources */,
 				30EFF91822A759B9005B72AF /* GYBaseContentVC.m in Sources */,
+				3079101D22AE269800CD5DA1 /* GYEssenceItem.m in Sources */,
 				30FE313422880D3A00383571 /* GYPublishViewController.m in Sources */,
 				30EFF91B22A75A1B005B72AF /* GYEssenceViewController.m in Sources */,
 				30FE312E22880D0E00383571 /* GYFriendTrendViewController.m in Sources */,
 				30FE313F2288353500383571 /* GYTabBarController.m in Sources */,
+				30270A6322B26C9D00AEFC72 /* GYVideoItem.m in Sources */,
 				30FBC35122A0F54800231274 /* JTNavigationController.m in Sources */,
 				30DD798D229AC4FD002D0D6E /* UIImage+Image.m in Sources */,
 				3084EE6822A2CA3300CFEF72 /* GYSquareItem.m in Sources */,
 				30954D6E229A4C8400A900BE /* GYLogRegView.m in Sources */,
+				303114D522B3BC83005B10DF /* GYCommentTopicView.m in Sources */,
 				3075B410228BEDCB0080799B /* UIButton+HitRect.m in Sources */,
+				303114DA22B3C522005B10DF /* GYCommentItem.m in Sources */,
 				30F84041229D13AA0050EF1A /* GYLoginField.m in Sources */,
 				30104701229255C700C3CD34 /* GYSubTagController.m in Sources */,
 				30FBC35222A0F54800231274 /* UIViewController+JTNavigationExtension.m in Sources */,
@@ -946,12 +1054,15 @@
 				30EFF93122A77335005B72AF /* GYJokeVC.m in Sources */,
 				30DD7995229C2426002D0D6E /* GYImageBtn.m in Sources */,
 				3066E0EF229ECC800012339E /* GYBlockCell.m in Sources */,
+				30270A5E22B26AAE00AEFC72 /* GYVideoTopicView.m in Sources */,
 				30FBC35B22A1826F00231274 /* GYTool.m in Sources */,
 				30DD798A229AB10D002D0D6E /* GYPrivacyPolicyVC.m in Sources */,
 				303E60A22297F21C006D8138 /* GYRecommendFriendCell.m in Sources */,
 				30FBC342229FE34400231274 /* GYUserView.m in Sources */,
 				30EFCAA322900825001082B6 /* NSDictionary+Property.m in Sources */,
+				3079101822AE118C00CD5DA1 /* GYTopTopicView.m in Sources */,
 				30DD7998229C3C3C002D0D6E /* GYLoginBtn.m in Sources */,
+				30A947DD22B1EA5B004E5950 /* GYGIfItem.m in Sources */,
 				30FE313122880D1A00383571 /* GYMeViewController.m in Sources */,
 				30FE3149228855AC00383571 /* UIImage+Render.m in Sources */,
 				3010470E22939BD600C3CD34 /* GYPromotionItem.m in Sources */,
@@ -959,8 +1070,10 @@
 				30FBC35522A0FD0000231274 /* GYNavigationController.m in Sources */,
 				30FE312B22880CD400383571 /* GYNewViewController.m in Sources */,
 				30F84044229D75330050EF1A /* UITextField+Placeholder.m in Sources */,
+				303DCF8D22B083F400D2F22B /* GYImageItem.m in Sources */,
 				30104711229402EA00C3CD34 /* GYSubscribeItem.m in Sources */,
 				30EFCAA022900527001082B6 /* GYADItem.m in Sources */,
+				3079102022AE30C100CD5DA1 /* GYTopicItem.m in Sources */,
 				3075B407228BC5780080799B /* UIView+frame.m in Sources */,
 				30FE31382288286000383571 /* AppDelegate.m in Sources */,
 				301047142294234100C3CD34 /* GYHotSearchItem.m in Sources */,
@@ -970,6 +1083,7 @@
 				30EFF92822A77282005B72AF /* GYRecommendVC.m in Sources */,
 				3019B0E322A50C0A0021633F /* GYSettingViewController.m in Sources */,
 				30EFF92E22A77306005B72AF /* GYPictureVC.m in Sources */,
+				3079102322AE3CCB00CD5DA1 /* GYUserItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

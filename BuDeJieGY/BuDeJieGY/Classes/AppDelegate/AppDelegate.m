@@ -49,14 +49,14 @@
     //1.创建窗口
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     //2.设置窗口根控制器
-#warning TODO: online change 上线时记得修改
-#ifdef DEBUG
-    GYTabBarController *tabBarVC = [[GYTabBarController alloc] init];
-    self.window.rootViewController = tabBarVC;
-#else
+//#warning TODO: online change 上线时记得修改
+//#ifdef DEBUG
+//    GYTabBarController *tabBarVC = [[GYTabBarController alloc] init];
+//    self.window.rootViewController = tabBarVC;
+//#else
     GYADViewController *adVC = [[GYADViewController alloc] init];
     self.window.rootViewController = adVC;
-#endif
+//#endif
 
     //3.显示窗口
     [self.window makeKeyAndVisible];

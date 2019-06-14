@@ -7,7 +7,6 @@
 //
 
 #import "GYSubscribeCell.h"
-#import <UIImageView+WebCache.h>
 
 #import "../Model/GYSubscribeItem.h"
 

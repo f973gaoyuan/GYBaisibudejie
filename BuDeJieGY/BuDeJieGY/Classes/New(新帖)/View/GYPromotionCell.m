@@ -9,7 +9,6 @@
 #import "GYPromotionCell.h"
 #import "../../Other/Category/UIView+frame.h"
 #import "../Model/GYPromotionItem.h"
-#import <UIImageView+WebCache.h>
 
 @interface GYPromotionCell () <UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;

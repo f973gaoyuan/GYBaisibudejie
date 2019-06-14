@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="GYPictureTopicView">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="268"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="album_jie_mark_87x17_" translatesAutoresizingMaskIntoConstraints="NO" id="NuN-or-kUi">
+                    <rect key="frame" x="120" y="40" width="174" height="34"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="174" id="YxZ-yR-wf1"/>
+                        <constraint firstAttribute="height" constant="34" id="eWG-L5-Jvo"/>
+                    </constraints>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R6G-SC-nDS" customClass="DALabeledCircularProgressView">
+                    <rect key="frame" x="157" y="84" width="100" height="100"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="100" id="9a6-Mp-ft7"/>
+                        <constraint firstAttribute="width" constant="100" id="osE-aj-kEz"/>
+                    </constraints>
+                </view>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kjW-C7-jPz">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="268"/>
+                </imageView>
+                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="common-gif_31x31_" translatesAutoresizingMaskIntoConstraints="NO" id="HvH-im-Bw0">
+                    <rect key="frame" x="0.0" y="0.0" width="31" height="31"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="31" id="2QC-B0-BIS"/>
+                        <constraint firstAttribute="width" constant="31" id="k8W-sc-E6M"/>
+                    </constraints>
+                </imageView>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mRb-Pk-1Ly">
+                    <rect key="frame" x="0.0" y="225" width="414" height="43"/>
+                    <state key="normal" title="点击查看大图" image="see-big-picture" backgroundImage="see-big-picture-background"/>
+                </button>
+                <label hidden="YES" opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="长图" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OWT-3K-JDD">
+                    <rect key="frame" x="351" y="234" width="48" height="24"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="48" id="88o-0m-EXO"/>
+                        <constraint firstAttribute="height" constant="24" id="bL5-P7-aAE"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="R6G-SC-nDS" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="1zj-w6-M7Q"/>
+                <constraint firstItem="mRb-Pk-1Ly" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="51i-ek-2oL"/>
+                <constraint firstItem="HvH-im-Bw0" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="6S7-ss-uNJ"/>
+                <constraint firstItem="NuN-or-kUi" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="ABT-2h-MEZ"/>
+                <constraint firstAttribute="trailing" secondItem="OWT-3K-JDD" secondAttribute="trailing" constant="15" id="E72-CP-9r0"/>
+                <constraint firstItem="R6G-SC-nDS" firstAttribute="top" secondItem="NuN-or-kUi" secondAttribute="bottom" constant="10" id="EQ2-cJ-04D"/>
+                <constraint firstItem="kjW-C7-jPz" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="EU7-9s-yiV"/>
+                <constraint firstAttribute="trailing" secondItem="kjW-C7-jPz" secondAttribute="trailing" id="HUX-HT-HMn"/>
+                <constraint firstAttribute="bottom" secondItem="kjW-C7-jPz" secondAttribute="bottom" id="JqL-Pj-QN1"/>
+                <constraint firstItem="kjW-C7-jPz" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="cGm-j9-lJA"/>
+                <constraint firstItem="R6G-SC-nDS" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="euT-7A-kYW"/>
+                <constraint firstItem="HvH-im-Bw0" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="gnb-uE-jLW"/>
+                <constraint firstAttribute="bottom" secondItem="OWT-3K-JDD" secondAttribute="bottom" constant="10" id="nnT-Vw-FM9"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="mRb-Pk-1Ly" secondAttribute="trailing" id="sgT-9r-KHW"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="mRb-Pk-1Ly" secondAttribute="bottom" id="tiD-Xe-COf"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="gifSignGY" destination="HvH-im-Bw0" id="9nw-mD-khu"/>
+                <outlet property="imageViewGY" destination="kjW-C7-jPz" id="Vwm-Wi-oEK"/>
+                <outlet property="progressView" destination="R6G-SC-nDS" id="3Z3-hW-M9M"/>
+                <outlet property="typelabel" destination="OWT-3K-JDD" id="qTK-Pz-SNp"/>
+            </connections>
+            <point key="canvasLocation" x="131.8840579710145" y="-98.641304347826093"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="album_jie_mark_87x17_" width="87" height="17"/>
+        <image name="common-gif_31x31_" width="31" height="31"/>
+        <image name="see-big-picture" width="19" height="19"/>
+        <image name="see-big-picture-background" width="285" height="43"/>
+    </resources>
+</document>

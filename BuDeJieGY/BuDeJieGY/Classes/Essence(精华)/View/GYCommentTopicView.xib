@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="GYCommentTopicView">
+            <rect key="frame" x="0.0" y="0.0" width="400" height="72"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="o1t-Qo-odH">
+                    <rect key="frame" x="8" y="8" width="24" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="24" id="TKy-LP-naw"/>
+                        <constraint firstAttribute="height" constant="24" id="t53-1f-Bnh"/>
+                    </constraints>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_gold_comment_80x58_" translatesAutoresizingMaskIntoConstraints="NO" id="5NL-9E-LP8">
+                    <rect key="frame" x="280" y="0.0" width="74" height="72"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="74" id="W1I-3t-5IK"/>
+                        <constraint firstAttribute="height" constant="72" id="xJN-74-ANJ"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7SF-7D-6wi">
+                    <rect key="frame" x="40" y="13" width="29" height="14"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LHv-XG-UUl">
+                    <rect key="frame" x="8" y="41" width="384" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XP0-Ar-BKN">
+                    <rect key="frame" x="360" y="9" width="32" height="22"/>
+                    <state key="normal" title="0" image="icon_fv_zan_21x21_">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <state key="selected" image="icon_fv_full_zan_s_21x21_"/>
+                    <connections>
+                        <action selector="zanClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="hX8-n6-SpT"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="o1t-Qo-odH" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="EmS-cj-Glx"/>
+                <constraint firstItem="LHv-XG-UUl" firstAttribute="top" secondItem="o1t-Qo-odH" secondAttribute="bottom" constant="9" id="Lb5-hh-xd9"/>
+                <constraint firstItem="LHv-XG-UUl" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="Lie-a4-Va8"/>
+                <constraint firstItem="XP0-Ar-BKN" firstAttribute="centerY" secondItem="o1t-Qo-odH" secondAttribute="centerY" id="Rpv-vI-GPO"/>
+                <constraint firstItem="7SF-7D-6wi" firstAttribute="centerY" secondItem="o1t-Qo-odH" secondAttribute="centerY" id="VY5-PW-agY"/>
+                <constraint firstItem="o1t-Qo-odH" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="YnZ-NC-Iwh"/>
+                <constraint firstAttribute="trailing" secondItem="LHv-XG-UUl" secondAttribute="trailing" constant="8" id="Z57-2m-b3S"/>
+                <constraint firstItem="5NL-9E-LP8" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="buX-tD-owm"/>
+                <constraint firstItem="XP0-Ar-BKN" firstAttribute="leading" secondItem="5NL-9E-LP8" secondAttribute="trailing" constant="6" id="g6M-aA-280"/>
+                <constraint firstAttribute="trailing" secondItem="XP0-Ar-BKN" secondAttribute="trailing" constant="8" id="gX4-fF-0gf"/>
+                <constraint firstItem="7SF-7D-6wi" firstAttribute="leading" secondItem="o1t-Qo-odH" secondAttribute="trailing" constant="8" id="lx5-KD-IL4"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="contentLabel" destination="LHv-XG-UUl" id="lbI-ex-8n6"/>
+                <outlet property="imageView" destination="o1t-Qo-odH" id="Srh-6D-hko"/>
+                <outlet property="nameLabel" destination="7SF-7D-6wi" id="u4o-qW-NKy"/>
+                <outlet property="zanBtn" destination="XP0-Ar-BKN" id="OD3-kg-L9b"/>
+            </connections>
+            <point key="canvasLocation" x="-4.3478260869565224" y="-108.42391304347827"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon_fv_full_zan_s_21x21_" width="21" height="21"/>
+        <image name="icon_fv_zan_21x21_" width="21" height="21"/>
+        <image name="icon_gold_comment_80x58_" width="80" height="58.333332061767578"/>
+    </resources>
+</document>

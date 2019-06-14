@@ -7,7 +7,6 @@
 //
 
 #import "GYBlockCell.h"
-#import <UIImageView+WebCache.h>
 #import "../Model/GYSquareItem.h"
 
 @interface GYBlockCell ()
