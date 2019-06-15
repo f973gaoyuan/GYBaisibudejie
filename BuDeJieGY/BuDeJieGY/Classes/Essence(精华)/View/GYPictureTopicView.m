@@ -27,6 +27,11 @@
     _isLongPic = NO;
     _typelabel.hidden = YES;
     //_imageViewGY.backgroundColor = [UIColor lightGrayColor];
+  
+//    CGFloat progress= 0.75;
+//    self.progressView.progressLabel.text = [NSString stringWithFormat:@"%.1f%%", 100.0 * progress];
+//    [self.progressView setProgress:progress animated:YES];
+//    return ;
     
     if([topicItem.type isEqualToString:@"image"]) {
         [self setupImageData];
@@ -77,6 +82,7 @@
                 //self.progressView.progress = progress;
                 self.progressView.progressLabel.text = [NSString stringWithFormat:@"%.1f%%", 100.0 * progress];
                 [self.progressView setProgress:progress animated:YES];
+                //GYLog(@"progress = %.2f", progress);
             });
         }
     } completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {

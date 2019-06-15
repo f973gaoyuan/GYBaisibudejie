@@ -23,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (assign, nonatomic) CGRect videoTopicViewFrame;
 //----------------
 @property (assign, nonatomic) CGRect commentTopicViewFrame;
+//----------------
+@property (assign, nonatomic) CGRect bottomTopicViewFrame;
 
 
 

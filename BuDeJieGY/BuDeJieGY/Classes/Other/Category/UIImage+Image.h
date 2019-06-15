@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIImage (Image)
 + (UIImage *)imageWithColor:(UIColor *)color;
++ (UIImage *)circularImaeWithImage:(UIImage*)image;
 @end
 
 NS_ASSUME_NONNULL_END

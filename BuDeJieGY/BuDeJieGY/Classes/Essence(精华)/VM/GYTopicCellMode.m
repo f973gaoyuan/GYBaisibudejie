@@ -27,9 +27,10 @@
                                                       attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:17]}
                                                          context:nil].size.height;
     
-    _topTopViewFrame = CGRectMake(topViewX, topViewY, contentLabelW, contentLabelY + contentLabelH + margin);
-    //_topViewLabelH = contentLabelH;
-    cellHeight = CGRectGetMaxY(_topTopViewFrame) + margin; // ****
+    CGFloat topViewW = GYScreenW;
+    CGFloat topViewH = contentLabelY + contentLabelH + margin;
+    _topTopViewFrame = CGRectMake(topViewX, topViewY, topViewW, topViewH);
+    cellHeight = CGRectGetMaxY(_topTopViewFrame);
     //==============================================================================================
     _pictureTopicViewFrame = CGRectMake(-100, 0, 1, 1);
     _videoTopicViewFrame = CGRectMake(-100, 0, 1, 1);
@@ -46,9 +47,8 @@
             if(imageH > imageW*WScaleH) {
                 imageH = imageW*WScaleH;
             }
-            
             _pictureTopicViewFrame = CGRectMake(imageX, imageY, imageW, imageH);
-            cellHeight = CGRectGetMaxY(_pictureTopicViewFrame) + margin;
+            cellHeight = CGRectGetMaxY(_pictureTopicViewFrame);
         }
      } else if(topicItem.gif) {
          CGSize size = CGSizeMake(topicItem.gif.width, topicItem.gif.height);
@@ -63,9 +63,8 @@
                  gifW = maxW;
                  gifH = gifW * size.height / size.width;
              }
-
              _pictureTopicViewFrame = CGRectMake(gifX, gifY, gifW, gifH);
-             cellHeight = CGRectGetMaxY(_pictureTopicViewFrame) + margin;
+             cellHeight = CGRectGetMaxY(_pictureTopicViewFrame);
         }
      } if(topicItem.video) {
          CGSize size = CGSizeMake(topicItem.video.width, topicItem.video.height);
@@ -76,9 +75,8 @@
          if(videoH > GYScreenW) {
              videoH = GYScreenW;
          }
-
          _videoTopicViewFrame = CGRectMake(videoX, videoY, videoW, videoH);
-         cellHeight = CGRectGetMaxY(_videoTopicViewFrame) + margin;
+         cellHeight = CGRectGetMaxY(_videoTopicViewFrame);
      }
     //==============================================================================================
     _commentTopicViewFrame = CGRectMake(-100, 0, 1, 1);
@@ -86,24 +84,36 @@
         GYCommentItem *commentItem = topicItem.top_comments[0];
         CGFloat space = 8;
         CGFloat commentX = margin;
-        CGFloat commentY = cellHeight;
+        CGFloat commentY = cellHeight+margin;
 
         CGFloat conLabelW = GYScreenW - 2*margin - 2*space;
         //CGFloat conLabelH = [commentItem.content sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:CGSizeMake(conLabelW, MAXFLOAT)].height;
-        CGFloat conLabelH = [commentItem.content boundingRectWithSize:CGSizeMake(conLabelW, MAXFLOAT)
-                                                              options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
-                                                           attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]}
-                                                              context:nil].size.height;
-
+        NSString *text = commentItem.content;
+        if(topicItem.status == 4) {
+            text = [text stringByAppendingString:@"精华帖"];
+        }
+        CGFloat conLabelH = [text boundingRectWithSize:CGSizeMake(conLabelW, MAXFLOAT)
+                                               options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+                                            attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]}
+                                               context:nil].size.height;
 
         CGFloat commentW = GYScreenW - 2*margin;
         CGFloat commentH = 41+conLabelH + space;
 
         _commentTopicViewFrame = CGRectMake(commentX, commentY, commentW, commentH);
-        cellHeight = CGRectGetMaxY(_commentTopicViewFrame) + margin;
-   }
+        cellHeight = CGRectGetMaxY(_commentTopicViewFrame);
+    }
     //==============================================================================================
 
+    CGFloat bottomX = 0;
+    CGFloat bottomY = cellHeight;
+    
+    CGFloat commentW = GYScreenW;
+    CGFloat commentH = 48;
+    _bottomTopicViewFrame = CGRectMake(bottomX, bottomY, commentW, commentH);
+    cellHeight = CGRectGetMaxY(_bottomTopicViewFrame);
+
+    //cellHeight += margin;
     _cellHeight = cellHeight;
 }
 @end

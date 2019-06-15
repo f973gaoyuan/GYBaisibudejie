@@ -9,7 +9,6 @@
 #import "GYCommentTopicView.h"
 #import "../Model/GYTopicItem.h"
 
-
 @interface GYCommentTopicView ()
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
@@ -25,27 +24,15 @@
     _nameLabel.text = commentItem.user.name;
     _contentLabel.text = commentItem.content;
     NSString *str = [NSString stringWithFormat:@"%ld", commentItem.like_count];
+    if(commentItem.like_count == 0) {
+        str = @"赞";
+    }
     [_zanBtn setTitle:str forState:UIControlStateNormal];
     
     NSURL *url = [NSURL URLWithString:commentItem.user.header[0]];
     [_imageView sd_setImageWithURL:url completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-        CGSize size = image.size;
-        CGPoint pt = CGPointZero;
-        if(size.width > size.height) {
-            pt.x = - (size.width - size.height) / 2;
-            size.width = size.height;
-        } else if(size.width < size.height) {
-            pt.y = - (size.height - size.width) / 2;
-            size.height = size.width;
-        }
-        UIGraphicsBeginImageContextWithOptions(size, 0, 0);
-        UIBezierPath *clipPath = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(0, 0, size.width, size.height)];
-        [clipPath addClip];
-        [image drawAtPoint:pt];
-        UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        
-        self.imageView.image = newImage;
+       UIGraphicsEndImageContext();
+        self.imageView.image = [UIImage circularImaeWithImage:image];
     }];
 }
 
@@ -55,6 +42,10 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.backgroundColor = GYColor(240,240,240);
+    /**
+     以后只要界面没有问题，但是莫名q其妙报一些约束的错误，这时候应考虑取消自动拉伸的属性(iOS6)
+     */
+    //self.autoresizingMask = UIViewAutoresizingNone;
 }
 /*
 // Only override drawRect: if you perform custom drawing.

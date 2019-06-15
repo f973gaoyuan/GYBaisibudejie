@@ -11,6 +11,7 @@
 #import "GYPictureTopicView.h"
 #import "GYVideoTopicView.h"
 #import "GYCommentTopicView.h"
+#import "GYBottomTopicView.h"
 #import "../Model/GYTopicItem.h"
 #import "../VM/GYTopicCellMode.h"
 
@@ -22,6 +23,7 @@
 @property (weak, nonatomic) GYPictureTopicView *pictureTopicView;
 @property (weak, nonatomic) GYVideoTopicView *videoTopicView;
 @property (weak, nonatomic) GYCommentTopicView *commentTopicView;
+@property (weak, nonatomic) GYBottomTopicView *bottomTopicView;
 @end
 
 @implementation GYTopicCell
@@ -29,7 +31,7 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if(self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
-        
+        //self.contentView.backgroundColor = GYColor(0, 0, 0);
         //设置顶部View内容，设置topView，设置Cell
         // 顶部
         GYTopTopicView *topTopicView = [GYTopTopicView viewForXib];
@@ -49,6 +51,9 @@
         [self.contentView addSubview:commentTopicView];
         _commentTopicView = commentTopicView;
         // 底部
+        GYBottomTopicView *bottomTopicView = [GYBottomTopicView viewForXib];
+        [self.contentView addSubview:bottomTopicView];
+        _bottomTopicView = bottomTopicView;
         //GYLog(@"%s", __func__);
     }
     return self;
@@ -79,6 +84,9 @@
         _commentTopicView.frame = vm.commentTopicViewFrame;
         _commentTopicView .hidden = NO;
     }
+    
+    _bottomTopicView.topicItem = vm.topicItem;
+    _bottomTopicView.frame = vm.bottomTopicViewFrame;;
 }
 
 //- (void)setTopicItem:(GYTopicItem *)topicItem {
@@ -88,7 +96,7 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    _topTopicView.frame = self.contentView.bounds;
+    //_topTopicView.frame = self.contentView.bounds;
     //GYLog(@"%s", __func__);
 }
 

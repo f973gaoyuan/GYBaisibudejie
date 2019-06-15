@@ -49,12 +49,14 @@ static NSString * const ID = @"topicCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor lightGrayColor];
+    self.view.backgroundColor = GYColor(240, 240, 240);
     self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     [GYTopicItem mj_setupReplacedKeyFromPropertyName:^NSDictionary *{
         return @{@"ID" : @"id",
-                 @"user": @"u"
+                 @"user": @"u",
+                 @"isBest": @"is_best"
                  };
     }];
     

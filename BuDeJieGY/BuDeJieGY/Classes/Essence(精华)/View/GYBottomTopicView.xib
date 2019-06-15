@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="GYBottomTopicView">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="54"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kJg-bd-VyL">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="46"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Qof-HN-adh">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="46"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s6s-Gi-ipx">
+                                    <rect key="frame" x="0.0" y="0.0" width="103.66666666666667" height="46"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                    <state key="normal" title="赞" image="icon_fv_zan_21x21_">
+                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <state key="selected" image="icon_fv_zan_s_21x21_"/>
+                                    <connections>
+                                        <action selector="upBtnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="2xQ-Uu-yXa"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rb6-DB-V22">
+                                    <rect key="frame" x="103.66666666666669" y="0.0" width="103.33333333333331" height="46"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <state key="normal" title="踩" image="icon_fv_cai_21x21_">
+                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <state key="selected" image="icon_fv_cai_s_21x21_"/>
+                                    <connections>
+                                        <action selector="downBtnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="mLc-5m-4EN"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7cf-GA-bOr">
+                                    <rect key="frame" x="206.99999999999997" y="0.0" width="103.66666666666666" height="46"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                    <state key="normal" title="评论" image="icon_fv_reply_21x21_">
+                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <state key="highlighted" image="icon_fv_reply_h_21x21_"/>
+                                    <connections>
+                                        <action selector="commentBtnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="7Dk-yR-Bgs"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ADM-Mf-XZJ">
+                                    <rect key="frame" x="310.66666666666669" y="0.0" width="103.33333333333331" height="46"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                    <state key="normal" title="分享" image="icon_fv_share_21x21_">
+                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <state key="highlighted" image="icon_fv_share_h_21x21_"/>
+                                    <connections>
+                                        <action selector="forwardBtnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="YXW-bs-Bag"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="tintColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="Qof-HN-adh" firstAttribute="top" secondItem="kJg-bd-VyL" secondAttribute="top" id="JtI-Tu-uFO"/>
+                        <constraint firstItem="Qof-HN-adh" firstAttribute="leading" secondItem="kJg-bd-VyL" secondAttribute="leading" id="Qjv-kN-Dtr"/>
+                        <constraint firstAttribute="trailing" secondItem="Qof-HN-adh" secondAttribute="trailing" id="iyC-Vg-uHJ"/>
+                        <constraint firstAttribute="bottom" secondItem="Qof-HN-adh" secondAttribute="bottom" id="qhF-lq-R9r"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="kJg-bd-VyL" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="B9T-HO-3k5"/>
+                <constraint firstAttribute="bottom" secondItem="kJg-bd-VyL" secondAttribute="bottom" constant="8" id="ay4-bv-gF7"/>
+                <constraint firstAttribute="trailing" secondItem="kJg-bd-VyL" secondAttribute="trailing" id="eIQ-fX-11A"/>
+                <constraint firstItem="kJg-bd-VyL" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="fqw-7x-jgJ"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="commentBtn" destination="7cf-GA-bOr" id="ABn-OS-Gt2"/>
+                <outlet property="downBtn" destination="Rb6-DB-V22" id="S4A-Od-Kis"/>
+                <outlet property="forwardBtn" destination="ADM-Mf-XZJ" id="YIM-yg-R0m"/>
+                <outlet property="upBtn" destination="s6s-Gi-ipx" id="wwR-wE-pab"/>
+            </connections>
+            <point key="canvasLocation" x="34.782608695652179" y="-246.19565217391306"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon_fv_cai_21x21_" width="21" height="21"/>
+        <image name="icon_fv_cai_s_21x21_" width="21" height="21"/>
+        <image name="icon_fv_reply_21x21_" width="21" height="21"/>
+        <image name="icon_fv_reply_h_21x21_" width="21" height="21"/>
+        <image name="icon_fv_share_21x21_" width="21" height="21"/>
+        <image name="icon_fv_share_h_21x21_" width="21" height="21"/>
+        <image name="icon_fv_zan_21x21_" width="21" height="21"/>
+        <image name="icon_fv_zan_s_21x21_" width="21" height="21"/>
+    </resources>
+</document>

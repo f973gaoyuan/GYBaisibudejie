@@ -24,30 +24,31 @@
                     </constraints>
                 </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_gold_comment_80x58_" translatesAutoresizingMaskIntoConstraints="NO" id="5NL-9E-LP8">
-                    <rect key="frame" x="280" y="0.0" width="74" height="72"/>
+                    <rect key="frame" x="282" y="0.0" width="74" height="72"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="74" id="W1I-3t-5IK"/>
                         <constraint firstAttribute="height" constant="72" id="xJN-74-ANJ"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7SF-7D-6wi">
-                    <rect key="frame" x="40" y="13" width="29" height="14"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                    <rect key="frame" x="40" y="13" width="31" height="14"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LHv-XG-UUl">
-                    <rect key="frame" x="8" y="41" width="384" height="17"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <rect key="frame" x="8" y="41" width="384" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XP0-Ar-BKN">
-                    <rect key="frame" x="360" y="9" width="32" height="22"/>
-                    <state key="normal" title="0" image="icon_fv_zan_21x21_">
+                    <rect key="frame" x="362" y="12" width="30" height="16"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <state key="normal" title="赞" image="icon_fv_zan_small_16x16_">
                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
-                    <state key="selected" image="icon_fv_full_zan_s_21x21_"/>
+                    <state key="selected" image="icon_fv_zan_s_small_16x16_"/>
                     <connections>
                         <action selector="zanClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="hX8-n6-SpT"/>
                     </connections>
@@ -79,8 +80,8 @@
         </view>
     </objects>
     <resources>
-        <image name="icon_fv_full_zan_s_21x21_" width="21" height="21"/>
-        <image name="icon_fv_zan_21x21_" width="21" height="21"/>
+        <image name="icon_fv_zan_s_small_16x16_" width="16" height="16"/>
+        <image name="icon_fv_zan_small_16x16_" width="16" height="16"/>
         <image name="icon_gold_comment_80x58_" width="80" height="58.333332061767578"/>
     </resources>
 </document>

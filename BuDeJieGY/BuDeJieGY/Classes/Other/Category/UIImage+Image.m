@@ -20,4 +20,24 @@
     UIGraphicsEndImageContext();
     return image;
 }
+
++ (UIImage *)circularImaeWithImage:(UIImage*)image {
+    CGSize size = image.size;
+    CGPoint pt = CGPointZero;
+    if(size.width > size.height) {
+        pt.x = - (size.width - size.height) / 2;
+        size.width = size.height;
+    } else if(size.width < size.height) {
+        pt.y = - (size.height - size.width) / 2;
+        size.height = size.width;
+    }
+    UIGraphicsBeginImageContextWithOptions(size, 0, 0);
+    UIBezierPath *clipPath = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(0, 0, size.width, size.height)];
+    [clipPath addClip];
+    [image drawAtPoint:pt];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return newImage;
+}
 @end

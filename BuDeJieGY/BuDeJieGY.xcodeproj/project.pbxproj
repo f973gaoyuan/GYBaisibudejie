@@ -61,6 +61,8 @@
 		3079101D22AE269800CD5DA1 /* GYEssenceItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3079101C22AE269800CD5DA1 /* GYEssenceItem.m */; };
 		3079102022AE30C100CD5DA1 /* GYTopicItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3079101F22AE30C100CD5DA1 /* GYTopicItem.m */; };
 		3079102322AE3CCB00CD5DA1 /* GYUserItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3079102222AE3CCB00CD5DA1 /* GYUserItem.m */; };
+		307E6B8E22B4B22A00C1C82F /* GYBottomTopicView.m in Sources */ = {isa = PBXBuildFile; fileRef = 307E6B8D22B4B22A00C1C82F /* GYBottomTopicView.m */; };
+		307E6B9222B4B26B00C1C82F /* GYBottomTopicView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 307E6B9122B4B26B00C1C82F /* GYBottomTopicView.xib */; };
 		3084EE6822A2CA3300CFEF72 /* GYSquareItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3084EE6722A2CA3300CFEF72 /* GYSquareItem.m */; };
 		30954D68229A434100A900BE /* GYLoginRegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 30954D66229A434100A900BE /* GYLoginRegisterVC.m */; };
 		30954D6E229A4C8400A900BE /* GYLogRegView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30954D6D229A4C8400A900BE /* GYLogRegView.m */; };
@@ -194,6 +196,9 @@
 		3079101F22AE30C100CD5DA1 /* GYTopicItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GYTopicItem.m; sourceTree = "<group>"; };
 		3079102122AE3CCB00CD5DA1 /* GYUserItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GYUserItem.h; sourceTree = "<group>"; };
 		3079102222AE3CCB00CD5DA1 /* GYUserItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GYUserItem.m; sourceTree = "<group>"; };
+		307E6B8C22B4B22A00C1C82F /* GYBottomTopicView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GYBottomTopicView.h; sourceTree = "<group>"; };
+		307E6B8D22B4B22A00C1C82F /* GYBottomTopicView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GYBottomTopicView.m; sourceTree = "<group>"; };
+		307E6B9122B4B26B00C1C82F /* GYBottomTopicView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GYBottomTopicView.xib; sourceTree = "<group>"; };
 		3084EE6622A2CA3300CFEF72 /* GYSquareItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GYSquareItem.h; sourceTree = "<group>"; };
 		3084EE6722A2CA3300CFEF72 /* GYSquareItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GYSquareItem.m; sourceTree = "<group>"; };
 		30954D65229A434100A900BE /* GYLoginRegisterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GYLoginRegisterVC.h; sourceTree = "<group>"; };
@@ -611,6 +616,9 @@
 				303114D322B3BC83005B10DF /* GYCommentTopicView.h */,
 				303114D422B3BC83005B10DF /* GYCommentTopicView.m */,
 				303114D622B3BC8E005B10DF /* GYCommentTopicView.xib */,
+				307E6B8C22B4B22A00C1C82F /* GYBottomTopicView.h */,
+				307E6B8D22B4B22A00C1C82F /* GYBottomTopicView.m */,
+				307E6B9122B4B26B00C1C82F /* GYBottomTopicView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -944,6 +952,7 @@
 				30FBC34F22A0F54800231274 /* backImage@2x.png in Resources */,
 				301EF02922871E9700F5EE2D /* Assets.xcassets in Resources */,
 				30785240228D42F000A145D7 /* GYADViewController.xib in Resources */,
+				307E6B9222B4B26B00C1C82F /* GYBottomTopicView.xib in Resources */,
 				30DD7992229BF8C7002D0D6E /* GYLoginRegisterVC.storyboard in Resources */,
 				30FBC344229FE35300231274 /* GYUserView.xib in Resources */,
 				30270A6022B26ABB00AEFC72 /* GYVideoTopicView.xib in Resources */,
@@ -1082,6 +1091,7 @@
 				304ECBA122957014001D7E69 /* GYPromotionCell.m in Sources */,
 				30EFF92822A77282005B72AF /* GYRecommendVC.m in Sources */,
 				3019B0E322A50C0A0021633F /* GYSettingViewController.m in Sources */,
+				307E6B8E22B4B22A00C1C82F /* GYBottomTopicView.m in Sources */,
 				30EFF92E22A77306005B72AF /* GYPictureVC.m in Sources */,
 				3079102322AE3CCB00CD5DA1 /* GYUserItem.m in Sources */,
 			);
