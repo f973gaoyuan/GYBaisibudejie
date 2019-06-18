@@ -20,8 +20,10 @@
 #import "Category/UIView+frame.h"
 #import "Category/UIImage+Image.h"
 #import "Category/UIImage+Render.h"
+#import "Category/UIImageView+Gesture.h"
 #import "Category/UITextField+Placeholder.h"
 #import "Category/UINavigationBar+Alpha.h"
+#import "Category/NSDate+Date.h"
 #ifdef DEBUG
 #import "Category/NSDictionary+Property.h"
 #endif

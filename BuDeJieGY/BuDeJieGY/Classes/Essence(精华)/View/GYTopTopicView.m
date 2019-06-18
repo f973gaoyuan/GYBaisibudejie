@@ -10,6 +10,30 @@
 #import "../Model/GYUserItem.h"
 #import "../Model/GYTopicItem.h"
 
+/* 时间显示逻辑
+ 今年
+ 今天
+ >1 小时
+ 2 小时前
+ 
+ >=1 分钟
+ 1分钟前
+ 
+ < 1分钟
+ 刚刚
+ 
+ 昨天
+ 昨天 14:30
+ 
+ 昨天之前
+ 10-23 14:37:20
+ 
+ 
+ 非今年
+ 2015-10-26 14:37:20
+ */
+
+
 @interface GYTopTopicView ()
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
@@ -25,11 +49,9 @@
     }];
     
     _nameLabel.text = topicItem.user.name;
-    _contentLabel.text = topicItem.text;
-    
-    
-    
-    if(topicItem.status == 4) {
+    //_contentLabel.text = topicItem.text;
+
+    if(topicItem.status == GYTopicStatusEssence) {
         UIImage *isBestImage = [UIImage imageNamed:@"icon_isbest_27x14_"];
 
         NSTextAttachment *attach = [[NSTextAttachment alloc] init];
@@ -47,16 +69,50 @@
         [attrStr appendAttributedString:attrText];
 
         [_contentLabel setAttributedText:attrStr];
-    }// else if(topicItem.status == GYTopicStatusNormal) {
-//        _contentLabel.text = topicItem.text;
-//    }
+    } else if(topicItem.status == GYTopicStatusNormal) {
+        _contentLabel.text = topicItem.text;
+    }
+    
+    //[self passTime];
+    //GYLog(@"%@", [self distanceTime:topicItem.passtime]);
 }
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     _imageView.contentMode = UIViewContentModeScaleAspectFill;
-    self.autoresizingMask = UIViewAutoresizingNone;
 }
+#warning gaoyuan 未使用“仿微信时间显示”
+- (NSString*)distanceTime:(NSString*)timeStr {
+    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
+    fmt.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+    NSDate *timeDate = [fmt dateFromString:timeStr];
+    
+    NSString *str = timeStr;
+    
+    NSDateComponents *deltaCmp = [timeDate deltaWithNow];
+    //GYLog(@"%@", deltaCmp);
+    if([timeDate isThisYear]) { // 今年
+        if([timeDate isToday]) { // 今天
+            //
+            if(deltaCmp.hour > 1) {
+                str = [NSString stringWithFormat:@"%ld小时前", deltaCmp.hour];
+            } else if (deltaCmp.minute > 1) {
+                str = [NSString stringWithFormat:@"%ld分钟前", deltaCmp.minute];
+            } else {
+                str = @"刚刚";
+            }
+        } else if([timeDate isYestoday]) { // 昨天
+            fmt.dateFormat = @"昨天 HH:mm";
+            str = [fmt stringFromDate:timeDate];
+        } else {
+            fmt.dateFormat = @"MM-dd HH:mm:ss";
+            str = [fmt stringFromDate:timeDate];
+        }
+    }
+    
+    return str;
+}
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

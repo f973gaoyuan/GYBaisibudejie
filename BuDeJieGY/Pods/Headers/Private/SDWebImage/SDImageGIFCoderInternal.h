@@ -1,1 +1,1 @@
-../../../../../../../../../Downloads/iOSFrame/SDWebImage-5.0.3/SDWebImage/Private/SDImageGIFCoderInternal.h
+../../../../../../../../../Downloads/iOSFrame/SDWebImage/SDWebImage-5.0.3/SDWebImage/Private/SDImageGIFCoderInternal.h

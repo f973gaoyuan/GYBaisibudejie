@@ -9,68 +9,49 @@
 #import "GYPictureTopicView.h"
 #import "../Model/GYTopicItem.h"
 
+//#import "../../Utils(业务类)/ImageBrowsing/BBSImageBrowsingController.h"
+#import "../Controller/GYDetailsImageVC.h"
+
+
 @interface GYPictureTopicView ()
 @property (weak, nonatomic) IBOutlet UIImageView *gifSignGY;
 @property (weak, nonatomic) IBOutlet UIImageView *imageViewGY;
 @property (weak, nonatomic) IBOutlet UILabel *typelabel;
 @property (weak, nonatomic) IBOutlet DALabeledCircularProgressView *progressView;
-//@property (strong, nonatomic) UIImage *imageGY;
 @property (assign, nonatomic) BOOL isLongPic;
 @end
 
 @implementation GYPictureTopicView
 - (void)setTopicItem:(GYTopicItem *)topicItem {
     _topicItem = topicItem;
-
+    
     _progressView.progress = 0;
     _progressView.progressLabel.text = @"0.0%";
     _isLongPic = NO;
     _typelabel.hidden = YES;
-    //_imageViewGY.backgroundColor = [UIColor lightGrayColor];
-  
-//    CGFloat progress= 0.75;
-//    self.progressView.progressLabel.text = [NSString stringWithFormat:@"%.1f%%", 100.0 * progress];
-//    [self.progressView setProgress:progress animated:YES];
-//    return ;
-    
+
     if([topicItem.type isEqualToString:@"image"]) {
         [self setupImageData];
     } else if([topicItem.type isEqualToString:@"gif"]) {
         [self setupGifData];
     }
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    NSURL *url = nil;
+    if([_topicItem.type isEqualToString:@"image"]) {
+        url = [NSURL URLWithString:_topicItem.image.big[0]];
+    } else if([_topicItem.type isEqualToString:@"gif"]) {
+        url = [NSURL URLWithString:_topicItem.gif.images[0]];
+    } else {
+        return;
+    }
+    GYDetailsImageVC *vc = [[GYDetailsImageVC alloc] initWithTopicItem:_topicItem];
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:vc animated:YES completion:nil];
     
-
- /*
-    //NSURL *url = [NSURL URLWithString:topicItem.image.thumbnail_small[0]];
-    //[_imageViewGY sd_setImageWithURL:url completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-    _isLongPic = NO;
-    self.typelabel.hidden = YES;
-        NSURL *url = [NSURL URLWithString:topicItem.image.big[0]];
-        [self.imageViewGY sd_setImageWithURL:url completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-            // 原图片 尺寸
-            CGFloat W0 = topicItem.image.width;
-            CGFloat H0 = topicItem.image.height;
-            // 绘图尺寸
-            CGFloat DrawW = W0;
-            CGFloat DrawH = H0;
-            CGFloat WScaleH = 1;
-            if(DrawH > DrawW*WScaleH) {
-                DrawH = DrawW*WScaleH;
-                self.isLongPic = YES;
-            }
-            self.typelabel.hidden = !self.isLongPic;
-
-            UIGraphicsBeginImageContextWithOptions(CGSizeMake(DrawW, DrawH), 0, 0);
-            [image drawInRect:CGRectMake(0, 0, W0, H0)];
-            
-            UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-            UIGraphicsEndImageContext();
-            
-            self.imageViewGY.image = newImage;
-
-        }];
-    //}];
-  */
+    //NSArray *array = @[self.detailsImageView];
+    //BBSImageBrowsingController *browsingController = [[BBSImageBrowsingController alloc] initWithImageViewArray:array currentIndex:0];
+    //[[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:browsingController animated:YES completion:nil];
 }
 
 - (void)setupImageData{
@@ -123,14 +104,6 @@
             });
         }
     } completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-        //CGSize size = image.size;
-        //UIGraphicsBeginImageContextWithOptions(size, 0, 0);
-        //UIBezierPath *clipPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, size.width, size.height) cornerRadius:5];
-        //[clipPath addClip];
-        //[image drawAtPoint:CGPointZero];
-        //UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-        //self.imageViewGY.image = newImage;
-        //UIGraphicsEndImageContext();
         self.typelabel.hidden = NO;
         self.typelabel.text = @"gif";
     }];
@@ -145,12 +118,9 @@
     _progressView.trackTintColor = [UIColor clearColor];
     _progressView.progressLabel.textColor = [UIColor whiteColor];
 }
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
 }
-*/
 
 @end

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GYDetailsImageVC">
+            <connections>
+                <outlet property="progressView" destination="CTy-5B-VvT" id="iDq-rA-gcW"/>
+                <outlet property="scrollView" destination="Ms1-do-bn8" id="1lN-TZ-0JK"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="album_jie_mark_87x17_" translatesAutoresizingMaskIntoConstraints="NO" id="bmC-Es-IsN">
+                    <rect key="frame" x="120" y="274" width="174" height="34"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="34" id="3y9-ie-CdV"/>
+                        <constraint firstAttribute="width" constant="174" id="nXk-Oh-luU"/>
+                    </constraints>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CTy-5B-VvT" customClass="DALabeledCircularProgressView">
+                    <rect key="frame" x="157" y="318" width="100" height="100"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="6Lp-PE-uQ8"/>
+                        <constraint firstAttribute="height" constant="100" id="dCj-q6-9d1"/>
+                    </constraints>
+                </view>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ms1-do-bn8">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="XgK-9e-PTk"/>
+                    </connections>
+                </scrollView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hRJ-or-bhf">
+                    <rect key="frame" x="374" y="696" width="32" height="32"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" image="icon_download_showImg_32x32_"/>
+                    <state key="highlighted" image="icon_download_showImg_click_32x32_"/>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="CTy-5B-VvT" firstAttribute="top" secondItem="bmC-Es-IsN" secondAttribute="bottom" constant="10" id="6gb-Sc-ZvL"/>
+                <constraint firstItem="bmC-Es-IsN" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="W9g-XO-4TF"/>
+                <constraint firstAttribute="trailing" secondItem="Ms1-do-bn8" secondAttribute="trailing" id="aPR-nK-aOk"/>
+                <constraint firstItem="Ms1-do-bn8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="j4b-09-cyj"/>
+                <constraint firstItem="Ms1-do-bn8" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="lHV-IW-fy4"/>
+                <constraint firstAttribute="trailing" secondItem="hRJ-or-bhf" secondAttribute="trailing" constant="8" id="oZK-fi-I7c"/>
+                <constraint firstItem="CTy-5B-VvT" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="pFy-z9-Kcc"/>
+                <constraint firstAttribute="bottom" secondItem="Ms1-do-bn8" secondAttribute="bottom" id="pWO-yX-fAp"/>
+                <constraint firstItem="CTy-5B-VvT" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="yO4-Kq-ody"/>
+                <constraint firstAttribute="bottom" secondItem="hRJ-or-bhf" secondAttribute="bottom" constant="8" id="zFG-Jp-i5n"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
+            <point key="canvasLocation" x="131.8840579710145" y="97.826086956521749"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="album_jie_mark_87x17_" width="87" height="17"/>
+        <image name="icon_download_showImg_32x32_" width="32" height="32"/>
+        <image name="icon_download_showImg_click_32x32_" width="32" height="32"/>
+    </resources>
+</document>

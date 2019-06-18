@@ -21,12 +21,18 @@
     CGFloat contentLabelX = margin;
     CGFloat contentLabelY = 53;
     CGFloat contentLabelW = GYScreenW - 2 * contentLabelX;
-    //CGFloat contentLabelH = [topicItem.text sizeWithFont:[UIFont systemFontOfSize:17] constrainedToSize:CGSizeMake(contentLabelW, MAXFLOAT)].height;
-    CGFloat contentLabelH = [topicItem.text boundingRectWithSize:CGSizeMake(contentLabelW, MAXFLOAT)
-                                                         options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
-                                                      attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:17]}
-                                                         context:nil].size.height;
-    
+    CGFloat contentLabelH = 0;
+    NSString *text = topicItem.text;
+    if(text.length > 0) {
+        if(topicItem.status == GYTopicStatusEssence) {
+            text = [text stringByAppendingString:@"精华帖"];
+        }
+        //contentLabelH = [topicItem.text sizeWithFont:[UIFont systemFontOfSize:17] constrainedToSize:CGSizeMake(contentLabelW, MAXFLOAT)].height;
+        contentLabelH = [text boundingRectWithSize:CGSizeMake(contentLabelW, MAXFLOAT)
+                                           options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+                                        attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:17]}
+                                           context:nil].size.height;
+    }
     CGFloat topViewW = GYScreenW;
     CGFloat topViewH = contentLabelY + contentLabelH + margin;
     _topTopViewFrame = CGRectMake(topViewX, topViewY, topViewW, topViewH);
@@ -89,9 +95,6 @@
         CGFloat conLabelW = GYScreenW - 2*margin - 2*space;
         //CGFloat conLabelH = [commentItem.content sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:CGSizeMake(conLabelW, MAXFLOAT)].height;
         NSString *text = commentItem.content;
-        if(topicItem.status == 4) {
-            text = [text stringByAppendingString:@"精华帖"];
-        }
         CGFloat conLabelH = [text boundingRectWithSize:CGSizeMake(conLabelW, MAXFLOAT)
                                                options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
                                             attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]}

@@ -60,7 +60,6 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.backgroundColor = GYColor(240, 240, 240);
-    self.autoresizingMask = UIViewAutoresizingNone;
 }
 /*
 // Only override drawRect: if you perform custom drawing.

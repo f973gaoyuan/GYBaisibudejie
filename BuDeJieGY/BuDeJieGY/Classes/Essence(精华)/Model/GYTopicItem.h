@@ -16,6 +16,7 @@
 NS_ASSUME_NONNULL_BEGIN
 //@class GYUserItem;
 //@class GYImageItem;
+/*
 typedef NS_ENUM(NSInteger, GYTopicStatus) {
 //    GYTopicStatusdefault1 = 0,
 //    GYTopicStatusdefault2 = 1,
@@ -28,10 +29,14 @@ typedef NS_ENUM(NSInteger, GYTopicStatus) {
       GYTopicStatusdefault3,
       GYTopicStatusEssence
 };
-
+*/
+typedef NS_ENUM(NSInteger, GYTopicStatus) {
+    GYTopicStatusNormal = 2,
+    GYTopicStatusEssence = 4
+};
 @interface GYTopicItem : NSObject
-@property (assign, nonatomic) NSInteger     status;
-//@property (assign, nonatomic) GYTopicStatus status;
+//@property (assign, nonatomic) NSInteger     status;
+@property (assign, nonatomic) GYTopicStatus status;
 @property (strong, nonatomic) NSString*     rating;
 @property (strong, nonatomic) NSString*     cate;
 @property (strong, nonatomic) NSArray*      top_comments;   //****** *****

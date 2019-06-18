@@ -1,1 +1,1 @@
-../../../../../../../../../Downloads/iOSFrame/SDWebImage-5.0.3/SDWebImage/Private/UIColor+HexString.h
+../../../../../../../../../Downloads/iOSFrame/SDWebImage/SDWebImage-5.0.3/SDWebImage/Private/UIColor+HexString.h
