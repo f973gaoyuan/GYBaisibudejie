@@ -8,7 +8,7 @@
 
 #import "GYPromotionCell.h"
 #import "../../Other/Category/UIView+frame.h"
-#import "../Model/GYPromotionItem.h"
+
 
 @interface GYPromotionCell () <UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;

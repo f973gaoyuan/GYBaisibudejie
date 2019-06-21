@@ -8,7 +8,6 @@
 
 #import "GYFriendTrendViewController.h"
 
-#import "../Model/GYRecommendFriendItem.h"
 
 #import "../View/GYRecommendFriendCell.h"
 
@@ -17,40 +16,33 @@ static NSString *recommendID = @"recommendCell";
 static NSString *selectedID = @"selectedCell";
 
 @interface GYFriendTrendViewController ()
-@property (strong, nonatomic) NSArray<GYRecommendFriendItem*> *recommendFriends;
-@property (strong, nonatomic) AFHTTPSessionManager *manager;
+@property (weak, nonatomic) NSArray<GYRecommendFriendItem*> *recommendFriends;
 @end
 
 @implementation GYFriendTrendViewController
-
-- (AFHTTPSessionManager *)manager {
-    if(_manager == nil) {
-        _manager = [AFHTTPSessionManager manager];
-    }
-    return _manager;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor colorWithRed:240/255.0 green:240/255.0 blue:240/255.0 alpha:1];
     [self setupNavBar];
     
-    [GYRecommendFriendItem mj_setupReplacedKeyFromPropertyName:^NSDictionary *{
-        return @{@"ID":@"id"};
-    }];
-    
+    GYNetworkingManager *manager = [GYNetworkingManager shareManager];
     // 获取朋友推荐数据
-    [self loadFriendRecommend];
-    
-    [self loadListData];
+    [manager requestFriendRecommendData:^(NSArray *recommendFriends, NSError *error) {
+        self.recommendFriends = recommendFriends;
+        [self.tableView reloadData];
+    }];
+    // 获取关注朋友帖子
+    [manager requestFriendTopicData:^(NSArray *friendTopics, NSError *error) {
+#warning 功能未实现
+    }];
     
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([GYRecommendFriendCell class]) bundle:nil] forCellReuseIdentifier:recommendID];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [_manager.tasks makeObjectsPerformSelector:@selector(cancel)];
+    //[_manager.tasks makeObjectsPerformSelector:@selector(cancel)];
 }
 
 - (void)setupNavBar {
@@ -68,35 +60,6 @@ static NSString *selectedID = @"selectedCell";
 - (void)recommondClick {
     GYLog(@"recommondClick");
 }
-
-#pragma mark - 获取朋友推荐数据
-//friend recommend
-- (void)loadFriendRecommend {
-    NSString *urlStr = @"http://d.api.budejie.com/user/friend_recommend/bsbdjhd-iphone-5.0.9/6-last_coord-list/";
-    [self.manager GET:urlStr parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary*  _Nullable responseObject) {
-        self.recommendFriends = [GYRecommendFriendItem mj_objectArrayWithKeyValuesArray:responseObject[@"hot_list"]];
-        [self.tableView reloadData];
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        GYLog(@"------%@", error);
-    }];
-}
-
-#pragma mark - 获取精选帖子
-
-- (void)loadListData {
-    NSString *urlStr = @"http://d.api.budejie.com/topic/list/jingxuan/attention/bsbdjhd-iphone-5.0.9/0-20.json";
-    [self.manager GET:urlStr parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary*  _Nullable responseObject) {
-        
-        [responseObject writeToFile:@"/Users/gaoyuan/Desktop/GIT/f973gaoyuan/ListData.plist" atomically:YES];
-        NSArray *array = responseObject[@"list"];
-        NSDictionary *dist = array[2];
-        //[dist createProperyCode:dist];
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        GYLog(@"------%@", error);
-    }];
-}
-
-
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

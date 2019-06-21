@@ -7,8 +7,6 @@
 //
 
 #import "GYTopTopicView.h"
-#import "../Model/GYUserItem.h"
-#import "../Model/GYTopicItem.h"
 
 /* 时间显示逻辑
  今年
@@ -50,6 +48,9 @@
     
     _nameLabel.text = topicItem.user.name;
     //_contentLabel.text = topicItem.text;
+//    if([topicItem.ID isEqualToString:@"29604184"]) {
+//        int i = 0;
+//    }
 
     if(topicItem.status == GYTopicStatusEssence) {
         UIImage *isBestImage = [UIImage imageNamed:@"icon_isbest_27x14_"];
@@ -69,7 +70,7 @@
         [attrStr appendAttributedString:attrText];
 
         [_contentLabel setAttributedText:attrStr];
-    } else if(topicItem.status == GYTopicStatusNormal) {
+    } else {// if(topicItem.status == GYTopicStatusNormal) {
         _contentLabel.text = topicItem.text;
     }
     

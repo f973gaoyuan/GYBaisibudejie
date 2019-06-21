@@ -7,7 +7,6 @@
 //
 
 #import "GYCommentTopicView.h"
-#import "../Model/GYTopicItem.h"
 
 @interface GYCommentTopicView ()
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;

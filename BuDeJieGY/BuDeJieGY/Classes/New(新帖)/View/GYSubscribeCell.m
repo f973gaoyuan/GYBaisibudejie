@@ -8,7 +8,6 @@
 
 #import "GYSubscribeCell.h"
 
-#import "../Model/GYSubscribeItem.h"
 
 @interface GYSubscribeCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *image_list;

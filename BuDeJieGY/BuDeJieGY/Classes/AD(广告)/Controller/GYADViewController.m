@@ -9,11 +9,9 @@
 #import "GYADViewController.h"
 //#import <SDWebImage/SDWebImageManager.h>
 #import "../../Main(主要)/Controller/GYTabBarController.h"
+#import "../../Utils(业务类)/NetWorking/GYNetworkingManager.h"
 
 
-
-
-#import "../Model/GYADItem.h"
 #import "../../Other/Category/NSObject+Model.h"
 #import "../../Other/Category/NSDictionary+Property.h"
 #import "../../Other/Category/NSObject+Model.h"
@@ -62,8 +60,7 @@
 @property (weak, nonatomic) IBOutlet UIView *adContentView;
 @property (weak, nonatomic) IBOutlet UIButton *jumpBtn;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *launchHeight;
-@property (strong, nonatomic) AFHTTPSessionManager *manager;
-@property (strong, nonatomic) GYADItem *item;
+@property (weak, nonatomic) GYADItem *item;
 @property (weak, nonatomic) NSTimer *timer;
 @end
 
@@ -75,17 +72,6 @@
     [UIApplication sharedApplication].keyWindow.rootViewController = tabBarVC;
 }
 
-- (AFHTTPSessionManager *)manager {
-    if(_manager == nil) {
-        _manager = [AFHTTPSessionManager gy_manager];
-        // 客户端是否信任非法证书
-        _manager.securityPolicy.allowInvalidCertificates = YES;
-        // 是否在证书域字段中验证域名
-        [_manager.securityPolicy setValidatesDomainName:NO];
-    }
-    return _manager;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -95,12 +81,21 @@
     // 设置启动图片
     [self setupLaunchImageView];
     
+    GYNetworkingManager *manager = [GYNetworkingManager shareManager];
     // 展示广告数据 =》从服务器取 =》 接口文档 =》 AFN =》 cocoapods
-    [self loadADData];
-//    GYLog(@"GYScreen: %.0f x %.0f", GYScreenW, GYScreenH);
-//    NSString *name = [[UIDevice currentDevice] name];
-//    GYLog(@"name: %@", name);
-//    [[[UIDevice currentDevice] name] isEqualToString:@"iPhone Xs Max"];
+    [manager requestEssenceData:nil];
+    [manager requestStartupADData:^(GYADItem *item, NSError *error) {
+        self.item = item;
+        CGFloat h = 0;
+        if(item.pic_width > 0) {
+            h = item.pic_height * GYScreenW / item.pic_width;
+        }
+        self.adImageView.frame = CGRectMake(0, 0, GYScreenW, h);
+        [self.adImageView sd_setImageWithURL:[NSURL URLWithString:item.img]];
+        
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAD)];
+        [self.adContentView addGestureRecognizer:tap];
+    }];
     
     _timer = [NSTimer scheduledTimerWithTimeInterval:1.0 repeats:YES block:^(NSTimer * _Nonnull timer) {
         static int count = 3;
@@ -115,81 +110,8 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [_manager.tasks makeObjectsPerformSelector:@selector(cancel)];
-}
-// 请求数据 =》 接口文档 =》 AFN发送请求 =》 解析数据 =》 写成plisti=》 设计模型 =》 字典转模型 =》 直接把模型展示到界面
-- (void)loadADData {
-    /*
-     技巧：如果想知道一个类有哪些东西 --》 跳类
-     想知道整个类做了什么，跳方法
-     */
-    //1. 创建请求绘画管理者
-    //AFHTTPSessionManager *manager = [AFHTTPSessionManager gy_manager];
-    // 客户端是否信任非法证书
-    //manager.securityPolicy.allowInvalidCertificates = YES;
-    // 是否在证书域字段中验证域名
-    //[manager.securityPolicy setValidatesDomainName:NO];
-    //2. 拼接参数
-    NSMutableDictionary *paramDict = [NSMutableDictionary dictionary];
-//    paramDict[@"code2"] = ADCODE;
-//    NSString *urlStr = @"http://mobads.baidu.com/cpro/ui/mads.php";
-    //***********************************************************************
-    /* 应用程序内广告
-    NSString *urlStr = @"http://mi.gdt.qq.com/gdt_mview.fcg?posid=4010348307132921&ext=%7B%22req%22%3A%7B%22loc_accuracy%22%3A0%2C%22sdk_src%22%3A%22%22%2C%22muidtype%22%3A2%2C%22c_isjailbroken%22%3Afalse%2C%22jsver%22%3A%221.4.0%22%2C%22m5%22%3A%227CA0F21E-BA78-4652-B644-56FA67EE9331%22%2C%22c_device%22%3A%22iPhone%208%20Plus%22%2C%22c_h%22%3A2208%2C%22muid%22%3A%220929af4927358426b1a0337bc6b08331%22%2C%22lng%22%3A0%2C%22c_pkgname%22%3A%22com.spriteapp.baisibdjhd%22%2C%22c_os%22%3A%22ios%22%2C%22render_type%22%3A1%2C%22m7%22%3A%225D1802EC-1D7E-6507-69CC-822F713C48DB%22%2C%22conn%22%3A1%2C%22scs%22%3A%220001e73e0b28%22%2C%22c_hl%22%3A%22zh%22%2C%22c_w%22%3A1242%2C%22c_devicetype%22%3A1%2C%22carrier%22%3A0%2C%22c_sdfree%22%3A0%2C%22lat%22%3A0%2C%22c_ori%22%3A0%2C%22c_dpi%22%3A320%2C%22sdkver%22%3A%224.7.8%22%2C%22deep_link_version%22%3A1%2C%22placement_type%22%3A9%2C%22tmpallpt%22%3Atrue%2C%22c_osver%22%3A%2212.1.2%22%7D%7D&count=10&adposcount=1&datatype=2&support_https=1";
-     */
-    // 启动广告
-    NSString *urlStr = @"https://mi.gdt.qq.com/gdt_mview.fcg?posw=640&spsa=1&posid=8060144347834081&ext=%7B%22req%22%3A%7B%22loc_accuracy%22%3A0%2C%22sdk_src%22%3A%22%22%2C%22muidtype%22%3A2%2C%22c_isjailbroken%22%3Afalse%2C%22jsver%22%3A%22%22%2C%22m5%22%3A%227CA0F21E-BA78-4652-B644-56FA67EE9331%22%2C%22c_device%22%3A%22iPhone%208%20Plus%22%2C%22c_h%22%3A2208%2C%22muid%22%3A%220929af4927358426b1a0337bc6b08331%22%2C%22lng%22%3A0%2C%22c_pkgname%22%3A%22com.spriteapp.baisibdjhd%22%2C%22c_os%22%3A%22ios%22%2C%22render_type%22%3A1%2C%22m7%22%3A%225D1802EC-1D7E-6507-69CC-822F713C48DB%22%2C%22conn%22%3A1%2C%22scs%22%3A%220001b2787cc8%22%2C%22c_hl%22%3A%22zh%22%2C%22c_w%22%3A1242%2C%22c_devicetype%22%3A1%2C%22carrier%22%3A0%2C%22c_sdfree%22%3A0%2C%22lat%22%3A0%2C%22c_ori%22%3A0%2C%22c_dpi%22%3A320%2C%22sdkver%22%3A%224.7.8%22%2C%22deep_link_version%22%3A1%2C%22placement_type%22%3A4%2C%22tmpallpt%22%3Atrue%2C%22c_osver%22%3A%2212.1.2%22%7D%7D&posh=960&count=1&datatype=2&support_https=1&adposcount=1";
-   
-    //3. 发送请求
-    //__weak typeof(self) weakSelf;
-    [self.manager GET:urlStr parameters:paramDict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary *  _Nullable responseObject) {
-        
-        NSDictionary *adDict = responseObject[@"data"][@"8060144347834081"][@"list"][0];
-        
-        GYADItem *item = [GYADItem mj_objectWithKeyValues:adDict];
-        self.item = item;
-        CGFloat h = 0;
-        if(item.pic_width > 0) {
-            h = item.pic_height * GYScreenW / item.pic_width;
-        }
-        self.adImageView.frame = CGRectMake(0, 0, GYScreenW, h);
-        [self.adImageView sd_setImageWithURL:[NSURL URLWithString:item.img]];
-        
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAD)];
-        [self.adContentView addGestureRecognizer:tap];
-        
-/*
-        UIImageView *imageView = [[UIImageView alloc] init];
-        //imageView.contentMode = UIViewContentModeScaleAspectFill;
-        //imageView.clipsToBounds = YES;
-        CGFloat h = item.pic_height * GYScreenW / item.pic_width;
-        //CGFloat hMax = GYScreenH * 0.8;
-        //if(h > hMax) h = hMax;
-        imageView.frame = CGRectMake(0, 0, GYScreenW, h);
-        [self.adContentView addSubview:imageView];
-        
-        [imageView sd_setImageWithURL:[NSURL URLWithString:item.img]];
-        
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAD)];
-        
-        imageView.userInteractionEnabled = YES;
-        [imageView addGestureRecognizer:tap];
-*/
-        //[adDict createProperyCode:adDict];
-        //[adDict createProperyCode:dict];
-        //GYADItem *item = [GYADItem modelWithDictionary:adDict];
-        
-        //GYLog(@"------------%@", adDict);
-        
-        //[responseObject writeToFile:@"/Users/gaoyuan/Desktop/GIT/f973gaoyuan/ad.plist" atomically:YES];
-        //NSString *str = [GYTool convertToJsonData:responseObject];
-        // 不知为什么非要这样才能存储成功
-        //[[GYTool dictionaryWithJsonString:str] writeToFile:@"/Users/gaoyuan/Desktop/GIT/f973gaoyuan/ad.plist" atomically:YES];
-        
-        //GYLog(@"------------%@", responseObject);
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        // GYLog(@"------------%@", error);
-    }];
+    [self.timer invalidate];
+    //[_manager.tasks makeObjectsPerformSelector:@selector(cancel)];
 }
 #pragma mark - 点击广告图片调用网页
 - (void)tapAD {

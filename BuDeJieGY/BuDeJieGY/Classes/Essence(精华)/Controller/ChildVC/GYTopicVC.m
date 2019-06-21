@@ -6,11 +6,14 @@
 //  Copyright © 2019 gaoyuan. All rights reserved.
 //
 #import "GYTopicVC.h"
+#import "../../../Utils(业务类)/NetWorking/GYNetworkingManager.h"
+
+#import "../../View/GYFooterRefreshView.h"
 
 #import "../../View/GYTopicCell.h"
-#import "../../Model/GYEssenceItem.h"
+//#import "../../Model/GYEssenceItem.h"
 
-#import "../../Model/GYTopicItem.h"
+//#import "../../Model/GYTopicItem.h"
 #import "../../VM/GYTopicCellMode.h"
 /*
  不等高cell
@@ -33,9 +36,10 @@
 static NSString * const ID = @"topicCell";
 
 @interface GYTopicVC ()
-@property (strong, nonatomic) NSArray<GYEssenceItem*> *essenceItems;
-@property (strong, nonatomic) NSArray<GYTopicItem*> *topicItems;
+//@property (strong, nonatomic) NSArray<GYEssenceItem*> *essenceItems;
 @property (strong, nonatomic) NSMutableArray<GYTopicCellMode*> *topicCellsVM;
+@property (weak, nonatomic) GYFooterRefreshView *footerRefreshView;
+@property (assign, nonatomic) BOOL isReLoad;
 @end
 
 @implementation GYTopicVC
@@ -52,75 +56,52 @@ static NSString * const ID = @"topicCell";
     self.view.backgroundColor = GYColor(240, 240, 240);
     self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
-    [GYTopicItem mj_setupReplacedKeyFromPropertyName:^NSDictionary *{
-        return @{@"ID" : @"id",
-                 @"user": @"u",
-                 @"isBest": @"is_best"
-                 };
-    }];
-    
-    [GYCommentItem mj_setupReplacedKeyFromPropertyName:^NSDictionary *{
-        return @{@"ID" : @"id",
-                 @"user": @"u"
-                 };
-    }];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    //[self.tableView registerClass:NSClassFromString(@"GYTopicCell") forCellReuseIdentifier:ID];
+    [self setupBotomRefreshView];
+
     [self.tableView registerClass:GYTopicCell.class forCellReuseIdentifier:ID];
-    
-    [self loadEssenceData];
-    //[self loadEssenceSubDataWithIndex:0];
 }
 
-- (void)loadEssenceData {
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    NSString *usrlStr = @"http://s.budejie.com/public/list-appbar/bsbdjhd-iphone-5.1.0/";
-    [manager GET:usrlStr parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary*  _Nullable responseObject) {
-        self.essenceItems = [GYEssenceItem mj_objectArrayWithKeyValuesArray:responseObject[@"menus"][0][@"submenus"]];
-        //[self loadEssenceSubDataWithIndex:index];
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        GYLog(@"%@", error);
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+//    GYLog(@".....%@", NSStringFromUIEdgeInsets(self.tableView.contentInset));
+    self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
+}
+
+- (void)setupBotomRefreshView {
+    GYFooterRefreshView *refreshView = [GYFooterRefreshView bottomRefreshView];
+    self.tableView.tableFooterView = refreshView;
+    _footerRefreshView = refreshView;
+}
+#pragma mark - 加载网络数据
+- (void)loadEssenceSubDataWithIndex:(NSInteger)index {
+    [[GYNetworkingManager shareManager] requestEssenceSubDataWithIndex:index completion:^(NSArray *topics, NSError *error) {
+        [self.topicCellsVM removeAllObjects];
+        for (GYTopicItem *item in topics) {
+            GYTopicCellMode *vm = [[GYTopicCellMode alloc] init];
+            vm.topicItem = item;
+            [self.topicCellsVM addObject:vm];
+        }
+        
+        [self.tableView reloadData];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            self.isReLoad = YES;
+        });
     }];
 }
 
-- (void)loadEssenceSubDataWithIndex:(NSInteger)index {
-    //__block i = index;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        //i = 1;
-        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-        if(index >= self.essenceItems.count) {
-            @throw [NSException exceptionWithName:@"索引值超界" reason:@"获取精华模型数据的索引值超过最大值" userInfo:nil];
+#pragma mark - <UIScrollViewDelegate>
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if(!_isReLoad)  return;
+    if(!_footerRefreshView.isRefreshData) {
+        UIEdgeInsets inset = self.tableView.contentInset;
+        CGFloat maxY = self.tableView.contentSize.height - (GYScreenH - inset.bottom);
+        if(self.tableView.contentOffset.y >= maxY) {
+            _footerRefreshView.refreshData = YES;
+            NSLog(@"加载数据");
         }
-        GYEssenceItem *essenceItem = self.essenceItems[index];
-        NSString *usrlStr = [essenceItem.url stringByAppendingString:@"0-0/bsbdjhd-iphone-5.1.0/0-25.json"];
-        [manager GET:usrlStr parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary*  _Nullable responseObject) {
-            NSArray *array = [GYTopicItem mj_objectArrayWithKeyValuesArray:responseObject[@"list"]];
-            self.topicItems = array;
-            //BOOL bTest = NO;
-            [self.topicCellsVM removeAllObjects];
-            for (GYTopicItem *item in array) {
-                GYTopicCellMode *vm = [[GYTopicCellMode alloc] init];
-                vm.topicItem = item;
-                [self.topicCellsVM addObject:vm];
-//                if(vm.topicItem.top_comments && !bTest) {
-//                    NSDictionary *dict = vm.topicItem.top_comments[0];
-//                    [dict createProperyCode:dict];
-//                    bTest = YES;
-//                }
-            }
-            
-            [self.tableView reloadData];
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            GYLog(@"%@", error);
-        }];
-    });
+    }
 }
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

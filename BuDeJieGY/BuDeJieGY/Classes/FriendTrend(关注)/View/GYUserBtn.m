@@ -8,7 +8,6 @@
 
 #import "GYUserBtn.h"
 #import <UIButton+WebCache.h>
-#import "../Model/GYRecommendFriendItem.h"
 
 @implementation GYUserBtn
 

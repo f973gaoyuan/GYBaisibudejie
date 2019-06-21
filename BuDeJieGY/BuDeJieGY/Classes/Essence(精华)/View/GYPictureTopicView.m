@@ -7,7 +7,6 @@
 //
 
 #import "GYPictureTopicView.h"
-#import "../Model/GYTopicItem.h"
 
 //#import "../../Utils(业务类)/ImageBrowsing/BBSImageBrowsingController.h"
 #import "../Controller/GYDetailsImageVC.h"

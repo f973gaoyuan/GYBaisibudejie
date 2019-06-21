@@ -7,7 +7,7 @@
 //
 
 #import "GYTopicCellMode.h"
-#import "../Model/GYTopicItem.h"
+
 
 @implementation GYTopicCellMode
 - (void)setTopicItem:(GYTopicItem *)topicItem {

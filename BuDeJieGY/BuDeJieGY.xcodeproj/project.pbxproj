@@ -52,6 +52,9 @@
 		3066E0EB229E59A90012339E /* GYMeViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3066E0EA229E59A90012339E /* GYMeViewController.storyboard */; };
 		3066E0EF229ECC800012339E /* GYBlockCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3066E0ED229ECC800012339E /* GYBlockCell.m */; };
 		3066E0F0229ECC800012339E /* GYBlockCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3066E0EE229ECC800012339E /* GYBlockCell.xib */; };
+		3073ECCF22BCB2D500A2B53C /* GYFooterRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3073ECCE22BCB2D500A2B53C /* GYFooterRefreshView.m */; };
+		3073ECD122BCB2E600A2B53C /* GYFooterRefreshView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3073ECD022BCB2E600A2B53C /* GYFooterRefreshView.xib */; };
+		3073ECD522BCDCCD00A2B53C /* GYNetworkingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3073ECD422BCDCCD00A2B53C /* GYNetworkingManager.m */; };
 		3075B407228BC5780080799B /* UIView+frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 3075B406228BC5780080799B /* UIView+frame.m */; };
 		3075B410228BEDCB0080799B /* UIButton+HitRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 3075B40F228BEDCB0080799B /* UIButton+HitRect.m */; };
 		3078523D228D416400A145D7 /* GYADViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3078523B228D416400A145D7 /* GYADViewController.m */; };
@@ -85,7 +88,6 @@
 		30EFCA9D228FFF7E001082B6 /* NSObject+Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 30EFCA9C228FFF7E001082B6 /* NSObject+Model.m */; };
 		30EFCAA022900527001082B6 /* GYADItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 30EFCA9F22900527001082B6 /* GYADItem.m */; };
 		30EFCAA322900825001082B6 /* NSDictionary+Property.m in Sources */ = {isa = PBXBuildFile; fileRef = 30EFCAA222900825001082B6 /* NSDictionary+Property.m */; };
-		30EFF91822A759B9005B72AF /* GYBaseContentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 30EFF91722A759B9005B72AF /* GYBaseContentVC.m */; };
 		30EFF91B22A75A1B005B72AF /* GYEssenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30EFF91A22A75A1B005B72AF /* GYEssenceViewController.m */; };
 		30EFF92522A77251005B72AF /* GYTopicVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 30EFF92422A77251005B72AF /* GYTopicVC.m */; };
 		30EFF92822A77282005B72AF /* GYRecommendVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 30EFF92722A77282005B72AF /* GYRecommendVC.m */; };
@@ -94,9 +96,9 @@
 		30EFF93122A77335005B72AF /* GYJokeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 30EFF93022A77335005B72AF /* GYJokeVC.m */; };
 		30EFF93422A777E3005B72AF /* GYEntertainmentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 30EFF93322A777E3005B72AF /* GYEntertainmentVC.m */; };
 		30EFF93722A78526005B72AF /* GYGameVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 30EFF93622A78526005B72AF /* GYGameVC.m */; };
-		30EFF93A22A7E2AA005B72AF /* GYEssenceContentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 30EFF93922A7E2AA005B72AF /* GYEssenceContentVC.m */; };
 		30F84041229D13AA0050EF1A /* GYLoginField.m in Sources */ = {isa = PBXBuildFile; fileRef = 30F84040229D13AA0050EF1A /* GYLoginField.m */; };
 		30F84044229D75330050EF1A /* UITextField+Placeholder.m in Sources */ = {isa = PBXBuildFile; fileRef = 30F84043229D75330050EF1A /* UITextField+Placeholder.m */; };
+		30FB19CB22BBD22E000AE049 /* GYPhotoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 30FB19CA22BBD22E000AE049 /* GYPhotoManager.m */; };
 		30FBC342229FE34400231274 /* GYUserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30FBC341229FE34400231274 /* GYUserView.m */; };
 		30FBC344229FE35300231274 /* GYUserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30FBC343229FE35300231274 /* GYUserView.xib */; };
 		30FBC34F22A0F54800231274 /* backImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30FBC34A22A0F54800231274 /* backImage@2x.png */; };
@@ -186,6 +188,11 @@
 		3066E0EC229ECC800012339E /* GYBlockCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GYBlockCell.h; sourceTree = "<group>"; };
 		3066E0ED229ECC800012339E /* GYBlockCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GYBlockCell.m; sourceTree = "<group>"; };
 		3066E0EE229ECC800012339E /* GYBlockCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GYBlockCell.xib; sourceTree = "<group>"; };
+		3073ECCD22BCB2D500A2B53C /* GYFooterRefreshView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GYFooterRefreshView.h; sourceTree = "<group>"; };
+		3073ECCE22BCB2D500A2B53C /* GYFooterRefreshView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GYFooterRefreshView.m; sourceTree = "<group>"; };
+		3073ECD022BCB2E600A2B53C /* GYFooterRefreshView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GYFooterRefreshView.xib; sourceTree = "<group>"; };
+		3073ECD322BCDCCD00A2B53C /* GYNetworkingManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GYNetworkingManager.h; sourceTree = "<group>"; };
+		3073ECD422BCDCCD00A2B53C /* GYNetworkingManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GYNetworkingManager.m; sourceTree = "<group>"; };
 		3075B405228BC5780080799B /* UIView+frame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+frame.h"; sourceTree = "<group>"; };
 		3075B406228BC5780080799B /* UIView+frame.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+frame.m"; sourceTree = "<group>"; };
 		3075B40E228BEDCB0080799B /* UIButton+HitRect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+HitRect.h"; sourceTree = "<group>"; };
@@ -247,8 +254,6 @@
 		30EFCA9F22900527001082B6 /* GYADItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GYADItem.m; sourceTree = "<group>"; };
 		30EFCAA122900825001082B6 /* NSDictionary+Property.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Property.h"; sourceTree = "<group>"; };
 		30EFCAA222900825001082B6 /* NSDictionary+Property.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Property.m"; sourceTree = "<group>"; };
-		30EFF91622A759B9005B72AF /* GYBaseContentVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GYBaseContentVC.h; sourceTree = "<group>"; };
-		30EFF91722A759B9005B72AF /* GYBaseContentVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GYBaseContentVC.m; sourceTree = "<group>"; };
 		30EFF91922A75A1B005B72AF /* GYEssenceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GYEssenceViewController.h; sourceTree = "<group>"; };
 		30EFF91A22A75A1B005B72AF /* GYEssenceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GYEssenceViewController.m; sourceTree = "<group>"; };
 		30EFF92322A77251005B72AF /* GYTopicVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GYTopicVC.h; sourceTree = "<group>"; };
@@ -265,12 +270,12 @@
 		30EFF93322A777E3005B72AF /* GYEntertainmentVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GYEntertainmentVC.m; sourceTree = "<group>"; };
 		30EFF93522A78526005B72AF /* GYGameVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GYGameVC.h; sourceTree = "<group>"; };
 		30EFF93622A78526005B72AF /* GYGameVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GYGameVC.m; sourceTree = "<group>"; };
-		30EFF93822A7E2AA005B72AF /* GYEssenceContentVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GYEssenceContentVC.h; sourceTree = "<group>"; };
-		30EFF93922A7E2AA005B72AF /* GYEssenceContentVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GYEssenceContentVC.m; sourceTree = "<group>"; };
 		30F8403F229D13AA0050EF1A /* GYLoginField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GYLoginField.h; sourceTree = "<group>"; };
 		30F84040229D13AA0050EF1A /* GYLoginField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GYLoginField.m; sourceTree = "<group>"; };
 		30F84042229D75330050EF1A /* UITextField+Placeholder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITextField+Placeholder.h"; sourceTree = "<group>"; };
 		30F84043229D75330050EF1A /* UITextField+Placeholder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITextField+Placeholder.m"; sourceTree = "<group>"; };
+		30FB19C922BBD22E000AE049 /* GYPhotoManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GYPhotoManager.h; sourceTree = "<group>"; };
+		30FB19CA22BBD22E000AE049 /* GYPhotoManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GYPhotoManager.m; sourceTree = "<group>"; };
 		30FBC340229FE34400231274 /* GYUserView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GYUserView.h; sourceTree = "<group>"; };
 		30FBC341229FE34400231274 /* GYUserView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GYUserView.m; sourceTree = "<group>"; };
 		30FBC343229FE35300231274 /* GYUserView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GYUserView.xib; sourceTree = "<group>"; };
@@ -372,6 +377,71 @@
 			path = VM;
 			sourceTree = "<group>";
 		};
+		3072577322BD2198008C2813 /* CommunityMode(社区) */ = {
+			isa = PBXGroup;
+			children = (
+				3010470C22939BD600C3CD34 /* GYPromotionItem.h */,
+				3010470D22939BD600C3CD34 /* GYPromotionItem.m */,
+				3010470F229402EA00C3CD34 /* GYSubscribeItem.h */,
+				30104710229402EA00C3CD34 /* GYSubscribeItem.m */,
+				301047122294234100C3CD34 /* GYHotSearchItem.h */,
+				301047132294234100C3CD34 /* GYHotSearchItem.m */,
+			);
+			path = "CommunityMode(社区)";
+			sourceTree = "<group>";
+		};
+		3072577422BD2D74008C2813 /* AdvertisementModel(广告) */ = {
+			isa = PBXGroup;
+			children = (
+				30EFCA9E22900527001082B6 /* GYADItem.h */,
+				30EFCA9F22900527001082B6 /* GYADItem.m */,
+			);
+			path = "AdvertisementModel(广告)";
+			sourceTree = "<group>";
+		};
+		3072577522BD33B2008C2813 /* FriendTrendModel(关注) */ = {
+			isa = PBXGroup;
+			children = (
+				303E609C2296DB23006D8138 /* GYRecommendFriendItem.h */,
+				303E609D2296DB23006D8138 /* GYRecommendFriendItem.m */,
+			);
+			path = "FriendTrendModel(关注)";
+			sourceTree = "<group>";
+		};
+		3073ECD222BCDC8E00A2B53C /* NetWorking */ = {
+			isa = PBXGroup;
+			children = (
+				3072577422BD2D74008C2813 /* AdvertisementModel(广告) */,
+				3073ECD622BCE41E00A2B53C /* HomePageModel(首页) */,
+				3072577322BD2198008C2813 /* CommunityMode(社区) */,
+				3072577522BD33B2008C2813 /* FriendTrendModel(关注) */,
+				3073ECD322BCDCCD00A2B53C /* GYNetworkingManager.h */,
+				3073ECD422BCDCCD00A2B53C /* GYNetworkingManager.m */,
+			);
+			path = NetWorking;
+			sourceTree = "<group>";
+		};
+		3073ECD622BCE41E00A2B53C /* HomePageModel(首页) */ = {
+			isa = PBXGroup;
+			children = (
+				3079101B22AE269800CD5DA1 /* GYEssenceItem.h */,
+				3079101C22AE269800CD5DA1 /* GYEssenceItem.m */,
+				3079101E22AE30C100CD5DA1 /* GYTopicItem.h */,
+				3079101F22AE30C100CD5DA1 /* GYTopicItem.m */,
+				3079102122AE3CCB00CD5DA1 /* GYUserItem.h */,
+				3079102222AE3CCB00CD5DA1 /* GYUserItem.m */,
+				303DCF8B22B083F300D2F22B /* GYImageItem.h */,
+				303DCF8C22B083F400D2F22B /* GYImageItem.m */,
+				30A947DB22B1EA5B004E5950 /* GYGIfItem.h */,
+				30A947DC22B1EA5B004E5950 /* GYGIfItem.m */,
+				30270A6122B26C9D00AEFC72 /* GYVideoItem.h */,
+				30270A6222B26C9D00AEFC72 /* GYVideoItem.m */,
+				303114D822B3C522005B10DF /* GYCommentItem.h */,
+				303114D922B3C522005B10DF /* GYCommentItem.m */,
+			);
+			path = "HomePageModel(首页)";
+			sourceTree = "<group>";
+		};
 		30785236228D3CDD00A145D7 /* AD(广告) */ = {
 			isa = PBXGroup;
 			children = (
@@ -395,8 +465,6 @@
 		30785238228D3CDD00A145D7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				30EFCA9E22900527001082B6 /* GYADItem.h */,
-				30EFCA9F22900527001082B6 /* GYADItem.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -516,6 +584,8 @@
 		30EFCA97228FF755001082B6 /* Utils(业务类) */ = {
 			isa = PBXGroup;
 			children = (
+				3073ECD222BCDC8E00A2B53C /* NetWorking */,
+				30FB19C822BBD210000AE049 /* Photo */,
 				3030CD9A22A6416A006BD98A /* File */,
 				3083657722B8AA8300368A6C /* ImageBrowsing */,
 				30FBC34822A0F54800231274 /* JTNavigationController */,
@@ -546,6 +616,15 @@
 				30EFF93622A78526005B72AF /* GYGameVC.m */,
 			);
 			path = ChildVC;
+			sourceTree = "<group>";
+		};
+		30FB19C822BBD210000AE049 /* Photo */ = {
+			isa = PBXGroup;
+			children = (
+				30FB19C922BBD22E000AE049 /* GYPhotoManager.h */,
+				30FB19CA22BBD22E000AE049 /* GYPhotoManager.m */,
+			);
+			path = Photo;
 			sourceTree = "<group>";
 		};
 		30FBC34822A0F54800231274 /* JTNavigationController */ = {
@@ -595,10 +674,6 @@
 			isa = PBXGroup;
 			children = (
 				30EFF91C22A76A0C005B72AF /* ChildVC */,
-				30EFF91622A759B9005B72AF /* GYBaseContentVC.h */,
-				30EFF91722A759B9005B72AF /* GYBaseContentVC.m */,
-				30EFF93822A7E2AA005B72AF /* GYEssenceContentVC.h */,
-				30EFF93922A7E2AA005B72AF /* GYEssenceContentVC.m */,
 				30EFF91922A75A1B005B72AF /* GYEssenceViewController.h */,
 				30EFF91A22A75A1B005B72AF /* GYEssenceViewController.m */,
 				3083657E22B8B7BB00368A6C /* GYDetailsImageVC.h */,
@@ -611,20 +686,6 @@
 		30FE311322880C1B00383571 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				3079101B22AE269800CD5DA1 /* GYEssenceItem.h */,
-				3079101C22AE269800CD5DA1 /* GYEssenceItem.m */,
-				3079101E22AE30C100CD5DA1 /* GYTopicItem.h */,
-				3079101F22AE30C100CD5DA1 /* GYTopicItem.m */,
-				3079102122AE3CCB00CD5DA1 /* GYUserItem.h */,
-				3079102222AE3CCB00CD5DA1 /* GYUserItem.m */,
-				303DCF8B22B083F300D2F22B /* GYImageItem.h */,
-				303DCF8C22B083F400D2F22B /* GYImageItem.m */,
-				30A947DB22B1EA5B004E5950 /* GYGIfItem.h */,
-				30A947DC22B1EA5B004E5950 /* GYGIfItem.m */,
-				30270A6122B26C9D00AEFC72 /* GYVideoItem.h */,
-				30270A6222B26C9D00AEFC72 /* GYVideoItem.m */,
-				303114D822B3C522005B10DF /* GYCommentItem.h */,
-				303114D922B3C522005B10DF /* GYCommentItem.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -651,6 +712,9 @@
 				307E6B8C22B4B22A00C1C82F /* GYBottomTopicView.h */,
 				307E6B8D22B4B22A00C1C82F /* GYBottomTopicView.m */,
 				307E6B9122B4B26B00C1C82F /* GYBottomTopicView.xib */,
+				3073ECCD22BCB2D500A2B53C /* GYFooterRefreshView.h */,
+				3073ECCE22BCB2D500A2B53C /* GYFooterRefreshView.m */,
+				3073ECD022BCB2E600A2B53C /* GYFooterRefreshView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -689,12 +753,6 @@
 		30FE311822880C1B00383571 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				3010470C22939BD600C3CD34 /* GYPromotionItem.h */,
-				3010470D22939BD600C3CD34 /* GYPromotionItem.m */,
-				3010470F229402EA00C3CD34 /* GYSubscribeItem.h */,
-				30104710229402EA00C3CD34 /* GYSubscribeItem.m */,
-				301047122294234100C3CD34 /* GYHotSearchItem.h */,
-				301047132294234100C3CD34 /* GYHotSearchItem.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -734,8 +792,6 @@
 		30FE311C22880C1B00383571 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				303E609C2296DB23006D8138 /* GYRecommendFriendItem.h */,
-				303E609D2296DB23006D8138 /* GYRecommendFriendItem.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -978,6 +1034,7 @@
 				304ECB9322950FBC001D7E69 /* GYSubscribeCell.xib in Resources */,
 				301047072292E05600C3CD34 /* Retina HD 4.7 -D.png in Resources */,
 				303114D722B3BC8E005B10DF /* GYCommentTopicView.xib in Resources */,
+				3073ECD122BCB2E600A2B53C /* GYFooterRefreshView.xib in Resources */,
 				3083658222B8B7BB00368A6C /* GYDetailsImageVC.xib in Resources */,
 				301EF02C22871E9700F5EE2D /* LaunchScreen.storyboard in Resources */,
 				3019B0D422A506790021633F /* setting.plist in Resources */,
@@ -1075,9 +1132,7 @@
 				3019B0E822A52BF80021633F /* GYSettingCell.m in Sources */,
 				3078523D228D416400A145D7 /* GYADViewController.m in Sources */,
 				30C3586A22AD53EE0056B9F3 /* GYTopicCell.m in Sources */,
-				30EFF93A22A7E2AA005B72AF /* GYEssenceContentVC.m in Sources */,
 				30EFF92B22A772E1005B72AF /* GYVideoVC.m in Sources */,
-				30EFF91822A759B9005B72AF /* GYBaseContentVC.m in Sources */,
 				3079101D22AE269800CD5DA1 /* GYEssenceItem.m in Sources */,
 				3083658122B8B7BB00368A6C /* GYDetailsImageVC.m in Sources */,
 				30FE313422880D3A00383571 /* GYPublishViewController.m in Sources */,
@@ -1091,6 +1146,7 @@
 				30954D6E229A4C8400A900BE /* GYLogRegView.m in Sources */,
 				303114D522B3BC83005B10DF /* GYCommentTopicView.m in Sources */,
 				3075B410228BEDCB0080799B /* UIButton+HitRect.m in Sources */,
+				3073ECCF22BCB2D500A2B53C /* GYFooterRefreshView.m in Sources */,
 				303114DA22B3C522005B10DF /* GYCommentItem.m in Sources */,
 				30F84041229D13AA0050EF1A /* GYLoginField.m in Sources */,
 				30104701229255C700C3CD34 /* GYSubTagController.m in Sources */,
@@ -1105,6 +1161,7 @@
 				30270A5E22B26AAE00AEFC72 /* GYVideoTopicView.m in Sources */,
 				3083656222B76B8000368A6C /* NSDate+Date.m in Sources */,
 				3083657D22B8AA8300368A6C /* BBSImageBrowsingController.m in Sources */,
+				3073ECD522BCDCCD00A2B53C /* GYNetworkingManager.m in Sources */,
 				30FBC35B22A1826F00231274 /* GYTool.m in Sources */,
 				30DD798A229AB10D002D0D6E /* GYPrivacyPolicyVC.m in Sources */,
 				303E60A22297F21C006D8138 /* GYRecommendFriendCell.m in Sources */,
@@ -1125,6 +1182,7 @@
 				30104711229402EA00C3CD34 /* GYSubscribeItem.m in Sources */,
 				30EFCAA022900527001082B6 /* GYADItem.m in Sources */,
 				3079102022AE30C100CD5DA1 /* GYTopicItem.m in Sources */,
+				30FB19CB22BBD22E000AE049 /* GYPhotoManager.m in Sources */,
 				3075B407228BC5780080799B /* UIView+frame.m in Sources */,
 				30FE31382288286000383571 /* AppDelegate.m in Sources */,
 				301047142294234100C3CD34 /* GYHotSearchItem.m in Sources */,

@@ -12,7 +12,9 @@
 #import <AFNetworking.h>
 #import <MJExtension/MJExtension.h>
 #import <UIImageView+WebCache.h>
+#import <SDImageCache.h>
 #import <DALabeledCircularProgressView.h>
+#import <SVProgressHUD.h>
 
 //#import "UIBarButtonItem+Item.h"
 #import "Category/UIBarButtonItem+Item.h"
@@ -29,7 +31,7 @@
 #endif
 //#import "../Tool/GYTool.h"
 #import "../Utils(业务类)/GYImageBtn.h"
-
+#import "../Utils(业务类)/NetWorking/GYNetworkingManager.h"
 
 
 #ifdef DEBUG

@@ -12,7 +12,6 @@
 #import "GYVideoTopicView.h"
 #import "GYCommentTopicView.h"
 #import "GYBottomTopicView.h"
-#import "../Model/GYTopicItem.h"
 #import "../VM/GYTopicCellMode.h"
 
 

@@ -46,5 +46,9 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>需要为您添加图片</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>使用相册</string>
 </dict>
 </plist>

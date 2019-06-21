@@ -7,7 +7,6 @@
 //
 
 #import "GYVideoTopicView.h"
-#import "../Model/GYTopicItem.h"
 
 @interface GYVideoTopicView ()
 @property (weak, nonatomic) IBOutlet UIImageView *backImageView;

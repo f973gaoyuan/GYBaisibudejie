@@ -83,7 +83,7 @@ NS_ASSUME_NONNULL_END
           initialSpringVelocity:1.0
                         options:0
                      animations:^{
-                         tempImageView.frame = CGRectMake(0, 0, SCREENWIDTH, SCREENWIDTH*_animationImageView.image.size.height/_animationImageView.image.size.width);
+                         tempImageView.frame = CGRectMake(0, 0, SCREENWIDTH, SCREENWIDTH*self.animationImageView.image.size.height/self.animationImageView.image.size.width);
                          tempImageView.center = toVC.view.center;
                      }
                      completion:^(BOOL finished) {
@@ -108,7 +108,7 @@ NS_ASSUME_NONNULL_END
     // gaoyuan
     //ViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-    NSLog(@"%@ -- %p", NSStringFromCGRect(_animationImageView.frame), toVC);
+    //NSLog(@"%@ -- %p", NSStringFromCGRect(_animationImageView.frame), toVC);
 
     UIView *containerView = [transitionContext containerView];
     containerView.backgroundColor = [UIColor clearColor];
@@ -131,7 +131,7 @@ NS_ASSUME_NONNULL_END
           initialSpringVelocity:1.0
                         options:0
                      animations:^{
-                         tempImageView.frame = [_animationImageView convertRect:_animationImageView.bounds toView:toVC.view];
+                         tempImageView.frame = [self.animationImageView convertRect:self.animationImageView.bounds toView:toVC.view];
                          fromVC.view.alpha = 0;
                      }
                      completion:^(BOOL finished) {
@@ -139,7 +139,7 @@ NS_ASSUME_NONNULL_END
                          //转场失败后的处理
                          if (![transitionContext transitionWasCancelled]) {
                              [tempImageView removeFromSuperview];
-                             _animationImageView.hidden = NO;
+                             self.animationImageView.hidden = NO;
                          }
                      }];
 }

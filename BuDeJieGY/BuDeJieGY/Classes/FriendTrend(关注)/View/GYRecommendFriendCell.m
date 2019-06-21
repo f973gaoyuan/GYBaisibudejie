@@ -8,7 +8,6 @@
 
 #import "GYRecommendFriendCell.h"
 #import "GYUserBtn.h"
-#import "../Model/GYRecommendFriendItem.h"
 
 const NSUInteger USER_BTN_CNT   = 5;
 

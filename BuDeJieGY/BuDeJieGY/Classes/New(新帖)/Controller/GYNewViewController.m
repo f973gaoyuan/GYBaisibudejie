@@ -10,10 +10,6 @@
 #import "GYSubTagController.h"
 //#import <SVProgressHUD.h>
 
-#import "../Model/GYPromotionItem.h"
-#import "../Model/GYSubscribeItem.h"
-#import "../Model/GYHotSearchItem.h"
-
 #import "../View/GYPromotionCell.h"
 #import "../View/GYSubscribeCell.h"
 
@@ -25,20 +21,12 @@ static NSString* const promotionID = @"promotionCell";
 
 
 @interface GYNewViewController ()
-@property (strong, nonatomic) NSArray<GYPromotionItem*> *promotions;
-@property (strong, nonatomic) NSArray<GYSubscribeItem*> *subscribes;
-@property (strong, nonatomic) NSArray<GYHotSearchItem*> *hotSearches;
-@property (weak, nonatomic) AFHTTPSessionManager *manager;
+@property (weak, nonatomic) NSArray<GYPromotionItem*> *promotions;
+@property (weak, nonatomic) NSArray<GYSubscribeItem*> *subscribes;
+@property (weak, nonatomic) NSArray<GYHotSearchItem*> *hotSearches;
 @end
 
 @implementation GYNewViewController
-
-- (AFHTTPSessionManager *)manager {
-    if(_manager == nil) {
-        _manager = [AFHTTPSessionManager manager];
-    }
-    return _manager;
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -47,12 +35,20 @@ static NSString* const promotionID = @"promotionCell";
     [self setupNavBar];
     
     //[SVProgressHUD showWithStatus:@"正在加载数据..."];
+    GYNetworkingManager *manager = [GYNetworkingManager shareManager];
     // 推广数据
-    [self loadPromotionData];
+    [manager requestPromotionData:^(NSArray *promotions, NSError *error) {
+        self.promotions = promotions;
+    }];
     // 订阅数据
-    [self loadSubscribeData];
+    [manager requestSubscribeData:^(NSArray *subscribes, NSError *error) {
+        self.subscribes = subscribes;
+        [self.tableView reloadData];
+    }];
     // 热门搜索
-    [self loadHotSearchData];
+    [manager requestHotSearchData:^(NSArray *hotSearches, NSError *error) {
+        self.hotSearches = hotSearches;
+    }];
     
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([GYSubscribeCell class]) bundle:nil] forCellReuseIdentifier:subscribeID];
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([GYPromotionCell class]) bundle:nil] forCellReuseIdentifier:promotionID];
@@ -85,37 +81,7 @@ static NSString* const promotionID = @"promotionCell";
     // 隐藏指示器
     //[SVProgressHUD dismiss];
     // 取消请求
-    [_manager.tasks makeObjectsPerformSelector:@selector(cancel)];
-}
-#pragma mark - 获取推广数据
-- (void)loadPromotionData {
-    NSString *urlStr = @"http://s.budejie.com/op2/promotion/bsbdjhd-iphone-5.0.9-appstore/0-100.json";
-    [self.manager GET:urlStr parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary*  _Nullable responseObject) {
-        NSArray *array = responseObject[@"result"][@"faxian"][@"1"];
-        self.promotions = [GYPromotionItem mj_objectArrayWithKeyValuesArray:array];
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-    }];
-}
-#pragma mark - 获取订阅数据
-- (void)loadSubscribeData {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        NSString *urlStr = @"http://d.api.budejie.com/forum/subscribe/bsbdjhd-iphone-5.0.9.json";
-        [self.manager GET:urlStr parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary*  _Nullable responseObject) {
-            self.subscribes = [GYSubscribeItem mj_objectArrayWithKeyValuesArray:responseObject[@"list"]];
-            [self.tableView reloadData];
-            //[SVProgressHUD dismiss];
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            //[SVProgressHUD dismiss];
-        }];
-    });
-}
-#pragma mark - 获取热门搜索数据
-- (void)loadHotSearchData {
-    NSString *urlStr = @"http://d.api.budejie.com/topic/hotsearch/bsbdjhd-iphone-5.0.9/0-20.json";
-    [self.manager GET:urlStr parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary*  _Nullable responseObject) {
-        self.hotSearches = [GYHotSearchItem mj_objectArrayWithKeyValuesArray:responseObject[@"hot_search"]];
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-    }];
+    //[_manager.tasks makeObjectsPerformSelector:@selector(cancel)];
 }
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

@@ -7,12 +7,31 @@
 //
 
 #import "GYDetailsImageVC.h"
-#import "../Model/GYTopicItem.h"
+#import <Photos/Photos.h>
+
+#import "../../Utils(业务类)/Photo/GYPhotoManager.h"
+
+#define SRHAlbumName    @"仿百思不得姐"
+
+/**
+ 如何学习已给你的框架 (百度)
+ 1. 了解这个框架有那些常用的类 (去头文件)
+ 2. 查看苹果苹果官方文档
+ */
+
+/**
+ PHPhotoLibrary     相簿(所有图片的集合)
+ PHAsset            可理解为图片
+ PHAssetCollection  相册
+ PHAssetChangeRequest 创建、修改、删除图片
+ PHAssetCollectionChangeRequest 创建、修改、删除相册
+ */
 
 @interface GYDetailsImageVC () <UIGestureRecognizerDelegate, UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet DALabeledCircularProgressView *progressView;
 @property (weak, nonatomic) UIImageView *imageView;
+@property (strong, nonatomic) NSString *imageKey;
 @property (assign, nonatomic) BOOL scrollViewIsScrolling;
 @end
 
@@ -33,6 +52,61 @@
     }
     return self;
 }
+
+- (void)savePhoto {
+    [GYPhotoManager savePhoto:_imageView.image albumTitle:SRHAlbumName completionHandle:^(NSError * _Nonnull error, NSString * _Nonnull localIndentifier) {
+        GYLog(@"%@", localIndentifier);
+        if(error) {
+            [SVProgressHUD showErrorWithStatus:@"保存相片出错！"];
+        } else {
+            [SVProgressHUD showSuccessWithStatus:@"保存相片成功！"];
+        }
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [SVProgressHUD dismiss];
+        });
+    }];
+}
+
+- (IBAction)saveImageClick:(UIButton *)sender {
+    /**
+     PHAuthorizationStatusNotDetermined  不确定
+     PHAuthorizationStatusRestricted 家长控制
+     PHAuthorizationStatusDenied 拒绝
+     PHAuthorizationStatusAuthorized 授权
+     */
+    PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
+    if(status == PHAuthorizationStatusNotDetermined) {
+        [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+            if(status == PHAuthorizationStatusAuthorized) {
+                [self savePhoto];
+            }
+        }];
+    } else if(status == PHAuthorizationStatusAuthorized) {
+        [self savePhoto];
+    } else {
+        [SVProgressHUD showInfoWithStatus:@"请进入设置界面->找到相应的应用->打开允许访问相册的开关"];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [SVProgressHUD dismiss];
+        });
+    }
+    
+    //UIImage *image = [[SDImageCache sharedImageCache] imageFromCacheForKey:_imageKey];
+    //UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+    //UIImageWriteToSavedPhotosAlbum(_imageView.image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+}
+
+//- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
+//    if(error) {
+//        [SVProgressHUD showErrorWithStatus:@"保存失败！"];
+//    } else {
+//        [SVProgressHUD showSuccessWithStatus:@"保存成功！"];
+//    }
+//
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        [SVProgressHUD dismiss];
+//    });
+//}
 
 - (instancetype)initWithTopicItem:(GYTopicItem*)item {
     self = [self init];
@@ -84,8 +158,13 @@
     [_scrollView addGestureRecognizer:tap];
     //===================================
     NSURL *url = nil;
-    if(_topicItem.image)    url = [NSURL URLWithString:_topicItem.image.big[0]];
-    else if(_topicItem.gif) url = [NSURL URLWithString:_topicItem.gif.images[0]];
+    if(_topicItem.image) {
+        _imageKey = _topicItem.image.big[0];
+    } else if(_topicItem.gif) {
+        _imageKey = _topicItem.gif.images[0];
+    }
+    
+    url = [NSURL URLWithString:_imageKey];
 
     [_imageView sd_setImageWithURL:url placeholderImage:nil options:SDWebImageRetryFailed progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
         if(expectedSize > 0) {
@@ -94,23 +173,7 @@
             [self.progressView setProgress:progress animated:YES];
         }
         
-    } completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-//        //self.imageView.image = image;
-//        //[self viewDidLayoutSubviews];
-//        CGSize imageSize = image.size;
-//
-//        CGFloat x = 0;
-//        CGFloat y = 0;
-//        CGFloat width = self.scrollView.width;
-//        CGFloat height = width * imageSize.height / imageSize.width;
-//
-//        if(height < self.scrollView.height) {
-//            y = (self.scrollView.height - height) / 2.0;
-//        }
-//
-//        self.imageView.frame = CGRectMake(x, y, width, height);
-//        self.scrollView.contentSize = CGSizeMake(0, height);
-   }];
+    } completed:nil];
 
 }
 
@@ -121,7 +184,16 @@
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     _scrollViewIsScrolling = YES;
 }
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+//    _scrollViewIsScrolling = YES;
+//}
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    _scrollViewIsScrolling = NO;
+}
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    _scrollViewIsScrolling = NO;
+}
+- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(CGFloat)scale {
     _scrollViewIsScrolling = NO;
 }
 

@@ -12,9 +12,6 @@
 
 #import "../../Utils(业务类)/File/GYFileManager.h"
 
-#import <MJExtension/MJExtension.h>
-#import <SDImageCache.h>
-#import <SVProgressHUD.h>
 
 static NSString * const settingCellID = @"settingCell";
 

@@ -7,7 +7,6 @@
 //
 
 #import "GYBottomTopicView.h"
-#import "../Model/GYTopicItem.h"
 
 @interface GYBottomTopicView ()
 @property (weak, nonatomic) IBOutlet UIButton *upBtn;
