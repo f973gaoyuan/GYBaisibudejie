@@ -7,7 +7,6 @@
 //
 
 #import "GYBlockCell.h"
-#import "../Model/GYSquareItem.h"
 
 @interface GYBlockCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;

@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
  pic_width:640,
  pic_height:1136,
  */
-@property (strong, nonatomic) NSString* corporation_name;       // 公司名称
+//@property (strong, nonatomic) NSString* corporation_name;       // 公司名称
 @property (strong, nonatomic) NSString* img;
 @property (strong, nonatomic) NSString* rl;
 @property (assign, nonatomic) NSInteger pic_width;

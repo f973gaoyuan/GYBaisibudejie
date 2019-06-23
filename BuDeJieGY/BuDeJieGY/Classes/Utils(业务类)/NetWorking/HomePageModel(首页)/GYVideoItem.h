@@ -13,11 +13,11 @@ NS_ASSUME_NONNULL_BEGIN
 @interface GYVideoItem : NSObject
 @property (assign, nonatomic) NSInteger height;
 @property (strong, nonatomic) NSArray* thumbnail;
-@property (strong, nonatomic) NSArray* download;
+//@property (strong, nonatomic) NSArray* download;
 @property (assign, nonatomic) NSInteger width;
-@property (assign, nonatomic) NSInteger playfcount;
+//@property (assign, nonatomic) NSInteger playfcount;
 @property (assign, nonatomic) NSInteger duration;
-@property (strong, nonatomic) NSArray* thumbnail_small;
+//@property (strong, nonatomic) NSArray* thumbnail_small;
 @property (strong, nonatomic) NSArray* video;
 @property (assign, nonatomic) NSInteger playcount;
 @end

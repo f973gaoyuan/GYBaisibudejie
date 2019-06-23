@@ -11,11 +11,11 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface GYGIfItem : NSObject
-@property (strong, nonatomic) NSArray* download_url;
+///@property (strong, nonatomic) NSArray* download_url;
 @property (assign, nonatomic) NSInteger height;
 @property (assign, nonatomic) NSInteger width;
 @property (strong, nonatomic) NSArray* images;
-@property (strong, nonatomic) NSArray* gif_thumbnail;
+//@property (strong, nonatomic) NSArray* gif_thumbnail;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -83,29 +83,40 @@
     
     GYNetworkingManager *manager = [GYNetworkingManager shareManager];
     // 展示广告数据 =》从服务器取 =》 接口文档 =》 AFN =》 cocoapods
-    [manager requestEssenceData:nil];
-    [manager requestStartupADData:^(GYADItem *item, NSError *error) {
-        self.item = item;
-        CGFloat h = 0;
-        if(item.pic_width > 0) {
-            h = item.pic_height * GYScreenW / item.pic_width;
-        }
-        self.adImageView.frame = CGRectMake(0, 0, GYScreenW, h);
-        [self.adImageView sd_setImageWithURL:[NSURL URLWithString:item.img]];
-        
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAD)];
-        [self.adContentView addGestureRecognizer:tap];
+    //[manager requestEssenceData:nil];
+    [manager requestEssenceData:^(NSArray *essences, NSError *error) {
+        //[manager cancelAllRequest];
+        [manager requestStartupADData:^(GYADItem *item, NSError *error) {
+            if(error) {
+                [self jump:nil];
+                return;
+            }
+            self.item = item;
+            CGFloat h = 0;
+            if(item.pic_width > 0) {
+                h = item.pic_height * GYScreenW / item.pic_width;
+            }
+            self.adImageView.frame = CGRectMake(0, 0, GYScreenW, h);
+            [self.adImageView sd_setImageWithURL:[NSURL URLWithString:item.img] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+             
+                UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAD)];
+                [self.adContentView addGestureRecognizer:tap];
+                
+                //[manager cancelAllRequest];
+                
+                self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 repeats:YES block:^(NSTimer * _Nonnull timer) {
+                    static int count = 3;
+                    if(count == -1) {
+                        [self jump:nil];
+                    }
+                    NSString *str = [NSString stringWithFormat:@"跳过 (%d)", count];
+                    [self.jumpBtn setTitle:str forState:UIControlStateNormal];
+                    count--;
+                }];
+            }];
+       }];
     }];
     
-    _timer = [NSTimer scheduledTimerWithTimeInterval:1.0 repeats:YES block:^(NSTimer * _Nonnull timer) {
-        static int count = 3;
-        if(count == -1) {
-            [self jump:nil];
-        }
-        NSString *str = [NSString stringWithFormat:@"跳过 (%d)", count];
-        [self.jumpBtn setTitle:str forState:UIControlStateNormal];
-        count--;
-    }];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

@@ -29,6 +29,9 @@
 // 关注
 @property (strong, nonatomic) NSArray<GYRecommendFriendItem*> *recommendFriends; // 朋友推荐
 @property (strong, nonatomic) NSMutableArray<GYTopicItem*> *friendTopics;       //  关注帖子
+//===================================================
+// 我的
+@property (strong, nonatomic) NSMutableArray<GYSquareItem*> *squares;
 
 @property (weak, nonatomic) AFHTTPSessionManager *manager;
 @end
@@ -130,6 +133,10 @@
         [GYRecommendFriendItem mj_setupReplacedKeyFromPropertyName:^NSDictionary *{
             return @{@"ID":@"id"};
         }];
+        //我的
+        [GYSquareItem mj_setupReplacedKeyFromPropertyName:^NSDictionary *{
+            return @{@"ID":@"id"};
+        }];
 
         _allTopicItems = @[self.recomTopics, self.videoTopics, self.pictureTopics, self.jokeTopics, self.enterTopics];
     }
@@ -194,12 +201,13 @@
     }];
 }
 
-- (void)requestEssenceSubDataWithIndex:(NSInteger)index completion:(void(^)(NSArray *topics, NSError * error))completionHandle {
-    NSArray<GYEssenceItem*> *essences = [GYNetworkingManager shareManager].essenceItems;
-    if(index >= essences.count) {
+- (void)requestEssenceSubDataWithType:(GYEssenceNetDataType)essenceNetDataType completion:(void(^)(NSArray *topics, NSError * error))completionHandle {
+    //NSArray<GYEssenceItem*> *essences = [GYNetworkingManager shareManager].essenceItems;
+    NSInteger index = essenceNetDataType;
+    if(index >= _essenceItems.count) {
         @throw [NSException exceptionWithName:@"索引值超界" reason:@"获取精华模型数据的索引值超过最大值" userInfo:nil];
     }
-    GYEssenceItem *essenceItem = essences[index];
+    GYEssenceItem *essenceItem = _essenceItems[index];
     NSMutableArray *topicItems = _allTopicItems[index];
 
     NSString *str = @"";
@@ -222,7 +230,7 @@
         for (GYTopicItem *item in array) {
             [topicItems addObject:item];
         }
-        if(completionHandle) completionHandle(topicItems, nil);
+        if(completionHandle) completionHandle(array, nil);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         if(completionHandle) completionHandle(nil, error);
     }];
@@ -278,6 +286,17 @@
             [self.friendTopics addObject:item];
         }
         if(completionHandle) completionHandle(self.friendTopics, nil);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        if(completionHandle) completionHandle(nil, error);
+    }];
+}
+
+#pragma mark - 获取"我的"第三方推荐
+- (void)requestMeSquareData:(void(^)(NSMutableArray *squares, NSError * error))completionHandle {
+    NSString *urlStr = @"http://s.budejie.com/op/square2/bsbdjhd-iphone-5.1.0/appstore/0-100.json";
+    [self.manager GET:urlStr parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary*  _Nullable responseObject) {
+        self.squares = [GYSquareItem mj_objectArrayWithKeyValuesArray:responseObject[@"square_list"]];
+        if(completionHandle) completionHandle(self.squares, nil);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         if(completionHandle) completionHandle(nil, error);
     }];

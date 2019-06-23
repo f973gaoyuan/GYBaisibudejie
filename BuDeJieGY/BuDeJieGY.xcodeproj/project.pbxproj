@@ -73,6 +73,8 @@
 		3083658122B8B7BB00368A6C /* GYDetailsImageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3083657F22B8B7BB00368A6C /* GYDetailsImageVC.m */; };
 		3083658222B8B7BB00368A6C /* GYDetailsImageVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3083658022B8B7BB00368A6C /* GYDetailsImageVC.xib */; };
 		3084EE6822A2CA3300CFEF72 /* GYSquareItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3084EE6722A2CA3300CFEF72 /* GYSquareItem.m */; };
+		3086B48A22BE55EE006ED7BC /* GYCoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3086B48922BE55EE006ED7BC /* GYCoverView.m */; };
+		3086B48C22BE5604006ED7BC /* GYCoverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3086B48B22BE5604006ED7BC /* GYCoverView.xib */; };
 		30954D68229A434100A900BE /* GYLoginRegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 30954D66229A434100A900BE /* GYLoginRegisterVC.m */; };
 		30954D6E229A4C8400A900BE /* GYLogRegView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30954D6D229A4C8400A900BE /* GYLogRegView.m */; };
 		30954D70229A4C9300A900BE /* GYLogRegView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30954D6F229A4C9300A900BE /* GYLogRegView.xib */; };
@@ -225,6 +227,9 @@
 		3083658022B8B7BB00368A6C /* GYDetailsImageVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GYDetailsImageVC.xib; sourceTree = "<group>"; };
 		3084EE6622A2CA3300CFEF72 /* GYSquareItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GYSquareItem.h; sourceTree = "<group>"; };
 		3084EE6722A2CA3300CFEF72 /* GYSquareItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GYSquareItem.m; sourceTree = "<group>"; };
+		3086B48822BE55EE006ED7BC /* GYCoverView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GYCoverView.h; sourceTree = "<group>"; };
+		3086B48922BE55EE006ED7BC /* GYCoverView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GYCoverView.m; sourceTree = "<group>"; };
+		3086B48B22BE5604006ED7BC /* GYCoverView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GYCoverView.xib; sourceTree = "<group>"; };
 		30954D65229A434100A900BE /* GYLoginRegisterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GYLoginRegisterVC.h; sourceTree = "<group>"; };
 		30954D66229A434100A900BE /* GYLoginRegisterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GYLoginRegisterVC.m; sourceTree = "<group>"; };
 		30954D6C229A4C8400A900BE /* GYLogRegView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GYLogRegView.h; sourceTree = "<group>"; };
@@ -415,6 +420,7 @@
 				3073ECD622BCE41E00A2B53C /* HomePageModel(首页) */,
 				3072577322BD2198008C2813 /* CommunityMode(社区) */,
 				3072577522BD33B2008C2813 /* FriendTrendModel(关注) */,
+				3086B48722BE4B37006ED7BC /* MeModel(我的) */,
 				3073ECD322BCDCCD00A2B53C /* GYNetworkingManager.h */,
 				3073ECD422BCDCCD00A2B53C /* GYNetworkingManager.m */,
 			);
@@ -497,6 +503,15 @@
 				3083657B22B8AA8300368A6C /* BBSImageBrowsingController.m */,
 			);
 			path = ImageBrowsing;
+			sourceTree = "<group>";
+		};
+		3086B48722BE4B37006ED7BC /* MeModel(我的) */ = {
+			isa = PBXGroup;
+			children = (
+				3084EE6622A2CA3300CFEF72 /* GYSquareItem.h */,
+				3084EE6722A2CA3300CFEF72 /* GYSquareItem.m */,
+			);
+			path = "MeModel(我的)";
 			sourceTree = "<group>";
 		};
 		30954D63229A434100A900BE /* LoginRegister(登录&注册) */ = {
@@ -715,6 +730,9 @@
 				3073ECCD22BCB2D500A2B53C /* GYFooterRefreshView.h */,
 				3073ECCE22BCB2D500A2B53C /* GYFooterRefreshView.m */,
 				3073ECD022BCB2E600A2B53C /* GYFooterRefreshView.xib */,
+				3086B48822BE55EE006ED7BC /* GYCoverView.h */,
+				3086B48922BE55EE006ED7BC /* GYCoverView.m */,
+				3086B48B22BE5604006ED7BC /* GYCoverView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -834,8 +852,6 @@
 		30FE312022880C1B00383571 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				3084EE6622A2CA3300CFEF72 /* GYSquareItem.h */,
-				3084EE6722A2CA3300CFEF72 /* GYSquareItem.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1057,6 +1073,7 @@
 				30FBC35022A0F54800231274 /* backImage@3x.png in Resources */,
 				3010470B2292E05600C3CD34 /* iPhone X -D.png in Resources */,
 				3010470A2292E05600C3CD34 /* iPhone XR -D.png in Resources */,
+				3086B48C22BE5604006ED7BC /* GYCoverView.xib in Resources */,
 				3079101A22AE119A00CD5DA1 /* GYTopTopicView.xib in Resources */,
 				30954D70229A4C9300A900BE /* GYLogRegView.xib in Resources */,
 			);
@@ -1124,6 +1141,7 @@
 				303DCF8A22AFF7B600D2F22B /* GYBaseTopicView.m in Sources */,
 				3030CD9D22A64851006BD98A /* GYFileManager.m in Sources */,
 				303DCF8522AFD7DE00D2F22B /* GYPictureTopicView.m in Sources */,
+				3086B48A22BE55EE006ED7BC /* GYCoverView.m in Sources */,
 				30DD7990229ADECF002D0D6E /* UINavigationBar+Alpha.m in Sources */,
 				30EFF92522A77251005B72AF /* GYTopicVC.m in Sources */,
 				303DCF8222AF7F6400D2F22B /* GYTopicCellMode.m in Sources */,

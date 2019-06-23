@@ -11,14 +11,14 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface GYImageItem : NSObject
-@property (strong, nonatomic) NSArray* medium;
+//@property (strong, nonatomic) NSArray* medium;
 @property (assign, nonatomic) NSInteger height;
-@property (strong, nonatomic) NSArray* download_url;
+//@property (strong, nonatomic) NSArray* download_url;
 @property (assign, nonatomic) NSInteger width;
-@property (strong, nonatomic) NSArray* small;
-@property (strong, nonatomic) NSArray* thumbnail_small;
+//@property (strong, nonatomic) NSArray* small;
+//@property (strong, nonatomic) NSArray* thumbnail_small;
 @property (strong, nonatomic) NSArray* big;
-@property (strong, nonatomic) UIImage *smallImage;
+//@property (strong, nonatomic) UIImage *smallImage;
 
 @end
 

@@ -10,6 +10,7 @@
 
 @interface GYFooterRefreshView ()
 @property (weak, nonatomic) IBOutlet UIView *moreDataView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 @end
 
@@ -18,6 +19,12 @@
 - (void)setRefreshData:(BOOL)refreshData {
     _refreshData = refreshData;
     _moreDataView.hidden = !refreshData;
+    
+    if(refreshData) {
+        [_activityIndicator startAnimating];
+    } else {
+        [_activityIndicator stopAnimating];
+    }
 }
 
 + (instancetype)bottomRefreshView {
@@ -28,6 +35,7 @@
     [super awakeFromNib];
     self.backgroundColor = GYColor(240, 240, 240);
     self.moreDataView.backgroundColor = GYColor(240, 240, 240);
+    _activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
 }
 /*
 // Only override drawRect: if you perform custom drawing.

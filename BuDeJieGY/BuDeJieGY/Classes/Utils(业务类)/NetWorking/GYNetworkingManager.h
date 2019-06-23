@@ -24,6 +24,16 @@
 
 #import "FriendTrendModel(关注)/GYRecommendFriendItem.h"
 
+#import "MeModel(我的)/GYSquareItem.h"
+
+typedef NS_ENUM(NSInteger, GYEssenceNetDataType) {
+    GYEssenceNetDataTypeRecommend = 0,
+    GYEssenceNetDataTypeVideo = 1,
+    GYEssenceNetDataTypePicture = 2,
+    GYEssenceNetDataTypeJoke = 3,
+    GYEssenceNetDataTypeNews = 4
+};
+
 //NS_ASSUME_NONNULL_BEGIN
 
 @interface GYNetworkingManager : NSObject
@@ -48,10 +58,10 @@
  请求精华数据列表
  */
 - (void)requestEssenceData:(void(^)(NSArray * essences, NSError * error))completionHandle;
-/**
+/**e
  请求精华数据 参数index: 0-推荐 1-视屏 2-图片 3-笑话 4-娱乐
  */
-- (void)requestEssenceSubDataWithIndex:(NSInteger)index completion:(void(^)(NSArray *topics, NSError * error))completionHandle;
+- (void)requestEssenceSubDataWithType:(GYEssenceNetDataType)essenceNetDataType completion:(void(^)(NSArray *topics, NSError * error))completionHandle;
 //====================================
 // 社区
 /**
@@ -76,6 +86,12 @@
  请求关注朋友帖子
  */
 - (void)requestFriendTopicData:(void(^)(NSArray *friendTopics, NSError * error))completionHandle;
+//====================================
+// 我的
+/**
+ 请求"我的"第三方推荐
+ */
+- (void)requestMeSquareData:(void(^)(NSMutableArray *squares, NSError * error))completionHandle;
 @end
 
 //NS_ASSUME_NONNULL_END

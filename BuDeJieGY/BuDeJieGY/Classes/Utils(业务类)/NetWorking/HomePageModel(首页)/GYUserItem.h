@@ -11,15 +11,15 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface GYUserItem : NSObject
-@property (strong, nonatomic) NSArray* header;
-@property (assign, nonatomic) NSInteger relationship;
-@property (strong, nonatomic) NSString* uid;
+@property (strong, nonatomic) NSArray* header; // 头像
+//@property (assign, nonatomic) NSInteger relationship;
+//@property (strong, nonatomic) NSString* uid;
 @property (assign, nonatomic) BOOL is_vip;
-@property (assign, nonatomic) BOOL is_v;
-@property (strong, nonatomic) NSString* room_url;
-@property (strong, nonatomic) NSString* room_name;
-@property (strong, nonatomic) NSString* room_role;
-@property (strong, nonatomic) NSString* room_icon;
+//@property (assign, nonatomic) BOOL is_v;
+//@property (strong, nonatomic) NSString* room_url;
+//@property (strong, nonatomic) NSString* room_name;
+//@property (strong, nonatomic) NSString* room_role;
+//@property (strong, nonatomic) NSString* room_icon;
 @property (strong, nonatomic) NSString* name;
 @end
 

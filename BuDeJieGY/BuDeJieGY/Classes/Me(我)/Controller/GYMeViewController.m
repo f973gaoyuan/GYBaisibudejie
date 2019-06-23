@@ -13,7 +13,6 @@
 #import <AFNetworking.h>
 #import <MJExtension/MJExtension.h>
 
-#import "../Model/GYSquareItem.h"
 
 #import "../View/GYBlockCell.h"
 #import "../View/GYUserView.h"
@@ -26,7 +25,7 @@ static NSString* const ID = @"collectionView";
 #define itemWH (GYScreenW - (cols - 1) * margin) / cols
 
 @interface GYMeViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
-@property (strong, nonatomic) NSMutableArray<GYSquareItem*> *squares;
+@property (weak, nonatomic) NSMutableArray<GYSquareItem*> *squares;
 @property (weak, nonatomic) UICollectionView *collectionView;
 @end
 
@@ -40,16 +39,18 @@ static NSString* const ID = @"collectionView";
     [self setupNavBar];
     [self setupFootView];
     
-    [self loadSquareData];
-    
-    [GYSquareItem mj_setupReplacedKeyFromPropertyName:^NSDictionary *{
-        return @{@"ID":@"id"};
+    [[GYNetworkingManager shareManager] requestMeSquareData:^(NSMutableArray *squares, NSError *error) {
+        self.squares = squares;
+        NSInteger count = self.squares.count;
+        NSInteger rows = (count - 1) / cols + 1;
+        self.collectionView.height = rows * itemWH;
+        self.tableView.tableFooterView = self.self.collectionView;
+        [self resloveData];
+        [self.collectionView reloadData];
     }];
-    
 
     self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     //self.automaticallyAdjustsScrollViewInsets = NO;
-    //self.tableView.contentInset = UIEdgeInsetsMake(-64, 0, 0, 0);
 }
 
 - (void)setupNavBar {
@@ -79,23 +80,8 @@ static NSString* const ID = @"collectionView";
     GYUserView *view = [GYUserView userView];
     self.tableView.tableHeaderView = view;
 }
-#pragma mark - 请求数据
-- (void)loadSquareData {
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    
-    NSString *urlStr = @"http://s.budejie.com/op/square2/bsbdjhd-iphone-5.1.0/appstore/0-100.json";
-    [manager GET:urlStr parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary*  _Nullable responseObject) {
-        self.squares = [GYSquareItem mj_objectArrayWithKeyValuesArray:responseObject[@"square_list"]];
-        NSInteger count = self.squares.count;
-        NSInteger rows = (count - 1) / cols + 1;
-        self.collectionView.height = rows * itemWH;
-        self.tableView.tableFooterView = self.self.collectionView;
-        [self resloveData];
-        [self.collectionView reloadData];
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-    }];
-}
-- (void)resloveData {
+#pragma mark - 补齐CollectionViewCell
+- (void)resloveData { // 补齐CollectionViewCell
     NSInteger count = self.squares.count;
     NSInteger extra = count % cols;
     

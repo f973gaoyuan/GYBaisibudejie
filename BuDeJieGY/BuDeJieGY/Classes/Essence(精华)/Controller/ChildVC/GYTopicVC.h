@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface GYTopicVC : UITableViewController
-- (void)loadEssenceSubDataWithIndex:(NSInteger)index;
+- (void)loadTopicDataWithIndex:(GYEssenceNetDataType)essenceNetDataType;
 @end
 
 NS_ASSUME_NONNULL_END

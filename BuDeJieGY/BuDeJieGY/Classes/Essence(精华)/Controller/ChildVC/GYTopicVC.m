@@ -11,6 +11,7 @@
 #import "../../View/GYFooterRefreshView.h"
 
 #import "../../View/GYTopicCell.h"
+#import "../../View/GYCoverView.h"
 //#import "../../Model/GYEssenceItem.h"
 
 //#import "../../Model/GYTopicItem.h"
@@ -39,7 +40,9 @@ static NSString * const ID = @"topicCell";
 //@property (strong, nonatomic) NSArray<GYEssenceItem*> *essenceItems;
 @property (strong, nonatomic) NSMutableArray<GYTopicCellMode*> *topicCellsVM;
 @property (weak, nonatomic) GYFooterRefreshView *footerRefreshView;
-@property (assign, nonatomic) BOOL isReLoad;
+@property (weak, nonatomic) GYCoverView *coverView;
+@property (weak, nonatomic) GYNetworkingManager *manager;
+@property (assign, nonatomic) BOOL isLoadingData;
 @end
 
 @implementation GYTopicVC
@@ -51,13 +54,27 @@ static NSString * const ID = @"topicCell";
     return _topicCellsVM;
 }
 
+- (GYNetworkingManager *)manager {
+    if(_manager == nil) {
+        _manager = [GYNetworkingManager shareManager];
+    }
+    return _manager;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = GYColor(240, 240, 240);
     self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self setupBotomRefreshView];
+    
+    GYCoverView *coverView = [GYCoverView coverView];
+    coverView.frame = self.view.bounds;
+    [self.view addSubview:coverView];
+    _coverView = coverView;
+    _isLoadingData = YES;
 
+    [self.topicCellsVM removeAllObjects];
+    
     [self.tableView registerClass:GYTopicCell.class forCellReuseIdentifier:ID];
 }
 
@@ -73,31 +90,43 @@ static NSString * const ID = @"topicCell";
     _footerRefreshView = refreshView;
 }
 #pragma mark - 加载网络数据
-- (void)loadEssenceSubDataWithIndex:(NSInteger)index {
-    [[GYNetworkingManager shareManager] requestEssenceSubDataWithIndex:index completion:^(NSArray *topics, NSError *error) {
-        [self.topicCellsVM removeAllObjects];
+- (void)loadTopicDataWithIndex:(GYEssenceNetDataType)essenceNetDataType {
+    self.view.tag = essenceNetDataType;
+    _isLoadingData = YES;
+    //__block CGFloat offset = self.tableView.contentOffset.y;
+    [self.manager requestEssenceSubDataWithType:essenceNetDataType completion:^(NSArray *topics, NSError *error) {
         for (GYTopicItem *item in topics) {
             GYTopicCellMode *vm = [[GYTopicCellMode alloc] init];
             vm.topicItem = item;
             [self.topicCellsVM addObject:vm];
         }
-        
+        //CGFloat offset = self.tableView.contentOffset.y;
         [self.tableView reloadData];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            self.isReLoad = YES;
+        //self.tableView.contentOffset = CGPointMake(0, offset);
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            self.footerRefreshView.refreshData = NO;
+            self.isLoadingData = NO;
+            if(self.coverView) {
+                [self.coverView removeFromSuperview];
+            }
         });
     }];
 }
 
 #pragma mark - <UIScrollViewDelegate>
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    if(!_isReLoad)  return;
+    //[[SDImageCache sharedImageCache] setValue:nil forKey:@"memCache"];
+    [[SDImageCache sharedImageCache] clearMemory];
+    
+    if(_isLoadingData)  return;
+    GYLog(@"%@ - %@", NSStringFromCGSize(self.tableView.contentSize), NSStringFromCGPoint(self.tableView.contentOffset));
     if(!_footerRefreshView.isRefreshData) {
         UIEdgeInsets inset = self.tableView.contentInset;
         CGFloat maxY = self.tableView.contentSize.height - (GYScreenH - inset.bottom);
-        if(self.tableView.contentOffset.y >= maxY) {
+        if(self.tableView.contentOffset.y > maxY) {
+            [self loadTopicDataWithIndex:self.view.tag];
             _footerRefreshView.refreshData = YES;
-            NSLog(@"加载数据");
         }
     }
 }
