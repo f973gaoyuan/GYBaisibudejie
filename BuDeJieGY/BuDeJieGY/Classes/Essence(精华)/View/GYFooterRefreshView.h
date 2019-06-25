@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface GYFooterRefreshView : UIView
 //@property (assign, nonatomic) BOOL isRefreshData;
 @property (assign, nonatomic, getter=isRefreshData) BOOL refreshData;
-+ (instancetype)bottomRefreshView;
++ (instancetype)footerRefreshView;
 @end
 
 NS_ASSUME_NONNULL_END

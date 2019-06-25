@@ -58,6 +58,15 @@
         *titleScale = 1.1;
     }];
     
+//    [self setUpCoverEffect:^(UIColor **coverColor, CGFloat *coverCornerRadius) {
+//        
+//        // 设置蒙版颜色
+//        *coverColor = [UIColor colorWithWhite:0.7 alpha:0.4];
+//        
+//        // 设置蒙版圆角半径
+//        *coverCornerRadius = 13;
+//    }];
+    
     self.isfullScreen = YES;    // 全屏模式
     self.dragingFollow = YES;   // 标题跟随拖动保持居中
 

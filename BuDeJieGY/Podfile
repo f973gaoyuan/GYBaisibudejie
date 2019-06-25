@@ -11,6 +11,7 @@ target 'BuDeJieGY' do
   pod 'MJExtension'
   pod 'SVProgressHUD', '~> 2.2.5'
   pod 'DACircularProgress', '~> 2.3.1'
+  pod 'MJRefresh', '~> 3.1.15.7'
   pod 'SDWebImage', :path => '~/Downloads/iOSFrame/SDWebImage/SDWebImage-5.0.3’
   pod 'YZDisplayViewController', :path => '~/Downloads/iOSFrame/YZDisplayViewController/YZDisplayViewController-master’
   #pod 'JTNavigationController', :path => '~/Downloads/iOSFrame/JTNavigationController-master/JTNavigationController’

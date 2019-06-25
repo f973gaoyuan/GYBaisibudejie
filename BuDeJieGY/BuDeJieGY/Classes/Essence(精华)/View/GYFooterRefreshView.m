@@ -27,7 +27,7 @@
     }
 }
 
-+ (instancetype)bottomRefreshView {
++ (instancetype)footerRefreshView {
     return [[NSBundle mainBundle] loadNibNamed:NSStringFromClass(self.class) owner:nil options:nil][0];
 }
 

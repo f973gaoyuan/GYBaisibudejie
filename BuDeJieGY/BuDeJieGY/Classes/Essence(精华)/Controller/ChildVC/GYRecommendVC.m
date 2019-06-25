@@ -23,7 +23,7 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     //[self loadEssenceSubDataWithIndex:0];
-    [self loadTopicDataWithIndex:GYEssenceNetDataTypeRecommend];
+    [self loadTopicDataWithIndex:GYEssenceNetDataTypeRecommend refreshType:GYRefreshTypePulldown];
 }
 
 #pragma mark - Table view data source

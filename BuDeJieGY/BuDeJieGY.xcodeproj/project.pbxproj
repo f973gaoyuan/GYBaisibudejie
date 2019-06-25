@@ -80,6 +80,8 @@
 		30954D70229A4C9300A900BE /* GYLogRegView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30954D6F229A4C9300A900BE /* GYLogRegView.xib */; };
 		30A947DD22B1EA5B004E5950 /* GYGIfItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 30A947DC22B1EA5B004E5950 /* GYGIfItem.m */; };
 		30C3586A22AD53EE0056B9F3 /* GYTopicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 30C3586922AD53EE0056B9F3 /* GYTopicCell.m */; };
+		30C4AB0C22BF8B89002853AC /* GYHeaderRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30C4AB0B22BF8B89002853AC /* GYHeaderRefreshView.m */; };
+		30C4AB0E22BF8B99002853AC /* GYHeaderRefreshView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30C4AB0D22BF8B99002853AC /* GYHeaderRefreshView.xib */; };
 		30DD798A229AB10D002D0D6E /* GYPrivacyPolicyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DD7989229AB10D002D0D6E /* GYPrivacyPolicyVC.m */; };
 		30DD798D229AC4FD002D0D6E /* UIImage+Image.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DD798C229AC4FD002D0D6E /* UIImage+Image.m */; };
 		30DD7990229ADECF002D0D6E /* UINavigationBar+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DD798F229ADECF002D0D6E /* UINavigationBar+Alpha.m */; };
@@ -239,6 +241,9 @@
 		30A947DC22B1EA5B004E5950 /* GYGIfItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GYGIfItem.m; sourceTree = "<group>"; };
 		30C3586822AD53EE0056B9F3 /* GYTopicCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GYTopicCell.h; sourceTree = "<group>"; };
 		30C3586922AD53EE0056B9F3 /* GYTopicCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GYTopicCell.m; sourceTree = "<group>"; };
+		30C4AB0A22BF8B89002853AC /* GYHeaderRefreshView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GYHeaderRefreshView.h; sourceTree = "<group>"; };
+		30C4AB0B22BF8B89002853AC /* GYHeaderRefreshView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GYHeaderRefreshView.m; sourceTree = "<group>"; };
+		30C4AB0D22BF8B99002853AC /* GYHeaderRefreshView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GYHeaderRefreshView.xib; sourceTree = "<group>"; };
 		30DD7988229AB10D002D0D6E /* GYPrivacyPolicyVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GYPrivacyPolicyVC.h; sourceTree = "<group>"; };
 		30DD7989229AB10D002D0D6E /* GYPrivacyPolicyVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GYPrivacyPolicyVC.m; sourceTree = "<group>"; };
 		30DD798B229AC4FD002D0D6E /* UIImage+Image.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Image.h"; sourceTree = "<group>"; };
@@ -730,6 +735,9 @@
 				3073ECCD22BCB2D500A2B53C /* GYFooterRefreshView.h */,
 				3073ECCE22BCB2D500A2B53C /* GYFooterRefreshView.m */,
 				3073ECD022BCB2E600A2B53C /* GYFooterRefreshView.xib */,
+				30C4AB0A22BF8B89002853AC /* GYHeaderRefreshView.h */,
+				30C4AB0B22BF8B89002853AC /* GYHeaderRefreshView.m */,
+				30C4AB0D22BF8B99002853AC /* GYHeaderRefreshView.xib */,
 				3086B48822BE55EE006ED7BC /* GYCoverView.h */,
 				3086B48922BE55EE006ED7BC /* GYCoverView.m */,
 				3086B48B22BE5604006ED7BC /* GYCoverView.xib */,
@@ -1070,6 +1078,7 @@
 				3066E0EB229E59A90012339E /* GYMeViewController.storyboard in Resources */,
 				303DCF8722AFD7E900D2F22B /* GYPictureTopicView.xib in Resources */,
 				301047092292E05600C3CD34 /* Retina HD 5.5 -D.png in Resources */,
+				30C4AB0E22BF8B99002853AC /* GYHeaderRefreshView.xib in Resources */,
 				30FBC35022A0F54800231274 /* backImage@3x.png in Resources */,
 				3010470B2292E05600C3CD34 /* iPhone X -D.png in Resources */,
 				3010470A2292E05600C3CD34 /* iPhone XR -D.png in Resources */,
@@ -1091,12 +1100,14 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-BuDeJieGY/Pods-BuDeJieGY-resources.sh",
+				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 				"${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SVProgressHUD.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1168,6 +1179,7 @@
 				303114DA22B3C522005B10DF /* GYCommentItem.m in Sources */,
 				30F84041229D13AA0050EF1A /* GYLoginField.m in Sources */,
 				30104701229255C700C3CD34 /* GYSubTagController.m in Sources */,
+				30C4AB0C22BF8B89002853AC /* GYHeaderRefreshView.m in Sources */,
 				30FBC35222A0F54800231274 /* UIViewController+JTNavigationExtension.m in Sources */,
 				3019B0D022A4FC320021633F /* GYSettingItem.m in Sources */,
 				30EFF93422A777E3005B72AF /* GYEntertainmentVC.m in Sources */,

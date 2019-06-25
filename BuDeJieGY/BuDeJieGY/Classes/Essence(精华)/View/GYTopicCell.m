@@ -95,7 +95,8 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    //_topTopicView.frame = self.contentView.bounds;
+    self.autoresizingMask = UIViewAutoresizingNone;
+   //_topTopicView.frame = self.contentView.bounds;
     //GYLog(@"%s", __func__);
 }
 

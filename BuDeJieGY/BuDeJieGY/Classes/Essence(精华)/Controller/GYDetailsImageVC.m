@@ -31,6 +31,10 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet DALabeledCircularProgressView *progressView;
 @property (weak, nonatomic) UIImageView *imageView;
+
+@property (strong, nonatomic) NSMutableArray *imageViewArray;
+@property (strong, nonatomic) UIImage *image;
+
 @property (strong, nonatomic) NSString *imageKey;
 @property (assign, nonatomic) BOOL scrollViewIsScrolling;
 @end
@@ -126,6 +130,10 @@
         if(_topicItem.image) {
             imageWidth = _topicItem.image.width;
             imageHeight = _topicItem.image.height;
+//            if(imageHeight > 20000) {
+//                GYLog(@"%.1f , %.1f", imageWidth, imageHeight);
+//                GYLog(@"%@", _topicItem.image.big[0]);
+//            }
         } else if(_topicItem.gif) {
             imageWidth = _topicItem.gif.width;
             imageHeight = _topicItem.gif.height;
@@ -169,14 +177,130 @@
     [_imageView sd_setImageWithURL:url placeholderImage:nil options:SDWebImageRetryFailed progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
         if(expectedSize > 0) {
             CGFloat progress = 1.0 * receivedSize / expectedSize;
-            self.progressView.progressLabel.text = [NSString stringWithFormat:@"%.0f", 100.0 * progress];
-            [self.progressView setProgress:progress animated:YES];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.progressView.progressLabel.text = [NSString stringWithFormat:@"%.0f", 100.0 * progress];
+                [self.progressView setProgress:progress animated:YES];
+            });
         }
-        
-    } completed:nil];
-
+    } completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        CGFloat dispW = self.scrollView.width;
+        CGFloat dispH = dispW * image.size.height / image.size.width;
+        if(dispH > self.scrollView.height) {
+            [self setupImageViewArrayWithImage:image];
+            [self.imageView removeFromSuperview];
+       }
+    }];
 }
 
+- (NSMutableArray *)imageViewArray {
+    if(_imageViewArray == nil) {
+        _imageViewArray = [NSMutableArray array];
+    }
+    return _imageViewArray;
+}
+
+- (void)setupImageViewArrayWithImage:(UIImage*)image {
+    [self.imageViewArray enumerateObjectsUsingBlock:^(UIImageView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [obj removeFromSuperview];
+    }];
+    [self.imageViewArray removeAllObjects];
+    if (!image) {
+        return;
+    }
+    
+    CGFloat dispW = _scrollView.width;
+    CGFloat dispH = _scrollView.height;
+    
+    CGFloat imageWidth  = image.size.width;     // 图片宽度
+    CGFloat imageHeight = image.size.height;    // 图片高度
+    CGFloat imageHeightPerScreen = imageWidth * dispH / dispW; // 每屏图片实际高度
+    
+    //NSInteger count = ceil(imageHeight / imageHeightPerScreen);
+    //NSInteger count = floor(imageHeight / imageHeightPerScreen);
+    CGFloat surplus = imageHeight;
+    CGFloat y0 = 0;
+    CGFloat yf = 0;
+    while(surplus > imageHeightPerScreen) {
+        CGImageRef imgRef = CGImageCreateWithImageInRect(image.CGImage, CGRectMake(0, y0, imageWidth, imageHeightPerScreen));
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageWithCGImage:imgRef]];
+        imageView.frame = CGRectMake(0, yf, dispW, dispH);
+ 
+        [self.imageViewArray addObject:imageView];
+        [_scrollView addSubview:imageView];
+        
+        surplus -= imageHeightPerScreen;
+        y0 += imageHeightPerScreen;
+        yf += dispH;
+    }
+    
+    if(surplus > 0) {
+        CGFloat imgH = surplus * dispW / imageWidth;
+        CGImageRef imgRef = CGImageCreateWithImageInRect(image.CGImage, CGRectMake(0, y0, imageWidth, surplus));
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageWithCGImage:imgRef]];
+        imageView.frame = CGRectMake(0, yf, dispW, imgH);
+        
+        [self.imageViewArray addObject:imageView];
+        [_scrollView addSubview:imageView];
+        yf += imgH;
+
+        /*
+        CGImageRef imgRef = CGImageCreateWithImageInRect(image.CGImage, CGRectMake(0, y0, imageWidth, surplus));
+        UIImage *smallImage = [UIImage imageWithCGImage:imgRef];
+        
+        CGFloat imgH = surplus * dispW / imageWidth;
+        UIGraphicsBeginImageContextWithOptions(CGSizeMake(imageWidth, imageHeightPerScreen), 1, 0);
+        UIBezierPath *fillPath = [UIBezierPath bezierPathWithRect:CGRectMake(0, 0, imageWidth, imageHeightPerScreen)];
+        GYColor(0, 0, 0).set;
+        [fillPath fill];
+        
+        [smallImage drawInRect:CGRectMake(0, 0, dispW, imgH)];
+        UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:newImage];
+        imageView.frame = CGRectMake(0, yf, dispW, dispH);
+        [self.imageViewArray addObject:imageView];
+        yf += imgH;//_scrollView.height;
+         */
+    }
+    _scrollView.contentSize = CGSizeMake(0, yf);
+}
+/*
+- (void)setImage:(UIImage *)image {
+    _image = image;
+    
+    [self.imageViewArray enumerateObjectsUsingBlock:^(UIImageView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [obj removeFromSuperview];
+    }];
+    [self.imageViewArray removeAllObjects];
+    if (!image) {
+        return;
+    }
+    
+    CGFloat imageWidth = image.size.width;
+    CGFloat maxImageHeight = imageWidth * self.maxHeightFator;
+    if (maxImageHeight == 0) {
+        return;
+    }
+    NSInteger count = ceil(image.size.height / maxImageHeight);
+    
+    for (NSInteger index = 0; index < count; ++ index) {
+        CGFloat height = (index == count - 1) ? image.size.height - maxImageHeight * index : maxImageHeight;
+        CGImageRef imgRef = CGImageCreateWithImageInRect(image.CGImage, CGRectMake(0, index * maxImageHeight, imageWidth, height));
+        UIImageView *view = [[UIImageView alloc] initWithImage:[UIImage imageWithCGImage:imgRef]];
+        view.contentMode = self.contentMode;
+        [self addSubview:view];
+        [self.imageViewArray addObject:view];
+    }
+    [self setNeedsLayout];
+}
+
+---------------------
+作者：weixin_34019929
+来源：CSDN
+原文：https://blog.csdn.net/weixin_34019929/article/details/87405757
+版权声明：本文为博主原创文章，转载请附上博文链接！
+*/
 - (void)back {
     [self dismissViewControllerAnimated:YES completion:nil];
 }

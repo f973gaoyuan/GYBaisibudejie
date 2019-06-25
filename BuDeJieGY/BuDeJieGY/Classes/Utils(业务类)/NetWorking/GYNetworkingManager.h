@@ -34,6 +34,11 @@ typedef NS_ENUM(NSInteger, GYEssenceNetDataType) {
     GYEssenceNetDataTypeNews = 4
 };
 
+typedef NS_ENUM(NSInteger, GYRefreshType) {
+    GYRefreshTypePullup = 0,
+    GYRefreshTypePulldown = 1,
+};
+
 //NS_ASSUME_NONNULL_BEGIN
 
 @interface GYNetworkingManager : NSObject
@@ -61,7 +66,10 @@ typedef NS_ENUM(NSInteger, GYEssenceNetDataType) {
 /**e
  请求精华数据 参数index: 0-推荐 1-视屏 2-图片 3-笑话 4-娱乐
  */
-- (void)requestEssenceSubDataWithType:(GYEssenceNetDataType)essenceNetDataType completion:(void(^)(NSArray *topics, NSError * error))completionHandle;
+//- (void)requestEssenceSubDataWithType:(GYEssenceNetDataType)essenceNetDataType completion:(void(^)(NSArray *topics, NSError * error))completionHandle;
+- (void)requestEssenceSubDataWithType:(GYEssenceNetDataType)essenceNetDataType
+                          refreshType:(GYRefreshType)refreshType
+                           completion:(void(^)(NSArray *topics, NSError * error))completionHandle;
 //====================================
 // 社区
 /**

@@ -201,7 +201,9 @@
     }];
 }
 
-- (void)requestEssenceSubDataWithType:(GYEssenceNetDataType)essenceNetDataType completion:(void(^)(NSArray *topics, NSError * error))completionHandle {
+- (void)requestEssenceSubDataWithType:(GYEssenceNetDataType)essenceNetDataType
+                          refreshType:(GYRefreshType)refreshType
+                           completion:(void(^)(NSArray *topics, NSError * error))completionHandle {
     //NSArray<GYEssenceItem*> *essences = [GYNetworkingManager shareManager].essenceItems;
     NSInteger index = essenceNetDataType;
     if(index >= _essenceItems.count) {
@@ -217,6 +219,9 @@
         if(topicItems.count > 0) {
             GYTopicItem *startItem = [topicItems firstObject];
             GYTopicItem *endItem = [topicItems lastObject];
+            if(refreshType == GYRefreshTypePulldown) { // 下拉刷新
+                endItem = topicItems[1];
+            }
             startID = startItem.ID;
             endID = endItem.ID;
             
@@ -227,8 +232,16 @@
     NSString *usrlStr = [essenceItem.url stringByAppendingString:str];
     [self.manager GET:usrlStr parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary*  _Nullable responseObject) {
         NSArray *array = [GYTopicItem mj_objectArrayWithKeyValuesArray:responseObject[@"list"]];
-        for (GYTopicItem *item in array) {
-            [topicItems addObject:item];
+        if(refreshType == GYRefreshTypePulldown) { // 下拉刷新
+            int insetIndex = 0;
+            for (GYTopicItem *item in array) {
+                [topicItems insertObject:item atIndex:insetIndex];
+                insetIndex++;
+            }
+        } else {
+            for (GYTopicItem *item in array) {
+                [topicItems addObject:item];
+            }
         }
         if(completionHandle) completionHandle(array, nil);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
