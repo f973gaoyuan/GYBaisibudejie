@@ -29,6 +29,7 @@
 // 关注
 @property (strong, nonatomic) NSArray<GYRecommendFriendItem*> *recommendFriends; // 朋友推荐
 @property (strong, nonatomic) NSMutableArray<GYTopicItem*> *friendTopics;       //  关注帖子
+@property (strong, nonatomic) NSString *friendTopicNp;
 //===================================================
 // 我的
 @property (strong, nonatomic) NSMutableArray<GYSquareItem*> *squares;
@@ -232,7 +233,7 @@
     NSString *usrlStr = [essenceItem.url stringByAppendingString:str];
     [self.manager GET:usrlStr parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary*  _Nullable responseObject) {
         NSArray *array = [GYTopicItem mj_objectArrayWithKeyValuesArray:responseObject[@"list"]];
-        if(refreshType == GYRefreshTypePulldown) { // 下拉刷新
+        if(refreshType == GYRefreshTypePulldown && topicItems.count > 0) { // 下拉刷新
             int insetIndex = 0;
             for (GYTopicItem *item in array) {
                 [topicItems insertObject:item atIndex:insetIndex];
@@ -292,8 +293,30 @@
 }
 
 - (void)requestFriendTopicData:(void(^)(NSArray *friendTopics, NSError * error))completionHandle {// 关注帖子
-    NSString *urlStr = @"http://d.api.budejie.com/topic/list/jingxuan/attention/bsbdjhd-iphone-5.0.9/0-20.json";
-    [self.manager GET:urlStr parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary*  _Nullable responseObject) {
+    NSString *urlStr = @"http://d.api.budejie.com/topic/list/jingxuan/attention/bsbdjhd-iphone-5.0.9/";
+    NSMutableDictionary *paramDict = [NSMutableDictionary dictionary];
+    paramDict[@"appname"]  = @"bsbdjhd";
+    paramDict[@"asid"]     = @"7CA0F21E-BA78-4652-B644-56FA67EE9331";
+    paramDict[@"client"]   = @"iphone";
+    //paramDict[@"device"] = @"iPhone10%2C2";
+    paramDict[@"from"]     = @"ios";
+    paramDict[@"jbk"]      = @"1";
+    paramDict[@"market"]   = @"appstore";
+    paramDict[@"openudid"] = @"758826568e0160d531d579cb7b25a75b8df9d2e2";
+    //paramDict[@"t"]        = @"1561514513";
+    paramDict[@"uid"]      = @"23083681";
+    paramDict[@"ver"]      = @"5.1.2";
+    
+    NSString *tail = @"0";
+    if(_friendTopicNp) {
+        tail = _friendTopicNp;
+    }
+    tail = [tail stringByAppendingString:@"-20.json"];
+    urlStr = [urlStr stringByAppendingString:tail];
+
+    [self.manager GET:urlStr parameters:paramDict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary*  _Nullable responseObject) {
+        //NSNumber *np = responseObject[@"info"][@"np"];
+        self.friendTopicNp = [NSString stringWithFormat:@"%@", responseObject[@"info"][@"np"]];
         NSArray *array = [GYTopicItem mj_objectArrayWithKeyValuesArray:responseObject[@"list"]];
         for (GYTopicItem *item in array) {
             [self.friendTopics addObject:item];

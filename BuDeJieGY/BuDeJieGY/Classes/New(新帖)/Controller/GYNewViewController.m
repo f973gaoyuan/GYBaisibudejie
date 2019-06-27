@@ -83,6 +83,12 @@ static NSString* const promotionID = @"promotionCell";
     // 取消请求
     //[_manager.tasks makeObjectsPerformSelector:@selector(cancel)];
 }
+
+#pragma mark - <UIScrollViewDelegate>
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    [[SDImageCache sharedImageCache] setValue:nil forKey:@"memCache"];
+}
+
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.subscribes.count + 1;

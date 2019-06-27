@@ -32,6 +32,7 @@
     [_imageView sd_setImageWithURL:url completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
        UIGraphicsEndImageContext();
         self.imageView.image = [UIImage circularImaeWithImage:image];
+        [[SDImageCache sharedImageCache] setValue:nil forKey:@"memCache"];
     }];
 }
 

@@ -22,6 +22,7 @@
 #import "Category/UIView+frame.h"
 #import "Category/UIImage+Image.h"
 #import "Category/UIImage+Render.h"
+#import "Category/UIView+Fetch.h"
 #import "Category/UIImageView+Gesture.h"
 #import "Category/UITextField+Placeholder.h"
 #import "Category/UINavigationBar+Alpha.h"
@@ -48,5 +49,8 @@
 #define GYScreenH  [UIScreen mainScreen].bounds.size.height
 
 #define SystemVersion [UIDevice currentDevice].systemVersion.floatValue
+
+
+static NSString * const GYTabbarBtnRepeatClickeNote = @"GYTabbarBtnRepeatClickeNote";
 
 #endif /* BuDeJie_pch */

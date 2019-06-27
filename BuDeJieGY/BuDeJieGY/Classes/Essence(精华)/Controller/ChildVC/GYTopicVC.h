@@ -13,7 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface GYTopicVC : UITableViewController
 @property (assign, nonatomic) GYEssenceNetDataType dataType;
-- (void)loadTopicDataWithIndex:(GYEssenceNetDataType)essenceNetDataType refreshType:(GYRefreshType)refreshType;
 @end
 
 NS_ASSUME_NONNULL_END

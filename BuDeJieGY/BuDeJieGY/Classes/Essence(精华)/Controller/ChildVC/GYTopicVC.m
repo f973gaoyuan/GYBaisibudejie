@@ -12,6 +12,8 @@
 #import "../../View/GYCoverView.h"
 
 #import "../../VM/GYTopicCellMode.h"
+
+#import <YZDisplayViewHeader.h>
 /*
  不等高cell
  1. 自定义cell
@@ -36,8 +38,6 @@ static NSString * const ID = @"topicCell";
 
 @property (strong, nonatomic) NSMutableArray<GYTopicCellMode*> *topicCellsVM;
 @property (weak, nonatomic) GYCoverView *coverView;
-@property (weak, nonatomic) GYNetworkingManager *manager;
-
 @end
 
 @implementation GYTopicVC
@@ -49,12 +49,6 @@ static NSString * const ID = @"topicCell";
     return _topicCellsVM;
 }
 
-- (GYNetworkingManager *)manager {
-    if(_manager == nil) {
-        _manager = [GYNetworkingManager shareManager];
-    }
-    return _manager;
-}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = GYColor(240, 240, 240);
@@ -70,16 +64,32 @@ static NSString * const ID = @"topicCell";
     _coverView = coverView;
 
     [self.tableView registerClass:GYTopicCell.class forCellReuseIdentifier:ID];
-    
+    //==================================================================
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [self loadTopicDataWithIndex:self.view.tag refreshType:GYRefreshTypePulldown];
+        [self loadTopicDataWithRefreshType:GYRefreshTypePulldown];
     }];
     self.tableView.mj_header.automaticallyChangeAlpha = YES;
     
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-        [self loadTopicDataWithIndex:self.view.tag refreshType:GYRefreshTypePullup];
+        [self loadTopicDataWithRefreshType:GYRefreshTypePullup];
     }];
     self.tableView.mj_footer.automaticallyChangeAlpha = YES;
+    //==================================================================
+    
+//    [[NSNotificationCenter defaultCenter] addObserverForName:YZDisplayViewRepeatClickTitleNote object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
+//        if(self.view.window) {
+//            [self.tableView.mj_header beginRefreshing];
+//        }
+//    }];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadNetData:) name:YZDisplayViewRepeatClickTitleNote object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadNetData:) name:GYTabbarBtnRepeatClickeNote object:nil];
+ 
+    [self.tableView.mj_header beginRefreshing];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -87,11 +97,30 @@ static NSString * const ID = @"topicCell";
 //    GYLog(@".....%@", NSStringFromUIEdgeInsets(self.tableView.contentInset));
     self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
 }
+
+- (void)reloadNetData:(NSNotification*)noti {
+    id obj = noti.object;
+    BOOL isPass = NO;
+    if([obj isKindOfClass:UITableViewController.class]) {
+        UITableViewController *vc = obj;
+        if(vc.tableView == self.tableView) {
+            isPass = YES;
+        }
+    } else if([obj isKindOfClass:UITableView.class]) {
+        UITableView *tableView = obj;
+        if(tableView == self.tableView) {
+            isPass = YES;
+        }
+    }
+    
+    if(isPass) {
+        [self.tableView.mj_header beginRefreshing];
+    }
+}
 #pragma mark - 加载网络数据
-- (void)loadTopicDataWithIndex:(GYEssenceNetDataType)essenceNetDataType refreshType:(GYRefreshType)refreshType {
-    self.view.tag = essenceNetDataType;
-    [self.manager requestEssenceSubDataWithType:essenceNetDataType refreshType:refreshType completion:^(NSArray *topics, NSError *error) {
-        if(refreshType == GYRefreshTypePulldown) {
+- (void)loadTopicDataWithRefreshType:(GYRefreshType)refreshType {
+    [[GYNetworkingManager shareManager] requestEssenceSubDataWithType:_dataType refreshType:refreshType completion:^(NSArray *topics, NSError *error) {
+        if(refreshType == GYRefreshTypePulldown  && self.topicCellsVM.count > 0) {
             int insetIndex = 0;
             for (GYTopicItem *item in topics) {
                 GYTopicCellMode *vm = [[GYTopicCellMode alloc] init];
@@ -106,7 +135,7 @@ static NSString * const ID = @"topicCell";
                 [self.topicCellsVM addObject:vm];
             }
         }
-        
+
         if(self.coverView) {
             [self.coverView removeFromSuperview];
         }
@@ -114,11 +143,11 @@ static NSString * const ID = @"topicCell";
         [self.tableView reloadData];
         //self.tableView.contentOffset = CGPointMake(0, offset);
         
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        //dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self.tableView.mj_header endRefreshing];
             [self.tableView.mj_footer endRefreshing];
-            [[SDImageCache sharedImageCache] setValue:nil forKey:@"memCache"];
-        });
+            //[[SDImageCache sharedImageCache] setValue:nil forKey:@"memCache"];
+        //});
     }];
 }
 

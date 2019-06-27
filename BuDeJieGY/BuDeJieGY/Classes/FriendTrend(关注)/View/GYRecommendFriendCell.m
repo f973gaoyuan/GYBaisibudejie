@@ -15,6 +15,7 @@ const NSUInteger USER_BTN_CNT   = 5;
 //@property (weak, nonatomic) IBOutlet GYUserBtn *userBtn;
 @property (strong, nonatomic) NSMutableArray<GYUserBtn*> *userBtns;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabelGY;
+@property (weak, nonatomic) IBOutlet UIView *bottomView;
 @end
 
 @implementation GYRecommendFriendCell
@@ -55,6 +56,8 @@ const NSUInteger USER_BTN_CNT   = 5;
         [self.userBtns addObject:btn];
     }
     
+    _bottomView.backgroundColor = GYColor(240, 240, 240);
+    self.autoresizingMask = UIViewAutoresizingNone;
 }
 
 - (void)layoutSubviews {
@@ -64,7 +67,7 @@ const NSUInteger USER_BTN_CNT   = 5;
     CGFloat x = 0;
     CGFloat y = CGRectGetMaxY(self.titleLabelGY.frame) + 3;
     CGFloat width = self.contentView.width / count;
-    CGFloat height = self.contentView.height - y;
+    CGFloat height = _bottomView.y - y;
     
     for (int i = 0; i < count; i++) {
         GYUserBtn *btn = _userBtns[i];

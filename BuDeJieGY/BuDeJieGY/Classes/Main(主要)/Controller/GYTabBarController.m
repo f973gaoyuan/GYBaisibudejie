@@ -23,8 +23,9 @@
  封装：谁的事情谁管理，让业务逻辑非常清晰
  */
 
-@interface GYTabBarController ()
+@interface GYTabBarController () <UITabBarControllerDelegate>
 @property (weak, nonatomic) UIButton *plusBtn;
+@property (weak, nonatomic) UIViewController *selectedVc;
 @end
 /*
  问题：
@@ -102,16 +103,33 @@
     //self.tabBar.tintColor = [UIColor blackColor]; //设置渲染颜色 -- 这种方法也行
     // 创建发布按钮
     self.plusBtn.center = CGPointMake(self.tabBar.bounds.size.width * 0.5, self.tabBar.bounds.size.height * 0.5);
+    self.delegate = self;
 
     // 添加所有子控制器
     [self addAllChildVC];
     
     [self setupAllTitleButton];
+    
+    _selectedVc = self.childViewControllers[0];
 }
 //- (void)viewWillAppear:(BOOL)animated {
 //    [super viewWillAppear:animated];
 //    GYLog(@"%@", self.tabBar.subviews);
 //}
+#pragma mark - <UITabBarControllerDelegate>
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
+    if(_selectedVc == viewController) {
+        //
+        UITableView *tableView =  [[UIApplication sharedApplication].keyWindow fetchChildView];
+        [[NSNotificationCenter defaultCenter] postNotificationName:GYTabbarBtnRepeatClickeNote object:tableView];
+//        UITableView *tableView =  [[UIApplication sharedApplication].keyWindow fetchChildView];
+//        if(tableView) {
+//            CGFloat yOff = -tableView.contentInset.top;
+//            [tableView setContentOffset:CGPointMake(0, yOff) animated:YES];
+//        }
+    }
+    _selectedVc = viewController;
+}
 #pragma mark - 添加所有子控制器
 - (void)addAllChildVC {
     //1.精华

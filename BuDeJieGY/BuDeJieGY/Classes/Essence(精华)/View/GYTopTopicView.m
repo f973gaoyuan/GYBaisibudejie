@@ -44,13 +44,11 @@
     NSURL *url = [NSURL URLWithString:topicItem.user.header[0]];
     [_imageView sd_setImageWithURL:url completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
         self.imageView.image = [UIImage circularImaeWithImage:image];
+        [[SDImageCache sharedImageCache] setValue:nil forKey:@"memCache"];
     }];
     
     _nameLabel.text = topicItem.user.name;
-    //_contentLabel.text = topicItem.text;
-//    if([topicItem.ID isEqualToString:@"29604184"]) {
-//        int i = 0;
-//    }
+    _contentLabel.text = topicItem.text;
 
     if(topicItem.status == GYTopicStatusEssence) {
         UIImage *isBestImage = [UIImage imageNamed:@"icon_isbest_27x14_"];
@@ -70,12 +68,11 @@
         [attrStr appendAttributedString:attrText];
 
         [_contentLabel setAttributedText:attrStr];
-    } else {// if(topicItem.status == GYTopicStatusNormal) {
+        attrText = nil;
+        attrStr = nil;
+    }/* else {// if(topicItem.status == GYTopicStatusNormal) {
         _contentLabel.text = topicItem.text;
-    }
-    
-    //[self passTime];
-    //GYLog(@"%@", [self distanceTime:topicItem.passtime]);
+    }*/
 }
 
 - (void)awakeFromNib {

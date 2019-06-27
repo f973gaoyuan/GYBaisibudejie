@@ -88,15 +88,7 @@
         
         self.imageViewGY.image = newImage;
         self.imageViewGY.layer.cornerRadius = 0;
-        
-//        if(H0 > 20000) {
-//            NSString *fileName = [NSString stringWithFormat:@"%@.png", self.topicItem.ID];
-//            NSString *cacheDir = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0];
-//            NSString *filePath = [cacheDir stringByAppendingPathComponent:fileName];
-//            NSData *data = UIImagePNGRepresentation(image);
-//            BOOL isError = [data writeToFile:filePath atomically:YES];
-//            GYLog(@"....................%d", isError);
-//       }
+        [[SDImageCache sharedImageCache] setValue:nil forKey:@"memCache"];
     }];
 }
 

@@ -1,8 +1,8 @@
 //
-//  GYEntertainmentVC.h
+//  GYStatusWindow.h
 //  BuDeJieGY
 //
-//  Created by 高源 on 2019/6/5.
+//  Created by 高源 on 2019/6/26.
 //  Copyright © 2019 gaoyuan. All rights reserved.
 //
 
@@ -10,8 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface GYEntertainmentVC : UIViewController
-
+@interface GYStatusWindow : UIWindow
++ (instancetype)show;
 @end
 
 NS_ASSUME_NONNULL_END

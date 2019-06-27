@@ -14,6 +14,8 @@
 #import "../Main(主要)/Controller/GYTabBarController.h"
 #endif
 
+#import "../Main(主要)/View/GYStatusWindow.h"
+
 /*
  优先级：LauchScreen > LauchImage
  在xcode配置后，不起作用 1.清空xcode缓存 2.直接删掉模拟器中的程序重新运行
@@ -38,8 +40,16 @@
  2. 一开始就设置窗口的跟控制器为广告界面
  */
 
-@interface AppDelegate ()
+/*
+ 点击状态栏，回到顶部(系统自带就有)
+ 1. 实现点击状态栏，回到顶部
+ 1.1. 监听状态栏点击  pass
+ 1.2. 往窗口上添加一个view挡住状态栏 pass
+ 1.3. 设置tableView偏移量为：-99
+ */
 
+@interface AppDelegate ()
+@property (strong, nonatomic) UIWindow *statusWindow;
 @end
 
 @implementation AppDelegate
@@ -60,6 +70,8 @@
 
     //3.显示窗口
     [self.window makeKeyAndVisible];
+    
+    //[GYStatusWindow show]; // 伪代码： 实现点击状态栏 让正在显示的tableView回到顶部
 
     return YES;
 }
