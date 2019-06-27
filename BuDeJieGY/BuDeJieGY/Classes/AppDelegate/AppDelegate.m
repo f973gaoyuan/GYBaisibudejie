@@ -71,7 +71,7 @@
     //3.显示窗口
     [self.window makeKeyAndVisible];
     
-    //[GYStatusWindow show]; // 伪代码： 实现点击状态栏 让正在显示的tableView回到顶部
+    [GYStatusWindow show]; // 伪代码： 实现点击状态栏 让正在显示的tableView回到顶部
 
     return YES;
 }
